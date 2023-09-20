@@ -1,48 +1,47 @@
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
-    :root {
-      font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-      line-height: 1.5;
-      font-weight: 400;
+  *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
 
-      color-scheme: light dark;
-      color: rgba(255, 255, 255, 0.87);
-      background-color: #242424;
+  :root{
+    font-size: 62.5%;
+  }
 
-      font-synthesis: none;
-      text-rendering: optimizeLegibility;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      -webkit-text-size-adjust: 100%;
-    }
+  body{
+    background: ${({ theme }) => theme.COLORS.DARK_400};
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
-    a {
-      text-decoration: none;
-      cursor: pointer;
-    }
-    
-    a:hover {
-      color: #535bf2;
-    }
+    -webkit-fonts-smoothing: antialiased;
 
-    body {
-      margin: 0;
-      display: flex;
-      place-items: center;
-      min-width: 320px;
-      min-height: 100vh;
-    }
+      
+  }
 
-    h1 {
-      font-size: 3.2em;
-      line-height: 1.1;
-      color: red;
-    }
+  body, input, button, textarea{
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 1.6rem;
+    outline: none;
+  }
 
-   
+  a{
+    text-decoration: none;
+  }
 
-   
+  button, a{
+    cursor: pointer;
+    transition: filter 0.2s;
+  }
+
+  button:hover, a:hover{
+    filter: brightness(0.9);
+  }
+
+  ul{
+    list-style-type: none;
+  }
 `
 
 
