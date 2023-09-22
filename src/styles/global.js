@@ -17,6 +17,8 @@ export default createGlobalStyle`
 
     -webkit-fonts-smoothing: antialiased;
 
+    height: 100vh;
+
       
   }
 
