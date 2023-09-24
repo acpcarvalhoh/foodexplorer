@@ -3,8 +3,11 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
 
-    > input{
+    input{
         width: 100%;
         padding: 1.6rem 1.4rem;
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
@@ -16,6 +19,16 @@ export const Container = styled.div`
         &placeholder{
             color: ${({ theme }) => theme.COLORS.LIGHT_500};
         }
+
+        
+    }
+
+    svg{
+        color: red;
+        position: absolute;
+        top: 1.6rem;
+        left: 1.4rem;
+        color: ${({ theme }) => theme.COLORS.LIGHT_400};
     }
 
     >input:focus {

@@ -1,10 +1,15 @@
 import  { Container  } from './styles'
-function Home() {
+
+import { Header } from "../../components/header"
+
+
+export function Home() {
   return (
     <Container>
-      <h1>Hello word</h1>
+      <Header/>
+      
     </Container>
   )
 }
 
-export default Home;
+
