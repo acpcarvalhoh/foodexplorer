@@ -17,7 +17,22 @@ export const Container = styled.header`
         font-style: normal;
         font-weight: 700;
         line-height: normal;
-    
+    }
+
+    .logo-header{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        span{
+            font-family: Roboto;
+            font-size: 1.2rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 160%;
+            color: ${({ theme }) => theme.COLORS.CAKE_200};
+           
+        }
     }
 
     .menu{
@@ -136,7 +151,7 @@ export const Container = styled.header`
         }
     }
 
-    .logo{
+    .logo-header{
         animation: fadeInAnimation 0.5s ease-in-out;
     }
 

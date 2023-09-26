@@ -5,7 +5,6 @@ import { MdClose } from "react-icons/md"
 import { Input } from "../Input"
 import { useState } from "react"
 
-
 export function Header({}){
     const [ $isMenuOpen, $setIsMenuOpen] = useState(false);
 
@@ -13,6 +12,7 @@ export function Header({}){
         $setIsMenuOpen(!$isMenuOpen);
     };
 
+    const isAdmin = true;
 
     return(
         <Container $isMenuOpen={$isMenuOpen}>
@@ -23,8 +23,9 @@ export function Header({}){
             </button>
 
             {!$isMenuOpen && (
-                <div className="logo">
+                <div className="logo-header">
                     <h1>Food explorer</h1>
+                    {isAdmin && <span>Admin</span>}
                 </div>
             )}
 
