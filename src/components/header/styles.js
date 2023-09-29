@@ -8,21 +8,28 @@ export const Container = styled.header`
     justify-content: space-between;
     align-items: ${({ $isMenuOpen }) => ($isMenuOpen ? 'start' : 'center')};
     padding: ${({ $isMenuOpen }) => ($isMenuOpen ? '0' : '6rem 2.8rem 3.2rem 2.8rem')}; 
-   
     background: ${({ theme }) => theme.COLORS.DARK_700};
 
-    h1{
-        font-family: Roboto;
-        font-size: 21.163px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
+    .search-desktop_only, .button-exit-desktop{
+        display: none;
     }
 
     .logo-header{
         display: flex;
         align-items: center;
         gap: 8px;
+
+        h1{
+            font-family: Roboto;
+            font-size: 2.1rem;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+        }
+
+        img{
+            display: none;
+        }
 
         span{
             font-family: Roboto;
@@ -155,13 +162,13 @@ export const Container = styled.header`
         animation: fadeInAnimation 0.5s ease-in-out;
     }
 
-    .receipt{
+    .number-requests{
         background: none;
         border: none;
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
         position: relative;
 
-        span{
+        .mobile{
             color: red;
             position: absolute;
             top: -9px;
@@ -174,8 +181,90 @@ export const Container = styled.header`
             width: 2rem;
         }
 
+        .desktop{
+            display: none;
+        }
+
     }
 
+    /* Desktop */
+    @media screen and (min-width: 768px){
+        padding: 2.4rem 12.3rem;
+        gap: 3.2rem;
+        
+        .menu{
+            display: none;
+        }
+
+        .logo-header{
+           max-width: 100%;
+    
+            h1{
+               font-size: 2.4rem;
+            }
+
+            img{
+              display: block;
+              width: 3rem;
+              height: 3rem;
+            }
+        }
+
+        .search-desktop_only{
+           display: block;
+           width: 581px;
+
+           input{
+            padding: 1.2rem 1.4rem 1.2rem 11.7rem;
+           }
+
+           svg{
+            left: 9rem;
+            top: 1.2rem;
+           }
+        }
+
+        .number-requests{
+            
+            max-width: 100%;
+            padding: 1.2rem 3.2rem;
+            border-radius: 5px;
+            background: ${({ theme }) => theme.COLORS.TOMATO_100};
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            svg{
+                width: 32px;
+                height: 32px;
+            }
+
+            .mobile{
+                display: none;
+            }
+
+            .desktop{
+                display: block;
+                font-size: 1.4rem;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 2.4rem;
+
+               
+            }
+        }
+
+        .button-exit-desktop{
+            display: block;
+            background: none;
+            border: none;
+            color: ${({ theme }) => theme.COLORS.LIGHT_100};
+        }
+
+
+        
+
+    }
 
 
 

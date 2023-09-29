@@ -2,8 +2,11 @@ import { Container } from "./styles"
 import { PiReceipt } from "react-icons/pi"
 import { FiMenu, FiSearch } from "react-icons/fi"
 import { MdClose } from "react-icons/md"
+import { PiSignOutBold } from 'react-icons/pi'
 import { Input } from "../Input"
 import { useState } from "react"
+
+import logoImg  from "../../assets/Polygon .svg"
 
 export function Header({}){
     const [ $isMenuOpen, $setIsMenuOpen] = useState(false);
@@ -12,7 +15,7 @@ export function Header({}){
         $setIsMenuOpen(!$isMenuOpen);
     };
 
-    const isAdmin = true;
+    const isAdmin = false;
 
     return(
         <Container $isMenuOpen={$isMenuOpen}>
@@ -24,12 +27,13 @@ export function Header({}){
 
             {!$isMenuOpen && (
                 <div className="logo-header">
+                    <img src={logoImg} alt="Polygon" />
                     <h1>Food explorer</h1>
                     {isAdmin && <span>Admin</span>}
                 </div>
             )}
 
-            {$isMenuOpen && (
+            {$isMenuOpen  && (
                 <div  className="search">
                     <Input
                         placeholder="Busque por pratos ou ingredientes"
@@ -39,20 +43,34 @@ export function Header({}){
 
                     {$isMenuOpen && (
                         <div className="close-menu">
-                            <button onClick={handleShowMenu}>sair</button>
+                            <button>sair</button>
                             
                         </div>
                     )}
                 </div>
             )}
-           
 
+           <div className="search-desktop_only">
+                <Input 
+                    placeholder="Busque por pratos ou ingredientes"
+                    type="text"
+                    icon={FiSearch}
+                        
+                />
+           </div>
+            
+            
             {!$isMenuOpen && (
-                <button className="receipt">
+                <button className="number-requests">
                     <PiReceipt size={24} />
-                    <span>0</span>
+                    <span className="mobile">0</span>
+                    <span className="desktop">Pedidos (0)</span>
                 </button>
             )}
+
+            <button className="button-exit-desktop">
+                <PiSignOutBold size={32} />
+            </button>
         </Container>
     )
 };

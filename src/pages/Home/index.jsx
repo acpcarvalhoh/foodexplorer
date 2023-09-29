@@ -2,87 +2,102 @@ import  { Container, Content } from './styles'
 import { Header } from "../../components/header"
 import { Footer } from "../../components/Footer"
 import dishImg  from "../../assets/dish-img.svg"
+import dishImgDesktop  from "../../assets/dish-img-desktop.svg"
 import { Section } from '../../components/Section'
 import { Dishe } from '../../components/Dish'
-
+import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi"
 import salade from "../../assets/salade.svg"
+import { register } from 'swiper/element/bundle';
+import { useRef } from 'react'
 
+
+register();
 export function Home() {
+  const carouselRef = useRef(null);
+
+  function handleRightClick() {
+    carouselRef.current.scrollLeft += carouselRef.current.offsetWidth
+  }
+
+  function handleLeftClick() {
+    carouselRef.current.scrollLeft -= carouselRef.current.offsetWidth
+  }
+
   return (
     <Container>
       <Header/>
       <main>
         <article>
-          <img src={dishImg} alt="imagem de" />
+          <img className="mobile-img" src={dishImg} alt="imagem de prato" />
+          <img className="desktop-only-img" src={dishImgDesktop} alt="imagem de prato" />
           <div>
             <h2>Sabores inigualáveis</h2>
             <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
           </div>
         </article>
 
-        <Section title="Refeições">
-          <Content className='teste'>
-            <Dishe dishes={{
-              image: salade,
-              name: "Salada Ravanello",
-              price: 49.97
-
-            }}/>
-
-            <Dishe dishes={{
-              image: salade,
-              name: "Salada Ravanello",
-              price: 49.97
-
-            }}/>
-
-            <Dishe dishes={{
-              image: salade,
-              name: "Salada Ravanello",
-              price: 49.97
-
-            }}/>
-          </Content>
-        </Section>
-
-        <Section title="Pratos principais">
-          <Content className='teste'>
-            <Dishe dishes={{
-              image: salade,
-              name: "Salada Ravanello",
-              price: 49.97
-
-            }}/>
-
-            <Dishe dishes={{
-              image: salade,
-              name: "Salada Ravanello",
-              price: 49.97
-
-            }}/>
-          </Content>
-        </Section>
-
         <Section title="Sobremesas">
-          <Content className='teste'>
-            <Dishe dishes={{
-              image: salade,
-              name: "Salada Ravanello",
-              price: 49.97
+          <div className="carousel-container">
+            <button className="button_left" onClick={handleLeftClick}>
+              <PiCaretLeftBold />
+            </button>
+            <Content className="carousel" ref={carouselRef}>
+              <Dishe dishes={{
+                image: salade,
+                name: "Salada Ravanello",
+                description: "Massa fresca com camarões e pesto.",
+                price: 49.97
 
-            }}/>
+              }}/>
 
-            <Dishe dishes={{
-              image: salade,
-              name: "Salada Ravanello",
-              price: 49.97
+              <Dishe dishes={{
+                image: salade,
+                name: "Salada Ravanello",
+                description: "Massa fresca com camarões e pesto.",
+                price: 49.97
 
-            }}/>
-          </Content>
+              }}/>
+
+              <Dishe dishes={{
+                image: salade,
+                name: "Salada Ravanello",
+                description: "Massa fresca com camarões e pesto.",
+                price: 49.97
+
+              }}/>
+
+              <Dishe dishes={{
+                image: salade,
+                name: "Salada Ravanello",
+                description: "Massa fresca com camarões e pesto.",
+                price: 49.97
+
+              }}/>
+
+              <Dishe dishes={{
+                image: salade,
+                name: "Salada Ravanello",
+                description: "Massa fresca com camarões e pesto.",
+                price: 49.97
+
+              }}/>
+
+              <Dishe dishes={{
+                image: salade,
+                name: "Salada Ravanello",
+                description: "Massa fresca com camarões e pesto.",
+                price: 49.97
+
+              }}/>
+            </Content>
+            <button className="button_right" onClick={handleRightClick}>
+              <PiCaretRightBold />
+            </button>
+          </div>
         </Section>
       </main>
 
-      {/* <Footer /> */}
+      <Footer />
     </Container>
   )
 }

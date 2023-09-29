@@ -1,18 +1,17 @@
 import styled from "styled-components";
 
-
 export const Container = styled.div`
-  max-width: 428px;
   height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: auto;
-  border: 2px solid red;
   
+
   main{
     overflow-x:auto;
-    
+    overflow-y: auto;
+    width: 428px;
   }
 
   main::-webkit-scrollbar {
@@ -33,9 +32,13 @@ export const Container = styled.div`
     align-items: center;
     
 
-    img{
+    .mobile-img{
       margin-left: -3rem;
       margin-top: -3rem;
+    }
+
+    .desktop-only-img{
+      display: none;
     }
     
 
@@ -57,17 +60,127 @@ export const Container = styled.div`
     }
   }
 
-
-  .teste::-webkit-scrollbar {
-    width: 12px; 
+  .button_left, .button_right{
+    display: none;
   }
+
+
+  .carousel::-webkit-scrollbar {
+    width: 12px; 
+  } 
 
   .elemento-com-barra-de-rolagem::-webkit-scrollbar-thumb {
     background-color: transparent; 
   }
+
+  /* Desktop */
+  @media screen and (min-width: 768px){
+    width: 100%;
+
+    main{
+     overflow-x:auto;
+     margin: auto;
+     width: 100%;
+     padding: 0 11.4rem;
+    }
+
+    article{
+      width: 100%;
+      margin: 16.4rem auto 6.4rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      height: /* clamp(9.375rem, 5.5433rem + 14.2574vw, 26rem) */26rem;
+     
+      .mobile-img{
+        display: none;
+      }
+
+      .desktop-only-img{
+        display: block;
+        position: absolute;
+        width: /* clamp(12.5rem, 6.0606rem + 23.9604vw, 63.2rem) */ 63.2rem;
+        height: 40.6rem;
+        top: -14.6rem;
+        left: -5.8rem;
+
+      }
+
+      h2{
+        font-size: 4rem;
+        font-weight: 500;
+        margin-top: 1.875rem;
+        margin-right: clamp(1.25rem, -0.8787rem + 7.9208vw, 6.25rem);
+         
+      }
+
+      p{
+        font-size: 1.6rem;
+        line-height: 100%;
+        margin-top: 1rem;
+        margin-right: clamp(1.25rem, -0.8787rem + 7.9208vw, 6.25rem);
+        
+      }
+    }
+
+    .carousel-container{
+      position: relative;
+      overflow: hidden;
+
+      .button_left, .button_right{
+        position: absolute;
+        background: none;
+        border: none;
+        color: ${({ theme }) => theme.COLORS.LIGHT_100};
+        display: block;
+      
+        z-index: 2;
+
+        svg{
+          width: 4rem;
+          height: 4rem;
+        }
+      }
+
+      .button_left{
+        left: 1.5rem;
+        top: 18.6rem;
+      }
+
+      .button_right{
+        right: 1.5rem;
+        top: 18.6rem;
+      }
+
+    }
+
+    .carousel-container::before, .carousel-container::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 200px; 
+      height: 100%;
+      z-index: 1;
+    }
+
+    .carousel-container::before {
+      left: 0;
+      background: linear-gradient(90deg, rgba(0, 10, 15, 0.8) 0%, rgba(0, 10, 15, 0) 100%);
+    }
+
+    .carousel-container::after {
+      right: 0;
+      background: linear-gradient(90deg, rgba(0, 10, 15, 0) 0%, rgba(0, 10, 15, 0.8) 100%);
+    }     
+
+
+  }
+  
   
  
 `
+
 
 export const Content = styled.div`
   width: 400px;
@@ -78,8 +191,18 @@ export const Content = styled.div`
   scroll-behavior: smooth;
   flex-shrink: 0;
   gap: 1.6rem;
-  scrollbar-width: thin; 
+ /*  scrollbar-width: thin; 
   scrollbar-color: transparent transparent;
+ */
+
+  @media screen and (min-width: 768px){
+    width: 100%;
+    
+  }
+
+  
   
 `
+
+
 

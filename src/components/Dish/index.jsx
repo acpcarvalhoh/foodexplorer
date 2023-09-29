@@ -55,7 +55,9 @@ export function Dishe({dishes, ...rest}){
             
             <h3>{dishes.name}</h3>
 
-            <p>R$ {totalPrice}</p>
+            <p className="dish_description">{dishes.description}</p>
+
+            <p className="dish-price">R$ {totalPrice}</p>
 
             {!isAdmin && (
                 <div className="user-buttons-content">

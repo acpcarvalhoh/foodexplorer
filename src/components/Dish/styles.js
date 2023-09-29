@@ -5,7 +5,6 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    align-self: flex-start;
     flex-shrink: 0;
     gap: 1.2rem;
     margin-top: 2.4rem;
@@ -44,13 +43,17 @@ export const Container = styled.div`
         line-height: 24px;
     }
 
-    p{
+    .dish-price{
         font-family: Roboto;
         font-size: 1.6rem;
         font-style: normal;
         font-weight: 400;
         line-height: 100%;
         color: ${({ theme }) => theme.COLORS.CAKE_200};
+    }
+
+    .dish_description{
+        display: none;
     }
 
     .user-buttons-content{
@@ -87,6 +90,68 @@ export const Container = styled.div`
 
         .include-button{
             height: 3.2rem;
+        }
+
+    }
+
+    /* Desktop */
+    @media screen and (min-width: 768px){
+        height: 460px;
+        width: 304px;
+        gap: 1.5rem;
+
+        img{
+            width: 17.6rem;
+            height: 17.6rem;
+        }
+
+        h3{
+            font-size: 2.4rem;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 140%; 
+        }
+
+        .dish-price{
+            font-size: 3.2rem;
+            line-height: 160%;
+        }
+
+        .dish_description{
+            display: block;
+            font-family: Roboto;
+            font-size: 1.4rem;
+            font-weight: 400;
+            line-height: 160%;
+            color: ${({ theme }) => theme.COLORS.LIGHT_400};
+        }
+
+        .user-buttons-content{
+            flex-direction: row;
+
+            .add-dish-price{
+
+                button{
+                    background: none;
+                    border: none;
+                    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+                }
+
+                span{
+                    font-size: 2rem;
+                    font-weight: 700;
+                    line-height: 160%;
+                    
+                }
+
+            
+            }
+
+            .include-button{
+                padding: 1.2rem 2.4rem;
+                width: 9.2rem;
+                height: 4.8rem;
+            }
         }
     }
 
