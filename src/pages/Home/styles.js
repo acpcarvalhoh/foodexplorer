@@ -166,12 +166,13 @@ export const Container = styled.div`
 
     .carousel-container::before {
       left: 0;
-      background: linear-gradient(90deg, rgba(0, 10, 15, 0.8) 0%, rgba(0, 10, 15, 0) 100%);
+      background: linear-gradient(90deg, #000A0F 15%, rgba(0, 10, 15, 0.1) 95%);
     }
+
 
     .carousel-container::after {
       right: 0;
-      background: linear-gradient(90deg, rgba(0, 10, 15, 0) 0%, rgba(0, 10, 15, 0.8) 100%);
+      background: linear-gradient(90deg, rgba(0, 10, 15, 0.1) 0%,  #000A0F 95%);
     }     
 
 
@@ -191,9 +192,9 @@ export const Content = styled.div`
   scroll-behavior: smooth;
   flex-shrink: 0;
   gap: 1.6rem;
- /*  scrollbar-width: thin; 
+  scrollbar-width: thin; 
   scrollbar-color: transparent transparent;
- */
+
 
   @media screen and (min-width: 768px){
     width: 100%;
@@ -203,6 +204,5 @@ export const Content = styled.div`
   
   
 `
-
 
 

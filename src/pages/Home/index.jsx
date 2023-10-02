@@ -11,7 +11,7 @@ import { register } from 'swiper/element/bundle';
 import { useRef } from 'react'
 
 
-register();
+
 export function Home() {
   const carouselRef = useRef(null);
 
@@ -101,5 +101,4 @@ export function Home() {
     </Container>
   )
 }
-
 

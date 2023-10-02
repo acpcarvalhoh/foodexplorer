@@ -190,6 +190,7 @@ export const Container = styled.header`
     /* Desktop */
     @media screen and (min-width: 768px){
         padding: 2.4rem 12.3rem;
+        justify-content: center;
         gap: 3.2rem;
         
         .menu{
@@ -201,6 +202,13 @@ export const Container = styled.header`
     
             h1{
                font-size: 2.4rem;
+               position: relative;
+
+               span{
+                position: absolute;
+                bottom: -15px;
+                right: 4px;
+               }
             }
 
             img{
@@ -220,12 +228,11 @@ export const Container = styled.header`
 
            svg{
             left: 9rem;
-            top: 1.2rem;
+            top: 1rem;
            }
         }
 
         .number-requests{
-            
             max-width: 100%;
             padding: 1.2rem 3.2rem;
             border-radius: 5px;

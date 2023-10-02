@@ -28,8 +28,7 @@ export function Header({}){
             {!$isMenuOpen && (
                 <div className="logo-header">
                     <img src={logoImg} alt="Polygon" />
-                    <h1>Food explorer</h1>
-                    {isAdmin && <span>Admin</span>}
+                    <h1>Food explorer {isAdmin && <span>Admin</span>}</h1>
                 </div>
             )}
 
@@ -62,9 +61,9 @@ export function Header({}){
             
             {!$isMenuOpen && (
                 <button className="number-requests">
-                    <PiReceipt size={24} />
-                    <span className="mobile">0</span>
-                    <span className="desktop">Pedidos (0)</span>
+                    {!isAdmin && <PiReceipt size={24}/>}
+                    {!isAdmin && <span className="mobile">0</span>}   
+                    <span className="desktop">{isAdmin? "Novo prato" : "Pedidos (0)"}</span>
                 </button>
             )}
 

@@ -45,4 +45,30 @@ export const Container = styled.footer`
         line-height: normal;
     }
 
+    /* Desktop */
+    @media screen and (min-width: 768px){
+        justify-content: space-between;
+        padding: 2.4rem 12.3rem;
+
+        .logo{
+            gap: 1rem;
+           
+            p{
+                font-size: 2.4rem;
+                font-weight: 700;
+            }
+
+            img{
+                height: 3rem;
+                width: 3rem;
+            }
+        }
+
+        p{
+            font-size: 1.4rem;
+            line-height: 160%; 
+        }
+    }
+    
+
 `
