@@ -6,17 +6,17 @@ import { Button } from "../Button";
 import { useEffect, useState } from "react";
 
 
-export function Dishe({dishes, ...rest}){
-    const [totalPrice, setTotalPrice] = useState(dishes.price);
+export function Dish({data, ...rest}){
+    const [totalPrice, setTotalPrice] = useState(data.price);
     const [value, setValue] = useState(1);
     const [isFavorited, setIsFavorited] = useState(false);
 
 
     useEffect(() => {
 
-        setTotalPrice((dishes.price * value).toFixed(2).replace('.', ','))
+        setTotalPrice((data.price * value).toFixed(2).replace('.', ','))
 
-    }, [value, dishes.price]);
+    }, [value, data.price]);
     
     const handleDecrease = () => {
         if (value > 1) {
@@ -51,11 +51,11 @@ export function Dishe({dishes, ...rest}){
             </button>
 
 
-            <img src={dishes.image} alt={`Imagem de um prato ${dishes.name}`} />
+            <img src={data.image} alt={`Imagem de um prato ${data.name}`} />
             
-            <h3>{dishes.name}</h3>
+            <h3>{data.name}</h3>
 
-            <p className="dish_description">{dishes.description}</p>
+            <p className="dish_description">{data.description}</p>
 
             <p className="dish-price">R$ {totalPrice}</p>
 

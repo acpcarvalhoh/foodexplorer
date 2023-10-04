@@ -4,12 +4,11 @@ import { Footer } from "../../components/Footer"
 import dishImg  from "../../assets/dish-img.svg"
 import dishImgDesktop  from "../../assets/dish-img-desktop.svg"
 import { Section } from '../../components/Section'
-import { Dishe } from '../../components/Dish'
+import { Dish } from '../../components/Dish'
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi"
 import salade from "../../assets/salade.svg"
 import { register } from 'swiper/element/bundle';
 import { useRef } from 'react'
-
 
 
 export function Home() {
@@ -42,7 +41,7 @@ export function Home() {
               <PiCaretLeftBold />
             </button>
             <Content className="carousel" ref={carouselRef}>
-              <Dishe dishes={{
+              <Dish data={{
                 image: salade,
                 name: "Salada Ravanello",
                 description: "Massa fresca com camarões e pesto.",
@@ -50,7 +49,7 @@ export function Home() {
 
               }}/>
 
-              <Dishe dishes={{
+              <Dish data={{
                 image: salade,
                 name: "Salada Ravanello",
                 description: "Massa fresca com camarões e pesto.",
@@ -58,7 +57,7 @@ export function Home() {
 
               }}/>
 
-              <Dishe dishes={{
+              <Dish data={{
                 image: salade,
                 name: "Salada Ravanello",
                 description: "Massa fresca com camarões e pesto.",
@@ -66,7 +65,7 @@ export function Home() {
 
               }}/>
 
-              <Dishe dishes={{
+              <Dish data={{
                 image: salade,
                 name: "Salada Ravanello",
                 description: "Massa fresca com camarões e pesto.",
@@ -74,7 +73,7 @@ export function Home() {
 
               }}/>
 
-              <Dishe dishes={{
+              <Dish data={{
                 image: salade,
                 name: "Salada Ravanello",
                 description: "Massa fresca com camarões e pesto.",
@@ -82,7 +81,7 @@ export function Home() {
 
               }}/>
 
-              <Dishe dishes={{
+              <Dish data={{
                 image: salade,
                 name: "Salada Ravanello",
                 description: "Massa fresca com camarões e pesto.",
