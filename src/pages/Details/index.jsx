@@ -45,42 +45,49 @@ export function Details(){
                 </button>
                 <DishDetails>
                     <img src={salade} alt="Salada Ravanello" />
-                    <h2>Salada Ravanello</h2>
-                    <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.</p>
-                    <Ingredients>
-                        <Ingredient title="alface"/>
-                        <Ingredient title="cebola"/>
-                        <Ingredient title="pão naan"/>
-                        <Ingredient title="pepino"/>
-                        <Ingredient title="rabanete"/>
-                        <Ingredient title="tomate"/>
-                    </Ingredients>
+                    <div className="dish_description">
+                        <h2>Salada Ravanello</h2>
+                        <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.</p>
+                        <Ingredients>
+                            <Ingredient title="alface"/>
+                            <Ingredient title="cebola"/>
+                            <Ingredient title="pão naan"/>
+                            <Ingredient title="pepino"/>
+                            <Ingredient title="rabanete"/>
+                            <Ingredient title="tomate"/>
+                        </Ingredients>
 
-                    
-                    <QuantityAndOrderSelector>
-                        {!admin && 
-                            <div className="dishQuantitySelector">
-                                <button onClick={handleDicrease}>
-                                    <FiMinus size={28}/>
-                                </button>
-
-                                <span>{dishQuantity}</span>
-
-                                <button onClick={handleIncrease}>
-                                    <FiPlus size={28}/>
-                                </button>
-                            </div>
-                        }                     
                         
-                        <button className="button-order-or-edit-dish">
-                         {admin? "Editar prato" : 
-                            <div className="order-price">
-                                <PiReceipt size={21}/>
-                                <div>Pedir - R$ <span>{totalDishPrice}</span></div>
-                            </div>
-                         }
-                        </button>
-                    </QuantityAndOrderSelector>
+                        <QuantityAndOrderSelector>
+                            {!admin && 
+                                <div className="dishQuantitySelector">
+                                    <button onClick={handleDicrease}>
+                                        <FiMinus size={28}/>
+                                    </button>
+
+                                    <span>{dishQuantity}</span>
+
+                                    <button onClick={handleIncrease}>
+                                        <FiPlus size={28}/>
+                                    </button>
+                                </div>
+                            }                     
+                            
+                            <button className="button-order-or-edit-dish">
+                                {admin? "Editar prato" : 
+                                    <div className="order-price">
+                                        <PiReceipt size={21}/>
+                                        <div> 
+                                            <span>Incluir </span>
+                                            <span>Pedir </span> 
+                                            ∙ R$
+                                            <span> {totalDishPrice}</span>
+                                        </div>
+                                    </div>
+                                }
+                            </button>
+                        </QuantityAndOrderSelector>
+                    </div>
                 </DishDetails>
             </main>
             <Footer/> 
