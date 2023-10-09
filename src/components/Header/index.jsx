@@ -8,7 +8,7 @@ import { useState } from "react"
 
 import logoImg  from "../../assets/Polygon .svg"
 
-export function Header({}){
+export function Header(){
     const [ $isMenuOpen, $setIsMenuOpen] = useState(false);
 
     function handleShowMenu(){

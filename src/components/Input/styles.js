@@ -5,6 +5,8 @@ export const Container = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
+    flex-direction: column;
+    gap: 1.4rem;
     position: relative;
 
     input{
@@ -39,7 +41,7 @@ export const Container = styled.div`
     >label{
         font: 400 16px/100% Roboto;
         color: ${({ theme }) => theme.COLORS.LIGHT_400};
-        
+        align-self: flex-start;
     }
 
 `
