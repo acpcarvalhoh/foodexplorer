@@ -28,7 +28,7 @@ export const Container = styled.div`
          flex-direction: column;
          gap: 2.4rem;
          
-         h2{
+         .mobile{
             font-size: 3.2rem;
             font-style: normal;
             font-weight: 500;
@@ -36,10 +36,15 @@ export const Container = styled.div`
             color: ${({ theme }) => theme.COLORS.LIGHT_300}; 
          }
 
+         .desktop{
+            display: none;
+         }
+
          .image-name-category{
             display: flex;
             flex-direction: column;
             gap: 2.4rem;
+            
 
             .img-content{
                display: flex;
@@ -156,7 +161,13 @@ export const Container = styled.div`
 
       form input:nth-child(2){
          background: ${({ theme }) => theme.COLORS.DARK_800};
-         padding-top: 1.9rem;
+         padding: 1.8rem 1.6rem;
+      }
+
+      .ingredients-price{
+         display: flex;
+         flex-direction: column;
+         gap: 2.4rem;
       }
 
 
@@ -169,15 +180,74 @@ export const Container = styled.div`
          width: 100%;
          padding: 4rem 12.5rem 5rem;
 
+         .button-back{
+            font-size: 2.4rem;
+            font-weight: 700;
+
+            svg{
+               width: 3.2rem;
+               height: 3.2rem;
+            }
+         }
+
          form{
+
+          
+
+            .mobile{
+               display: none;
+            }
+
+            .desktop{
+               display: block;
+               font-size: 3.2rem;
+               font-style: normal;
+               font-weight: 500;
+               line-height: 140%;
+            }
+
             .image-name-category{
                flex-direction: row;
                align-items: center;
                gap: 3.2rem;
+               justify-content: center;
+               
 
                .img-content{
-                  width: 100%;
+                  width: 500px;
+                  
                }
+
+               .input-name{
+                  flex: 1;
+               }
+            }
+
+
+            .ingredients-price{
+               width: 100%;
+               display: flex;
+               flex-direction: row;
+               align-items: center;
+               gap: 2.4rem;
+               
+
+               .ingredients-container{
+                  flex: 1;
+                  
+               }
+
+               .input-price{
+                  width: 260px;
+                  margin-bottom: -5px;
+                  
+               }
+
+            }
+
+            .button-submit{
+               width: 250px;
+               align-self: flex-end;
             }
          }
       }
@@ -252,6 +322,7 @@ export const CustomSelect = styled.div`
       margin-top: 4px;
       position: absolute;
       width: 100%;
+      z-index: 2;
 
       li{
          display: flex;
@@ -272,6 +343,18 @@ export const CustomSelect = styled.div`
             cursor: pointer;
          }
       }
+   }
+
+   @media screen and (min-width: 768px){
+      width: 700px;
+      margin-top: -4px;
+
+
+      #select-button{
+         margin-top: .9rem;
+         background: ${({ theme }) => theme.COLORS.DARK_800};
+      }
+      
    }
 
 

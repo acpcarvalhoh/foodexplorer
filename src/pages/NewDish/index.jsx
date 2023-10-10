@@ -45,13 +45,14 @@ export function NewDish(){
         <Container>
             <Header/> 
             <main>
-                <button>
+                <button className="button-back">
                     <PiCaretLeftBold size={22}/>
                     Voltar
                 </button>
 
                 <form noValidate>
-                    <h2>Novo prato</h2>
+                    <h2 className="mobile">Novo prato</h2>
+                    <h2 className="desktop">Adicionar prato</h2>
                     <div className="image-name-category">
 
                         <div className="img-content">
@@ -64,6 +65,7 @@ export function NewDish(){
                         </div>
                         
                         <Input
+                            className="input-name"
                             label="Nome"
                             type="text"
                             placeholder="Ex.: Salada Ceasar"
@@ -119,39 +121,45 @@ export function NewDish(){
                         </CustomSelect>
                     </div>
                     
-                       
-                    <div className="ingredients-container">
-                        <label htmlFor="igredients_label">Ingredientes</label>
-                        <Ingredients 
-                            id="igredients_label"
-                            
-                        >
-                            <IngredientItem 
-                                isNew
-                                placeholder="Adicionar"
-                                value={newIngredients}
-                                onChange={e => setNewIngredients(e.target.value)}
-                                onClick={handleAddIngredient}
+                    <div className="ingredients-price">
+                        <div className="ingredients-container">
+                            <label htmlFor="igredients_label">Ingredientes</label>
+                            <Ingredients 
+                                id="igredients_label"
+                                
+                            >
+                                <IngredientItem 
+                                    isNew
+                                    placeholder="Adicionar"
+                                    value={newIngredients}
+                                    onChange={e => setNewIngredients(e.target.value)}
+                                    onClick={handleAddIngredient}
+                                />
+                                
+                                {
+                                    ingredients.map((ingredient, index) => (
+                                        <IngredientItem
+                                            key={String(index)} 
+                                            value={ingredient}
+                                            onClick={() => handleRemoveIngredient(ingredient)}
+                                        />
+                                    ))
+                                }
+                            </Ingredients>
+                        </div>
+                        
+                        <div className="input-price">
+                            <Input
+                                
+                                label="Preço"
+                                type="text"
+                                placeholder="R$ 00,00"
+                                id="price"
                             />
-                            
-                            {
-                                ingredients.map((ingredient, index) => (
-                                    <IngredientItem
-                                        key={String(index)} 
-                                        value={ingredient}
-                                        onClick={() => handleRemoveIngredient(ingredient)}
-                                    />
-                                ))
-                            }
-                        </Ingredients>
+                        </div>
+                       
                     </div>
                    
-                    <Input
-                        label="Preço"
-                        type="text"
-                        placeholder="R$ 00,00"
-                        id="price"
-                    />
 
                     <div className="dish-description">
                         <label htmlFor="description">Descrição</label>

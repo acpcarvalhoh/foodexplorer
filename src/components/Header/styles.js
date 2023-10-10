@@ -193,16 +193,21 @@ export const Container = styled.header`
         justify-content: center;
         gap: 3.2rem;
         
+        
         .menu{
             display: none;
         }
 
         .logo-header{
            max-width: 100%;
+           margin-top: -11px;
+           
     
             h1{
                font-size: 2.4rem;
                position: relative;
+              
+           
 
                span{
                 position: absolute;
@@ -224,6 +229,7 @@ export const Container = styled.header`
 
            input{
             padding: 1.2rem 1.4rem 1.2rem 11.7rem;
+            border-radius: 5px;
            }
 
            svg{

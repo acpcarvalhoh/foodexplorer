@@ -15,7 +15,7 @@ export function Header(){
         $setIsMenuOpen(!$isMenuOpen);
     };
 
-    const isAdmin = false;
+    const isAdmin = true;
 
     return(
         <Container $isMenuOpen={$isMenuOpen}>
