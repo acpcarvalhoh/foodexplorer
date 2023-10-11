@@ -2,14 +2,15 @@ import styled from "styled-components";
 
 
 export const Container = styled.div`
-
-   main{
-    max-width: 100%;
-    margin: auto;
-    width: 428px;
-    padding: 1.1rem 3.2rem 5rem;
-    border: 2px solid red;
-    
+   height: 100vh;;
+   
+   >main{
+      max-width: 100%;
+      margin: auto;
+      width: 428px;
+      padding: 1.1rem 3.2rem 5rem;
+      overflow-y: auto;
+      
       button{
          border: none;
          background: none;
@@ -150,11 +151,25 @@ export const Container = styled.div`
             }
          }
 
-         .button-submit{
-            padding: 1.2rem 3.2rem;
-            background: ${({ theme }) => theme.COLORS.TOMATO_400};
-            border-radius: 5px;
+         .custom-buttons{
+            display: flex;
+            gap: 3.2rem;
+            
+
+            .button-delete{
+               background: ${({ theme }) => theme.COLORS.DARK_800};
+               font-size: 1.4rem;
+            }
+
+            .button-submit{
+               padding: 1.2rem 1rem;
+               background: ${({ theme }) => theme.COLORS.TOMATO_400};
+               border-radius: 5px;
+               font-size: 1.4rem;
+            }
          }
+
+        
 
 
       }
@@ -176,6 +191,7 @@ export const Container = styled.div`
 
   /* Desktop */
    @media screen and (min-width: 768px){
+      
       main{
          width: 100%;
          padding: 4rem 12.5rem 5rem;
@@ -191,9 +207,6 @@ export const Container = styled.div`
          }
 
          form{
-
-          
-
             .mobile{
                display: none;
             }
@@ -214,7 +227,7 @@ export const Container = styled.div`
                
 
                .img-content{
-                  width: 500px;
+                  width: 570px;
                   
                }
 
@@ -245,9 +258,19 @@ export const Container = styled.div`
 
             }
 
-            .button-submit{
-               width: 250px;
-               align-self: flex-end;
+            .custom-buttons{
+               display: flex;
+               gap: 3.2rem;
+               justify-content: flex-end;
+            
+               .button-delete{
+                  width: 200px;
+
+               }
+
+               .button-submit{
+                  width: 200px;
+               }
             }
          }
       }

@@ -2,6 +2,13 @@ import styled from "styled-components";
 
 
 export const Container = styled.div`
+   display: flex;
+   flex-direction: column;
+   height: 100vh;
+
+   .content-container{
+      overflow-y: auto;
+   }
 
    main{
     max-width: 100%;
@@ -9,8 +16,7 @@ export const Container = styled.div`
     width: 428px;
     padding: 1.6rem 5.6rem 3.3rem;
     
-    
-
+   
       button{
          border: none;
          background: none;
@@ -170,7 +176,7 @@ export const QuantityAndOrderSelector = styled.div`
             font-style: normal;
             font-weight: 500;
             line-height: 16.225px;
-            padding-top: 4px;
+            
          }
       }
 

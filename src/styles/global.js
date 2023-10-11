@@ -9,6 +9,9 @@ export default createGlobalStyle`
 
   :root{
     font-size: 62.5%;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
+    text-size-adjust: 100%;
   }
 
   body{
@@ -43,6 +46,28 @@ export default createGlobalStyle`
 
   ul{
     list-style-type: none;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px; 
+    
+  }
+
+  ::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.COLORS.BACKGROUND_800};
+    border-radius: 6px;
+    
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.COLORS.DARK_A100}; 
+    border-radius: 6px;
+    
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: ${({ theme }) => theme.COLORS.LIGHT_700}; 
+
   }
 `
 

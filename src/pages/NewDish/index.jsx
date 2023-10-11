@@ -40,6 +40,7 @@ export function NewDish(){
         setDropdownVisibility(false);
     };
 
+    const dishExist = true;
 
     return (
         <Container>
@@ -52,7 +53,7 @@ export function NewDish(){
 
                 <form noValidate>
                     <h2 className="mobile">Novo prato</h2>
-                    <h2 className="desktop">Adicionar prato</h2>
+                    <h2 className="desktop">{dishExist ? "Editar" : "Adicionar"} prato</h2>
                     <div className="image-name-category">
 
                         <div className="img-content">
@@ -168,11 +169,20 @@ export function NewDish(){
                             placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
                         />  
                     </div>
-
-                    <Button
-                        className="button-submit"
-                        title="Salvar Alterações"
-                    />                 
+                    
+                    <div className="custom-buttons">
+                        {dishExist &&  
+                            <Button
+                                className="button-delete"
+                                title="Excluir prato"
+                            /> 
+                        }
+                       
+                        <Button
+                            className="button-submit"
+                            title="Salvar Alterações"
+                        />
+                    </div>                                    
                 </form>
             </main>
             <Footer/> 

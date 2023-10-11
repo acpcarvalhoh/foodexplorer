@@ -13,7 +13,7 @@ export const Container = styled.section`
   /* Desktop */
   @media screen and (min-width: 768px){
     padding-left: 0;
-    font-size: 32px;
+    font-size: 2.5rem;
     line-height: 140%
   }
    

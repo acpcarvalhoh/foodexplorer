@@ -1,5 +1,5 @@
 import  { Container, Content } from './styles'
-import { Header } from "../../components/header"
+import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 import dishImg  from "../../assets/dish-img.svg"
 import dishImgDesktop  from "../../assets/dish-img-desktop.svg"
@@ -25,78 +25,82 @@ export function Home() {
   return (
     <Container>
       <Header/>
-      <main>
-        <article>
-          <img className="mobile-img" src={dishImg} alt="imagem de prato" />
-          <img className="desktop-only-img" src={dishImgDesktop} alt="imagem de prato" />
-          <div>
-            <h2>Sabores inigualáveis</h2>
-            <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
-          </div>
-        </article>
+      <div className="content-container">
+        <main>
+          
+            <article>
+              <img className="mobile-img" src={dishImg} alt="imagem de prato" />
+              <img className="desktop-only-img" src={dishImgDesktop} alt="imagem de prato" />
+              <div>
+                <h2>Sabores inigualáveis</h2>
+                <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
+              </div>
+            </article>
 
-        <Section title="Sobremesas">
-          <div className="carousel-container">
-            <button className="button_left" onClick={handleLeftClick}>
-              <PiCaretLeftBold />
-            </button>
-            <Content className="carousel" ref={carouselRef}>
-              <Dish data={{
-                image: salade,
-                name: "Salada Ravanello",
-                description: "Massa fresca com camarões e pesto.",
-                price: 49.97
+            <Section title="Sobremesas">
+              <div className="carousel-container">
+                <button className="button_left" onClick={handleLeftClick}>
+                  <PiCaretLeftBold />
+                </button>
+                <Content className="carousel" ref={carouselRef}>
+                  <Dish data={{
+                    image: salade,
+                    name: "Salada Ravanello",
+                    description: "Massa fresca com camarões e pesto.",
+                    price: 49.97
 
-              }}/>
+                  }}/>
 
-              <Dish data={{
-                image: salade,
-                name: "Salada Ravanello",
-                description: "Massa fresca com camarões e pesto.",
-                price: 49.97
+                  <Dish data={{
+                    image: salade,
+                    name: "Salada Ravanello",
+                    description: "Massa fresca com camarões e pesto.",
+                    price: 49.97
 
-              }}/>
+                  }}/>
 
-              <Dish data={{
-                image: salade,
-                name: "Salada Ravanello",
-                description: "Massa fresca com camarões e pesto.",
-                price: 49.97
+                  <Dish data={{
+                    image: salade,
+                    name: "Salada Ravanello",
+                    description: "Massa fresca com camarões e pesto.",
+                    price: 49.97
 
-              }}/>
+                  }}/>
 
-              <Dish data={{
-                image: salade,
-                name: "Salada Ravanello",
-                description: "Massa fresca com camarões e pesto.",
-                price: 49.97
+                  <Dish data={{
+                    image: salade,
+                    name: "Salada Ravanello",
+                    description: "Massa fresca com camarões e pesto.",
+                    price: 49.97
 
-              }}/>
+                  }}/>
 
-              <Dish data={{
-                image: salade,
-                name: "Salada Ravanello",
-                description: "Massa fresca com camarões e pesto.",
-                price: 49.97
+                  <Dish data={{
+                    image: salade,
+                    name: "Salada Ravanello",
+                    description: "Massa fresca com camarões e pesto.",
+                    price: 49.97
 
-              }}/>
+                  }}/>
 
-              <Dish data={{
-                image: salade,
-                name: "Salada Ravanello",
-                description: "Massa fresca com camarões e pesto.",
-                price: 49.97
+                  <Dish data={{
+                    image: salade,
+                    name: "Salada Ravanello",
+                    description: "Massa fresca com camarões e pesto.",
+                    price: 49.97
 
-              }}/>
-            </Content>
-            <button className="button_right" onClick={handleRightClick}>
-              <PiCaretRightBold />
-            </button>
-          </div>
-        </Section>
-      </main>
+                  }}/>
+                </Content>
+                <button className="button_right" onClick={handleRightClick}>
+                  <PiCaretRightBold />
+                </button>
+              </div>
+            </Section>
+          
+        </main>
 
-      <Footer />
+        <Footer />
+      </div>
     </Container>
   )
 }
