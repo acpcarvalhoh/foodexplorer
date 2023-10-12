@@ -4,7 +4,7 @@ import { FiMenu, FiSearch } from "react-icons/fi"
 import { MdClose } from "react-icons/md"
 import { PiSignOutBold } from 'react-icons/pi'
 import { Input } from "../Input"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import logoImg  from "../../assets/Polygon .svg"
 
@@ -17,8 +17,28 @@ export function Header(){
 
     const isAdmin = true;
 
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth > 768 && $isMenuOpen) {
+                $setIsMenuOpen(false);
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+
+    }, [$isMenuOpen]); 
+
     return(
         <Container $isMenuOpen={$isMenuOpen}>
+            <div className="favorites-and-orderhistory">
+                <a href="#">Meus favoritos</a>
+                <a href="#">Histórico de pedidos</a>
+            </div>
+
             <button className="menu" onClick={handleShowMenu}>
 
                 {$isMenuOpen ? <span><MdClose size={24}/>Menu</span> : <FiMenu size={24}/>}
@@ -39,13 +59,12 @@ export function Header(){
                         type="text"
                         icon={FiSearch}
                     />
-
-                    {$isMenuOpen && (
-                        <div className="close-menu">
-                            <button>sair</button>
-                            
-                        </div>
-                    )}
+                  
+                    <div className="close-menu">
+                        <a href="#">Meus favoritos</a>
+                        <a href="#">Histórico de pedidos</a>
+                        <button>sair</button>
+                    </div>                
                 </div>
             )}
 

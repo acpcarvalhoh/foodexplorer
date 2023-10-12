@@ -9,6 +9,11 @@ export const Container = styled.header`
     align-items: ${({ $isMenuOpen }) => ($isMenuOpen ? 'start' : 'center')};
     padding: ${({ $isMenuOpen }) => ($isMenuOpen ? '0' : '6rem 2.8rem 3.2rem 2.8rem')}; 
     background: ${({ theme }) => theme.COLORS.DARK_700};
+    position: relative;
+
+    .favorites-and-orderhistory{
+        display: none;
+    }
 
     .search-desktop_only, .button-exit-desktop{
         display: none;
@@ -67,7 +72,7 @@ export const Container = styled.header`
         }
     }
 
-
+  
     @keyframes turn-icon{
         0% {
            transform: scale(1);
@@ -92,6 +97,10 @@ export const Container = styled.header`
             transform: translateX(0);
             
         }
+    }
+
+    .search.hidden{
+        display: none;
     }
 
     .search{
@@ -122,6 +131,27 @@ export const Container = styled.header`
             border-bottom-style: solid;
             border-bottom-color: ${({ theme }) => theme.COLORS.DARK_A100};
             
+            a{
+                font-size: 2.4rem;
+                font-style: normal;
+                font-weight: 300;
+                line-height: 140%;
+                color: ${({ theme }) => theme.COLORS.LIGHT_300};
+                position: relative;
+                
+            }
+            
+            a::after{
+                content: "";
+                position: absolute;
+                width: 100%;
+                bottom: 0;
+                left: 0;
+                position: absolute;
+                border-bottom-width: 1px;
+                border-bottom-style: solid;
+                border-bottom-color: ${({ theme }) => theme.COLORS.DARK_A100};
+            }
 
             button{
                 font-size: 2.4rem;
@@ -194,6 +224,19 @@ export const Container = styled.header`
         gap: 3.2rem;
         
         
+        .favorites-and-orderhistory{
+            display: flex;
+            position: absolute;
+            color: red;
+            bottom: 0;
+            gap: 4rem;
+            font-size: 1.3rem;
+
+            a{
+                color: ${({ theme }) => theme.COLORS.CAKE_100};
+            }
+        }
+
         .menu{
             display: none;
         }

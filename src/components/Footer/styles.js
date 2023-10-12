@@ -4,14 +4,14 @@ import styled from "styled-components";
 export const Container = styled.footer`
     width: 100%;
     height: 77px;
-    margin-top: 4rem;
+    /* margin-top: 4rem; */
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
     padding: 2.4rem 2.7rem;
     background: ${({ theme }) => theme.COLORS.DARK_700};
-
+    
 
     .logo{
         display: flex;
