@@ -219,7 +219,7 @@ export const Container = styled.header`
 
     /* Desktop */
     @media screen and (min-width: 768px){
-        padding: 2.4rem 12.3rem;
+        padding: 2.4rem 2rem;
         justify-content: center;
         gap: 3.2rem;
         
@@ -249,8 +249,6 @@ export const Container = styled.header`
             h1{
                font-size: 2.4rem;
                position: relative;
-              
-           
 
                span{
                 position: absolute;
@@ -282,8 +280,8 @@ export const Container = styled.header`
         }
 
         .number-requests{
-            max-width: 100%;
-            padding: 1.2rem 3.2rem;
+            max-width: clamp(1rem, -9.4464rem + 33.4286vw, 16.625rem);
+            padding: clamp(1rem, 1.1786rem + -0.5714vw, 0.95rem) clamp(1rem, 0.2857rem + 2.2857vw, 2rem);
             border-radius: 5px;
             background: ${({ theme }) => theme.COLORS.TOMATO_100};
             display: flex;
@@ -301,7 +299,7 @@ export const Container = styled.header`
 
             .desktop{
                 display: block;
-                font-size: 1.4rem;
+                font-size: clamp(1rem, 0.7321rem + 0.8571vw, 1.375rem);
                 font-style: normal;
                 font-weight: 500;
                 line-height: 2.4rem;
@@ -317,10 +315,43 @@ export const Container = styled.header`
             color: ${({ theme }) => theme.COLORS.LIGHT_100};
         }
 
-
-        
-
     }
+
+   /*  @media screen and (min-width: 1258px){
+        padding: 2.4rem 12.3rem;
+    } */
+
+    @media (min-width: 768px) and (max-width: 1096px) {
+        justify-content: space-between;
+
+        .search-desktop_only{
+           display: none;
+            
+        }
+
+        .number-requests{
+            display: none;
+        }
+
+        .logo-header{
+            margin: auto;
+
+            h1{
+               font-size: 2.5rem;
+               position: static;
+
+                span{
+                    position: static;
+                    
+                }
+            }
+
+          
+        }
+
+       
+    }
+
 
 
 

@@ -83,7 +83,7 @@ export const DishDetails = styled.section`
      gap: 4.8rem;
      margin-top: 4.2rem;
 
-     img{
+      img{
          width: 390px;
          height: 390px;
          margin-bottom: 0;
@@ -106,6 +106,46 @@ export const DishDetails = styled.section`
          }
       }
 
+   }
+
+
+   @media (min-width: 856px) and (max-width: 1038px) {
+      
+
+      img{
+         width: 290px;
+         height: 290px;
+         margin-bottom: 0;
+      }
+
+      .dish_description{
+
+         h2{
+            font-size: clamp(1rem, -4.6889rem + 11.8519vw, 3rem);
+         }
+
+         p{
+            font-size: clamp(1rem, -1.2756rem + 4.7407vw, 1.8rem);
+            text-align: justify;
+         }
+      }
+      
+   }
+
+   @media (min-width: 768px) and (max-width: 856px) {
+      flex-wrap: wrap;
+
+      .dish_description{
+
+         h2{
+            font-size: clamp(1rem, -4.6889rem + 11.8519vw, 3rem);
+         }
+
+         p{
+            font-size: clamp(1rem, -1.2756rem + 4.7407vw, 1.8rem);
+            text-align: justify;
+         }
+      }
    }
 
   

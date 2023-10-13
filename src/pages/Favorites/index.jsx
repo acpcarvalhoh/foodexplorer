@@ -14,7 +14,6 @@ import { useEffect } from 'react'
 export function Favorites() {
 
   const data = [
-    /* {name: "Salada Radish", image: salade},
     {name: "Salada Radish", image: salade},
     {name: "Salada Radish", image: salade},
     {name: "Salada Radish", image: salade},
@@ -23,7 +22,8 @@ export function Favorites() {
     {name: "Salada Radish", image: salade},
     {name: "Salada Radish", image: salade},
     {name: "Salada Radish", image: salade},
-    {name: "Salada Radish", image: salade}, */
+    {name: "Salada Radish", image: salade},
+    {name: "Salada Radish", image: salade},
   ]
 
   const [favorites, setFavorites] = useState([])
@@ -63,12 +63,7 @@ export function Favorites() {
                     
                 </div>  
             </Section>
-
-            
-          
-        </main>
-
-        
+        </main>  
       </div>
       <Footer />
     </Container>
