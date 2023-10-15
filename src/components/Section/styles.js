@@ -15,6 +15,7 @@ export const Container = styled.section`
     padding-left: 0;
     font-size: 2.5rem;
     line-height: 140%
+    
   }
    
 
