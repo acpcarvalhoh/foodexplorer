@@ -8,7 +8,7 @@ export const Container = styled.section`
   font-weight: 500;
   line-height: 100%;
   color:  ${({ theme }) => theme.COLORS.LIGHT_300};
-  padding-left: 24px;
+  
 
   /* Desktop */
   @media screen and (min-width: 768px){

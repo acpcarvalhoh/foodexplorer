@@ -10,25 +10,32 @@ export const Container = styled.div`
   .content-container{
     overflow-y: auto;
     width: 100%;
-
+   
+    
     main{
       overflow-x:auto;
-      width: 428px;
-
-
+      width: 100%;
+      margin: auto;
+      padding: 0 2.4rem;
+      
+     
       article{
-        width: 376px;
+        width: 100%;
         border-radius: 3px;
-        margin: 4.4rem 1.6rem 6.2rem 3.6rem;
+        margin: 4.4rem auto 6rem;
         background: linear-gradient(180deg, #091E26 0%, #00131C 100%);
         display: flex;
         align-items: center;
+        height: 120px;
+        padding: 2rem;
+        
         
 
         .mobile-img{
-          margin-left: -3rem;
+          margin-left: -4.5rem;
           margin-top: -3rem;
         }
+
 
         .desktop-only-img{
           display: none;
@@ -192,7 +199,7 @@ export const Container = styled.div`
 
 
 export const Content = styled.div`
-  width: 400px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   overflow-x: auto;
@@ -203,6 +210,7 @@ export const Content = styled.div`
   scrollbar-width: thin; 
   scrollbar-color: transparent transparent;
   overflow: hidden;
+  
 
   @media screen and (min-width: 768px){
     width: 100%;
