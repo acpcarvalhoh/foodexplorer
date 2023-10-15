@@ -3,8 +3,10 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     width: 428px;
-    margin: 6rem auto;
-    padding: 0 5rem;
+    margin: auto;
+    height: 100%;
+    padding: 5.2rem 4.7rem 0;
+    
 
     h2{
         display: none;
@@ -17,11 +19,10 @@ export const Container = styled.div`
         flex-shrink: 0;
         gap: 25rem;
         width: 100%;
-        margin: 2rem auto;
+        padding: 2rem 4.7rem 0;
 
         h1{
             font-size: 4.5rem;
-           
         }
 
 
@@ -36,7 +37,14 @@ export const Container = styled.div`
         }
 
         
-    
+    }
+
+
+    @media (min-width: 768px) and (max-width: 1150px) {
+        padding: 2rem 1rem 0 1rem;
+        gap: 5rem;
+        transition: width 0.3s ease, height 0.3s ease;
+        
     }
 
 
@@ -67,9 +75,10 @@ export const Form = styled.form`
         width: 476px;
         height: 600px;
         background: ${({ theme }) => theme.COLORS.DARK_700};
-        padding: 6.4rem;
+        padding: 3rem 6.4rem 1rem 6.4rem; 
         border-radius: 1.6rem;
     
     } 
+
     
 `
