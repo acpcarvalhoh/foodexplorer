@@ -34,6 +34,8 @@ export const Container = styled.div`
             font-weight: 500;
             line-height: 140%;
         }
+
+        
     
     }
 
