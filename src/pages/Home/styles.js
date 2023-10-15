@@ -29,8 +29,6 @@ export const Container = styled.div`
         height: 120px;
         padding: 2rem;
         
-        
-
         .mobile-img{
           margin-left: -4.5rem;
           margin-top: -3rem;
