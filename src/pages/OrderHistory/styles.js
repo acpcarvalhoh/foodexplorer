@@ -3,14 +3,17 @@ import styled from "styled-components";
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
+    height: 100vh;
+    
 
     main{
         margin: auto;
         width: 428px;
         max-width: 100%;
-        padding: 5.6rem 3.5rem 0 3.5rem;
-        border: 1px solid red;
-       
+        padding: 5.6rem 3rem 0 3rem;
+        flex: 1;
+        overflow-y: auto;
+        
         .desktop-only{
             display: none;
         }
@@ -29,6 +32,7 @@ export const Container = styled.div`
             display: flex;
             gap: 3.1rem;
             flex-wrap: wrap;
+           
 
             .order-status{
                 display: flex;
@@ -36,12 +40,41 @@ export const Container = styled.div`
                 gap: 7px;
                
 
-                svg{
-                    color: ${({ theme }) => theme.COLORS.TOMATO_100};
+                .select-button{
+                    background: ${({ theme }) => theme.COLORS.DARK_900};
                     display: flex;
-                    width: 1.2rem;
-                    height: 1.2rem;
+                    align-items: center;
+                    gap: 1rem;
+                    padding: 1rem .5rem;;
+                    cursor: pointer;
+                    font-family: Roboto;
+                    font-size: 1.4rem;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 160%;
+                    border-radius: 2px;
+                    
+                    svg{
+                        display: flex;
+                    }
                 }
+
+                .select-button #selected-value{
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+
+                    svg{
+                        width: 8px;
+                        height: 8px;
+                    }
+                }
+
+                ul{
+                    position: absolute;
+                    z-index: 2;
+                    background: red;
+                };
             }
 
             .order-date{
@@ -62,10 +95,31 @@ export const Container = styled.div`
                 }
             }
 
+           
+
+        }
+
+        .empty-content{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 4rem;
+            border: 2px solid ${({ theme }) => theme.COLORS.DARK_A100};
+            font-size: 1.9rem; 
+            height: 20rem;
+            border-radius: 8px;
+
+            svg{
+                height: 8rem;
+                width: 8rem;
+            }
         }
         
     }
 
+   
     @media screen and (min-width: 768px){
         main{
             width: 100%;
@@ -151,8 +205,16 @@ export const Container = styled.div`
                     border-right: 2px solid ${({ theme }) => theme.COLORS.DARK_A100};
                     align-items: center;
                     padding-left: 1.6rem;
-                   
+                    overflow-y: auto;
                 }
+            }
+
+            .empty-content{
+                margin-top: 0;
+                border-top: none;
+                border-top-right-radius: 0;
+                border-top-left-radius: 0;
+                font-size: 3rem; 
             }
         }
     }

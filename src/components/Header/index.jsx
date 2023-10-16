@@ -35,8 +35,8 @@ export function Header(){
     return(
         <Container $isMenuOpen={$isMenuOpen}>
             <div className="favorites-and-orderhistory">
-                <a href="#">Meus favoritos</a>
-                <a href="#">Histórico de pedidos</a>
+                {!isAdmin &&  <a href="#">Meus favoritos</a>}
+                {isAdmin ? <a href="#">Novo prato</a> : <a href="#">Histórico de pedidos</a>}                
             </div>
 
             <button className="menu" onClick={handleShowMenu}>
@@ -61,8 +61,8 @@ export function Header(){
                     />
                   
                     <div className="close-menu">
-                        <a href="#">Meus favoritos</a>
-                        <a href="#">Histórico de pedidos</a>
+                        {!isAdmin &&  <a href="#">Meus favoritos</a>}
+                        {isAdmin ? <a href="#">Novo prato</a> : <a href="#">Histórico de pedidos</a>}
                         <button>sair</button>
                     </div>                
                 </div>

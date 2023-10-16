@@ -2,11 +2,8 @@ import  { Container} from './styles'
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 import { Section } from '../../components/Section'
-
 import { CiFaceFrown } from "react-icons/ci"
-
 import salade from "../../assets/salade.svg"
-
 import {  useState } from 'react'
 import { useEffect } from 'react'
 
@@ -42,24 +39,24 @@ export function Favorites() {
         <main>
             <Section title="Meus Favoritos">
                 <div className="content">
-                    {favorites && favorites.map((favorite, index) => (
-                        <div className='favorite-content' key={index}>
-                            <img src={favorite.image} alt={`Imagem de ${favorite.name}`} />
-                            <div>
-                                <p>{favorite.name}</p>
-                                <button>
-                                    Remover dos favoritos
-                                </button> 
-                            </div>
-                        </div>
-                    ))}
+                  {favorites && favorites.map((favorite, index) => (
+                      <div className='favorite-content' key={index}>
+                          <img src={favorite.image} alt={`Imagem de ${favorite.name}`} />
+                          <div>
+                              <p>{favorite.name}</p>
+                              <button>
+                                  Remover dos favoritos
+                              </button> 
+                          </div>
+                      </div>
+                  ))}
 
-                    {favorites.length <= 0 && 
-                        <div className="empty-content">
-                            <CiFaceFrown/>
-                            <p>Você ainda não possui favoritos!</p>
-                        </div>
-                    }
+                  {favorites.length <= 0 && 
+                    <div className="empty-content">
+                      <CiFaceFrown/>
+                      <p>Você ainda não possui favoritos!</p>
+                    </div>
+                  }
                     
                 </div>  
             </Section>
