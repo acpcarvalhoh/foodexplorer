@@ -8,33 +8,33 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import {  useState,  useEffect, useRef } from 'react'
 
 
-export function OrderHistory({ theme }) {
+export function OrderHistory() {
   const [dropDown, setDropDown] = useState(false);
-  const [ordersHistory, setOrdersHistory] = useState([])
-  const [status, setStatus] = useState("Pendente")
-  const [openSelect, setOpenSelect] = useState(false);
+  const [ordersHistory, setOrdersHistory] = useState([]);
+  const [status, setStatus] = useState("Pendente");
+
 
   const data = [
-   /*  {
+    {
       status: "Pendente", 
       code: "0001", 
       detailing: [{quantity: 1, name: "Suco de maracujá"}, {quantity: 2, name: "Salada Radish"}],
       timestamp: new Date('2023-10-15T14:30:00')
     },
 
-    {
+   /*  {
       status: "Entregre", 
       code: "0002", 
       detailing: [{quantity: 1, name: "Manga uva"}, {quantity: 2, name: "Testando"}],
       timestamp: new Date('2025-10-15T14:38:00')
-    }, */
+    },
 
     {
       status: "Preparando", 
       code: "0001", 
       detailing: [{quantity: 1, name: "Suco de maracujá"}, {quantity: 2, name: "Salada Radish"}],
       timestamp: new Date('2024-10-15T14:37:00')
-    }
+    } */
     
   ]
 
@@ -66,14 +66,13 @@ export function OrderHistory({ theme }) {
 
   };
 
-  function toogleDropDown(){
+  function toggleDropDown() {
     setDropDown(prevState => !prevState);
-
-  };
+  }
 
   const statusOptions = ["Pendente", "Preparando", "Entregue"]
   
- const admin = true;
+  const admin = true;
 
   useEffect( () => {
     setOrdersHistory(data)
@@ -81,7 +80,7 @@ export function OrderHistory({ theme }) {
   }, [])
 
   return (
-    <Container >
+    <Container $admin={admin}>
       <Header />
       <main>
         <Section title="Pedidos">
@@ -109,7 +108,7 @@ export function OrderHistory({ theme }) {
                   {/* <span>{formatStatus(order.status)}</span>
                   <span>{order.status}</span> */}
 
-                  <div className="custon-select" onClick={toogleDropDown}>
+                  <div className="custon-select" onClick={toggleDropDown}>
                     <div className="select-button">
                       <div id="selected-value">
                         <span>{formatStatus(status)}</span>
@@ -176,4 +175,3 @@ export function OrderHistory({ theme }) {
     </Container>
   )
 }
-

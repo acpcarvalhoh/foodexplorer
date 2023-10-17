@@ -13,6 +13,7 @@ export const Container = styled.div`
         padding: 5.6rem 3rem 0 3rem;
         flex: 1;
         overflow-y: auto;
+        position: relative;
         
         .desktop-only{
             display: none;
@@ -38,13 +39,13 @@ export const Container = styled.div`
                 display: flex;
                 align-items: center;
                 gap: 7px;
+                order: ${({ admin }) => admin? 1 : 2};
                
 
                 .select-button{
                     background: ${({ theme }) => theme.COLORS.DARK_900};
                     display: flex;
                     align-items: center;
-                    gap: 1rem;
                     padding: 1rem .5rem;;
                     cursor: pointer;
                     font-family: Roboto;
@@ -52,28 +53,61 @@ export const Container = styled.div`
                     font-style: normal;
                     font-weight: 400;
                     line-height: 160%;
-                    border-radius: 2px;
+                    border-radius: 5px;
+                    width: 300px;
+                    position: relative;
                     
-                    svg{
-                        display: flex;
+
+                    #chevrons{
+                        position: absolute;
+
+                        right: 1rem;
+                        svg{
+                            display: flex;
+                        }
                     }
+                   
                 }
 
                 .select-button #selected-value{
                     display: flex;
                     align-items: center;
+                    position: relative;
                     gap: 5px;
 
                     svg{
-                        width: 8px;
-                        height: 8px;
+                        width: 9px;
+                        height: 9px;
+                        display: flex;
                     }
                 }
 
                 ul{
                     position: absolute;
                     z-index: 2;
-                    background: red;
+                    background: ${({ theme }) => theme.COLORS.DARK_900};
+                    width: 300px;
+                   
+                    
+                    li{
+                        display: flex;
+                        align-items: center;
+                        cursor: pointer;
+                        padding: .3rem 1.6rem;
+                        position: relative;
+                        
+                        &:hover{
+                            background: ${({ theme }) => theme.COLORS.DARK_800}; 
+                        }
+
+                        input[type="radio"]{
+                            all: unset;
+                            position: absolute;
+                            z-index: 2;
+                            inset: 0;
+                            cursor: pointer;
+                        }
+                    }
                 };
             }
 
@@ -192,6 +226,74 @@ export const Container = styled.div`
                     grid-area: A;
                     border-right: 2px solid ${({ theme }) => theme.COLORS.DARK_A100};
                     padding-left: 1.6rem;
+
+                    .select-button{
+                        background: ${({ theme }) => theme.COLORS.DARK_900};
+                        display: flex;
+                        align-items: center;
+                        padding: 1rem .5rem;;
+                        cursor: pointer;
+                        font-family: Roboto;
+                        font-size: 1.4rem;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 160%;
+                        border-radius: 2px;
+                        width: 125px;
+                        position: relative;
+                    
+
+                        #chevrons{
+                            position: absolute;
+
+                            right: 1rem;
+                            svg{
+                                display: flex;
+                            }
+                        }
+                   
+                    }
+
+                    .select-button #selected-value{
+                        display: flex;
+                        align-items: center;
+                        position: relative;
+                        gap: 5px;
+
+                        svg{
+                            width: 9px;
+                            height: 9px;
+                            display: flex;
+                        }
+                    }
+
+                    ul{
+                        position: absolute;
+                        z-index: 2;
+                        background: ${({ theme }) => theme.COLORS.DARK_900};
+                        width: 125px;
+                    
+                        
+                        li{
+                            display: flex;
+                            align-items: center;
+                            cursor: pointer;
+                            padding: .3rem 1.6rem;
+                            position: relative;
+                            
+                            &:hover{
+                                background: ${({ theme }) => theme.COLORS.DARK_800}; 
+                            }
+
+                            input[type="radio"]{
+                                all: unset;
+                                position: absolute;
+                                z-index: 2;
+                                inset: 0;
+                                cursor: pointer;
+                            }
+                        }
+                    };
                 }
 
                 .order-date{
