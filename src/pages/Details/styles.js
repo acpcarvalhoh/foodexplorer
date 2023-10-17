@@ -14,9 +14,10 @@ export const Container = styled.div`
     max-width: 100%;
     margin: auto;
     width: 428px;
-    padding: 1.6rem 5.6rem 3.3rem;
+    padding: 1.6rem 4rem 3.3rem;
     
-   
+     
+
       button{
          border: none;
          background: none;

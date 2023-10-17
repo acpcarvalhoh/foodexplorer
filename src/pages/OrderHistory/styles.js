@@ -13,7 +13,7 @@ export const Container = styled.div`
         padding: 5.6rem 3rem 0 3rem;
         flex: 1;
         overflow-y: auto;
-        position: relative;
+        
         
         .desktop-only{
             display: none;
@@ -40,7 +40,12 @@ export const Container = styled.div`
                 align-items: center;
                 gap: 7px;
                 order: ${({ admin }) => admin? 1 : 2};
+                width: 100%;
                
+                .custon-select{
+                    width: 100%;
+                    position: relative;
+                }
 
                 .select-button{
                     background: ${({ theme }) => theme.COLORS.DARK_900};
@@ -54,7 +59,6 @@ export const Container = styled.div`
                     font-weight: 400;
                     line-height: 160%;
                     border-radius: 5px;
-                    width: 300px;
                     position: relative;
                     
 
@@ -86,7 +90,7 @@ export const Container = styled.div`
                     position: absolute;
                     z-index: 2;
                     background: ${({ theme }) => theme.COLORS.DARK_900};
-                    width: 300px;
+                    width: 100%;
                    
                     
                     li{

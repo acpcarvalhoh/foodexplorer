@@ -41,8 +41,8 @@ export const Container = styled.div`
 
 
     @media (min-width: 768px) and (max-width: 1150px) {
-        padding: 2rem 1rem 0 1rem;
-        gap: 5rem;
+        padding: 2rem 2rem 0 2rem;
+        gap: 3rem;
         transition: width 0.3s ease, height 0.3s ease;
         
     }

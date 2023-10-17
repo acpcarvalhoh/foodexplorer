@@ -11,13 +11,14 @@ export const Container = styled.div`
         overflow-y: auto;
         width: 100%;
         height: 100%;
+      
     }
 
     main{
-      width: 428px;
+      width: 100%;
       margin: auto;
       margin-top: 5rem;
-     
+      padding: 0 2rem;
       
 
       .favorite-content{

@@ -9,7 +9,7 @@ export const Container = styled.footer`
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    padding: 2.4rem 2.7rem;
+    padding: 2.4rem 2rem;
     background: ${({ theme }) => theme.COLORS.DARK_700};
     
 
@@ -70,6 +70,11 @@ export const Container = styled.footer`
             font-size: 1.4rem;
             line-height: 160%; 
         }
+    }
+
+    /*  */
+    @media screen and (max-width: 375px){
+        padding: 2.4rem 1rem;
     }
     
 
