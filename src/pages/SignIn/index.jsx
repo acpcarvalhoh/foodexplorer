@@ -2,6 +2,7 @@ import { Container, Form } from "./styles"
 import { Brand } from "../../components/Brand"
 import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
+import { Link } from "react-router-dom"
 
 export function SignIn(){
     return (
@@ -28,7 +29,9 @@ export function SignIn(){
                     title="Entrar"
                 />
 
-                <a href="#">Já tenho uma conta</a>
+                <Link to="/register">
+                   Já tenho uma conta
+                </Link>
             </Form>
         </Container >
     )

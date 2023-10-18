@@ -10,7 +10,7 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { useState } from "react"
 
 
-export function NewDish(){
+export function NewOrUpdateDish(){
     const [isDropdownVisible, setDropdownVisibility] = useState(false);
     const [selectCategory, setSelectCategory] = useState("Selecione a categoria");
     const [ingredients, setIngredients] = useState([]);

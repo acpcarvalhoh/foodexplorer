@@ -1,9 +1,38 @@
-import { Container, Form } from "./styles"
-import { Brand } from "../../components/Brand"
-import { Input } from "../../components/Input"
-import { Button } from "../../components/Button"
+import { Container, Form } from "./styles";
+import { Brand } from "../../components/Brand";
+import { Input } from "../../components/Input";
+import { Button } from "../../components/Button";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { api } from "../../services/api"
+
 
 export function SignUp(){
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+    
+    async function HandleRegister(){
+        if(!name || !email || !password){
+           return alert("Preencha todos os campos!")
+        };
+
+        try{
+           const response = await api.post("/users", { name, email, password });
+
+           alert(response.data.message);
+           navigate(-1);
+
+        }catch(error){
+            if(error.response){
+
+                alert(error.response.data.message);
+            };
+        };
+    };
+
+
     return (
         <Container >
             <Brand />
@@ -15,6 +44,7 @@ export function SignUp(){
                     placeholder="Exemplo: Adão Carvalho"
                     type="text"
                     id="input_name"
+                    onChange={e => setName(e.target.value)}
                 />
                 
                 <Input
@@ -22,6 +52,7 @@ export function SignUp(){
                     placeholder="Exemplo: exemplo@exemplo.com.br"
                     type="email"
                     id="input_mail"
+                    onChange={e => setEmail(e.target.value)}
                 />
 
                 <Input
@@ -29,13 +60,19 @@ export function SignUp(){
                     placeholder="No mínimo 6 caracteres"
                     type="password"
                     id="input_password"
+                    onChange={e => setPassword(e.target.value)}
                 />
 
                 <Button 
                     title="Entrar"
+                    onClick={HandleRegister}
                 />
 
-                <a href="#">Já tenho uma conta</a>
+                
+                <Link to="..">
+                    Já tenho uma conta
+                </Link>
+                
             </Form>
         </Container >
     )
