@@ -15,6 +15,20 @@ export function NewOrUpdateDish(){
     const [selectCategory, setSelectCategory] = useState("Selecione a categoria");
     const [ingredients, setIngredients] = useState([]);
     const [newIngredients, setNewIngredients] = useState("");
+    const [ name, setName ] = useState("");
+    const [ decription, setDecription] = useState("");
+    const [ price, setPrice] = useState("");
+    
+    function hadleChangeInputPrice(e){
+        const updatedPrice = e.target.value.replace(/[^0-9]/g, '');
+        if(updatedPrice !== ""){
+            
+            setPrice((+updatedPrice / 100).toFixed(2));
+        }else{
+            setPrice("");
+        };
+
+    };
 
     function handleAddIngredient(){
         if(!newIngredients || ingredients.includes(newIngredients)){
@@ -40,7 +54,15 @@ export function NewOrUpdateDish(){
         setDropdownVisibility(false);
     };
 
-    const dishExist = true;
+    function NewDish(){
+
+    }
+
+    function UpdateDish(){
+        
+    }
+
+    const dishExist = false;
 
     return (
         <Container>
@@ -71,6 +93,7 @@ export function NewOrUpdateDish(){
                             type="text"
                             placeholder="Ex.: Salada Ceasar"
                             id="dish_name"
+                            
                         />
                         
                         <CustomSelect>
@@ -151,11 +174,12 @@ export function NewOrUpdateDish(){
                         
                         <div className="input-price">
                             <Input
-                                
                                 label="Preço"
+                                value={price}
                                 type="text"
                                 placeholder="R$ 00,00"
                                 id="price"
+                                onChange={hadleChangeInputPrice}
                             />
                         </div>
                        

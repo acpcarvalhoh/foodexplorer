@@ -1,21 +1,29 @@
-import { Container } from "./styles"
-import { PiReceipt } from "react-icons/pi"
-import { FiMenu, FiSearch } from "react-icons/fi"
-import { MdClose } from "react-icons/md"
-import { PiSignOutBold } from 'react-icons/pi'
+import { Container } from "./styles";
+import { PiReceipt } from "react-icons/pi";
+import { FiMenu, FiSearch } from "react-icons/fi";
+import { MdClose } from "react-icons/md";
+import { PiSignOutBold } from 'react-icons/pi';
 import { Input } from "../Input"
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
-import logoImg  from "../../assets/Polygon .svg"
+import logoImg  from "../../assets/Polygon .svg";
+import { useAuth } from "../../hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
 
 export function Header(){
+    const { hanleLogout, user } = useAuth();
     const [ $isMenuOpen, $setIsMenuOpen] = useState(false);
 
     function handleShowMenu(){
         $setIsMenuOpen(!$isMenuOpen);
     };
 
-    const isAdmin = true;
+    const admin = user.role === "admin";
+
+    const navigate = useNavigate();
+    function backToHome(){
+        navigate("/")
+    };
 
     useEffect(() => {
         const handleResize = () => {
@@ -35,8 +43,11 @@ export function Header(){
     return(
         <Container $isMenuOpen={$isMenuOpen}>
             <div className="favorites-and-orderhistory">
-                {!isAdmin &&  <a href="#">Meus favoritos</a>}
-                {isAdmin ? <a href="#">Novo prato</a> : <a href="#">Histórico de pedidos</a>}                
+                {!admin  &&  <Link to="/favorites">Meus favoritos</Link>}
+                {admin ? 
+                    <Link to="/new-update">Novo prato</Link> : 
+                    <Link to="/order-history">Histórico de pedidos</Link>
+                }                
             </div>
 
             <button className="menu" onClick={handleShowMenu}>
@@ -46,9 +57,9 @@ export function Header(){
             </button>
 
             {!$isMenuOpen && (
-                <div className="logo-header">
+                <div className="logo-header" onClick={backToHome}>
                     <img src={logoImg} alt="Polygon" />
-                    <h1>Food explorer {isAdmin && <span>Admin</span>}</h1>
+                    <h1>Food explorer {admin && <span>Admin</span>}</h1>
                 </div>
             )}
 
@@ -61,9 +72,14 @@ export function Header(){
                     />
                   
                     <div className="close-menu">
-                        {!isAdmin &&  <a href="#">Meus favoritos</a>}
-                        {isAdmin ? <a href="#">Novo prato</a> : <a href="#">Histórico de pedidos</a>}
-                        <button>sair</button>
+                        {!admin &&  <Link to="/favorites">Meus favoritos</Link>}
+                        {admin ? 
+                            <Link to="/new-update">Novo prato</Link> : 
+                            <Link to="/order-history">Histórico de pedidos</Link>
+                        } 
+                        <button onClick={hanleLogout}>
+                            sair
+                        </button>
                     </div>                
                 </div>
             )}
@@ -80,13 +96,13 @@ export function Header(){
             
             {!$isMenuOpen && (
                 <button className="number-requests">
-                    {!isAdmin && <PiReceipt size={24}/>}
-                    {!isAdmin && <span className="mobile">0</span>}   
-                    <span className="desktop">{isAdmin? "Novo prato" : "Pedidos (0)"}</span>
+                    {!admin  && <PiReceipt size={24}/>}
+                    {!admin  && <span className="mobile">0</span>}   
+                    <span className="desktop">{admin ? "Novo prato" : "Pedidos (0)"}</span>
                 </button>
             )}
 
-            <button className="button-exit-desktop">
+            <button className="button-exit-desktop" onClick={hanleLogout}>
                 <PiSignOutBold size={32} />
             </button>
         </Container>

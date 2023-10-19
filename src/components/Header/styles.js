@@ -23,6 +23,7 @@ export const Container = styled.header`
         display: flex;
         align-items: center;
         gap: 8px;
+        cursor: pointer;
 
         h1{
             font-family: Roboto;
