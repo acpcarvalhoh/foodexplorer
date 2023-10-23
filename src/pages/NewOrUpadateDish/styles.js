@@ -64,7 +64,7 @@ export const Container = styled.div`
                .icon_label{
                   margin-top: -1rem;
                   width: 100%;
-                  padding: 1.6rem 3.2rem;
+                  padding: 1.6rem 1.6rem 1.6rem 3rem;
                   border-radius: 8px;
                   cursor: pointer;
                   background: ${({ theme }) => theme.COLORS.DARK_800};
@@ -81,10 +81,23 @@ export const Container = styled.div`
                   }
 
                   span{
-                     font-size: 1.rem;
+                     font-size: 1.6rem;
                      font-style: normal;
                      font-weight: 500;
                      line-height: 2.4rem;
+                  }
+
+                  .selected-img{
+                     font-size: 1.4rem;
+                     display: flex;
+                     align-items: center;
+                     gap: 5px;
+
+                     svg{
+                        display: flex;
+                        width: 1.5rem;
+                        height: 1.5rem;
+                     }
                   }
 
                   input{

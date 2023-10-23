@@ -6,19 +6,22 @@ import { IngredientItem } from "../../components/IngredientItem"
 import { Button } from "../../components/Button"
 
 import { PiCaretLeftBold, PiUploadSimpleBold } from "react-icons/pi"
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { FaChevronDown, FaChevronUp, FaCheckCircle} from 'react-icons/fa';
 import { useState } from "react"
+import { api } from "../../services/api"
 
 
 export function NewOrUpdateDish(){
     const [isDropdownVisible, setDropdownVisibility] = useState(false);
-    const [selectCategory, setSelectCategory] = useState("Selecione a categoria");
+    const [categories, setCategories] = useState("Selecione a categoria");
     const [ingredients, setIngredients] = useState([]);
     const [newIngredients, setNewIngredients] = useState("");
-    const [ name, setName ] = useState("");
-    const [ decription, setDecription] = useState("");
-    const [ price, setPrice] = useState("");
-    
+    const [name, setName] = useState("");
+    const [image, setImage] = useState(null);
+    const [description, setDescription] = useState("");
+    const [price, setPrice] = useState("");
+
+
     function hadleChangeInputPrice(e){
         const updatedPrice = e.target.value.replace(/[^0-9]/g, '');
         if(updatedPrice !== ""){
@@ -49,13 +52,33 @@ export function NewOrUpdateDish(){
     };
 
     function handleCategorySelect(category){
-        setSelectCategory(category);
+        setCategories(category);
 
         setDropdownVisibility(false);
     };
 
-    function NewDish(){
+    async function handleCreateDish(){
+        try {
+            const dishForm = new FormData();
+            dishForm.append("name", name);
+            dishForm.append("image", image);
+            dishForm.append("ingredients", ingredients);
+            dishForm.append("categories", categories);
+            dishForm.append("description", description)
+            dishForm.append("price", price);
 
+            const response = await api.post("/dishes", dishForm);
+
+            alert(response.data.message);
+            
+        } catch (error) {
+            if(error.response){
+                alert(error.response.data.message);
+
+            }else{
+                alert("Não foi possível cadastrar prato");
+            };
+        }    
     }
 
     function UpdateDish(){
@@ -82,8 +105,12 @@ export function NewOrUpdateDish(){
                             <p>Imagem do prato</p>
                             <label htmlFor="dish_img" className="icon_label">
                                 <PiUploadSimpleBold/>
-                                <span>Selecione imagem</span>
-                                <input type="file" id="dish_img"/>
+                                {image !== null ? <span className="selected-img">Imagem selecionada<FaCheckCircle/></span> : <span>Selecione imagem</span>}               
+                                <input 
+                                    type="file" 
+                                    id="dish_img"
+                                    onChange={e => setImage(e.target.files[0])}
+                                />
                             </label>
                         </div>
                         
@@ -93,6 +120,7 @@ export function NewOrUpdateDish(){
                             type="text"
                             placeholder="Ex.: Salada Ceasar"
                             id="dish_name"
+                            onChange={e => setName(e.target.value)}
                             
                         />
                         
@@ -106,7 +134,7 @@ export function NewOrUpdateDish(){
                                 onClick={toggleDropdown}
                                 tabIndex="0"
                             >
-                                <div id="selected-value">{selectCategory}</div>
+                                <div id="selected-value">{categories}</div>
                                 <div id="chevrons">
                                     {isDropdownVisible ? <FaChevronUp /> : <FaChevronDown />}
                                 </div>
@@ -117,7 +145,7 @@ export function NewOrUpdateDish(){
                                     <span>Refeições</span>
                                     <input 
                                         type="radio"
-                                        value="meals"
+                                        value="Refeições"
                                         name="category"
                                         onClick={() => handleCategorySelect("Refeições")}
                                     />
@@ -127,7 +155,7 @@ export function NewOrUpdateDish(){
                                     <span>Pratos principais</span>
                                     <input 
                                         type="radio"
-                                        value="main-dishes"
+                                        value="Pratos principais"
                                         name="category"
                                         onClick={() => handleCategorySelect("Pratos principais")}
                                     />
@@ -136,7 +164,7 @@ export function NewOrUpdateDish(){
                                     <span>Sobremesas</span>
                                     <input 
                                         type="radio"
-                                        value="desserts"
+                                        value="Sobremesas"
                                         name="category"
                                         onClick={() => handleCategorySelect("Sobremesas")}
                                     />
@@ -191,6 +219,7 @@ export function NewOrUpdateDish(){
                         <textarea 
                             id="description"
                             placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+                            onChange={e => setDescription(e.target.value)}
                         />  
                     </div>
                     
@@ -205,6 +234,7 @@ export function NewOrUpdateDish(){
                         <Button
                             className="button-submit"
                             title="Salvar Alterações"
+                            onClick={handleCreateDish}
                         />
                     </div>                                    
                 </form>
