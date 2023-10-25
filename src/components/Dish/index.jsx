@@ -4,13 +4,19 @@ import { PiPencilSimpleLight } from "react-icons/pi"
 import { FaHeart } from "react-icons/fa"
 import { Button } from "../Button";
 import { useEffect, useState } from "react";
+import { api } from "../../services/api";
+import { useAuth } from "../../hooks/auth";
+import { useNavigate } from "react-router-dom";
 
 
-export function Dish({data, ...rest}){
+export function Dish({ data, ...rest }){
+    const { user } = useAuth();
     const [totalPrice, setTotalPrice] = useState(data.price);
     const [value, setValue] = useState(1);
     const [isFavorited, setIsFavorited] = useState(false);
+    const navigate = useNavigate();
 
+    const dishImg = `${api.defaults.baseURL}/files/${data.image}`
 
     useEffect(() => {
 
@@ -34,15 +40,19 @@ export function Dish({data, ...rest}){
         setIsFavorited(!isFavorited);
     };
 
-    const isAdmin = false;
+    function HandleEditDish(dishId) {
+        navigate(`/new-update/${dishId}`);
+    };
+
+    const admin = user.role === "admin";
 
     return (
         <Container {...rest}>
 
-            <button className={`like-edit-button ${isFavorited && !isAdmin ? 'favorited' : ''} `}
-                onClick={handleHeartClick}
+            <button className={`like-edit-button ${isFavorited && !admin  ? 'favorited' : ''} `}
+                onClick={admin ? () => HandleEditDish(data.id) : handleHeartClick}
             >
-                {isAdmin ? (
+                {admin ? (
                     <PiPencilSimpleLight size={24} />
                 ) : (
                     isFavorited ? <FaHeart size={24} /> : <FiHeart size={24} />
@@ -51,7 +61,7 @@ export function Dish({data, ...rest}){
             </button>
 
 
-            <img src={data.image} alt={`Imagem de um prato ${data.name}`} />
+            <img src={dishImg} alt={`Imagem do prato ${data.name}`} />
             
             <h3>{data.name}</h3>
 
@@ -59,7 +69,7 @@ export function Dish({data, ...rest}){
 
             <p className="dish-price">R$ {totalPrice}</p>
 
-            {!isAdmin && (
+            {!admin  && (
                 <div className="user-buttons-content">
                     <div className="add-dish-price">
 

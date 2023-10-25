@@ -64,7 +64,7 @@ export const Container = styled.div`
                .icon_label{
                   margin-top: -1rem;
                   width: 100%;
-                  padding: 1.6rem 1.6rem 1.6rem 3rem;
+                  padding: 1.7rem 1.6rem 1.7rem 3rem;
                   border-radius: 8px;
                   cursor: pointer;
                   background: ${({ theme }) => theme.COLORS.DARK_800};
@@ -97,6 +97,7 @@ export const Container = styled.div`
                         display: flex;
                         width: 1.5rem;
                         height: 1.5rem;
+                        color: ${({ theme }) => theme.COLORS.MINT_100};
                      }
                   }
 

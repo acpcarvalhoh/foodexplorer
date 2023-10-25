@@ -13,6 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 export function Header(){
     const { hanleLogout, user } = useAuth();
     const [ $isMenuOpen, $setIsMenuOpen] = useState(false);
+    const navigate = useNavigate();
 
     function handleShowMenu(){
         $setIsMenuOpen(!$isMenuOpen);
@@ -20,9 +21,13 @@ export function Header(){
 
     const admin = user.role === "admin";
 
-    const navigate = useNavigate();
+    
     function backToHome(){
         navigate("/")
+    };
+
+    function hanleOrderHistory(){
+        navigate("/order-history")
     };
 
     useEffect(() => {
@@ -95,10 +100,10 @@ export function Header(){
             
             
             {!$isMenuOpen && (
-                <button className="number-requests">
-                    {!admin  && <PiReceipt size={24}/>}
+                <button className="number-requests" onClick={hanleOrderHistory}>
+                    <PiReceipt size={24}/>
                     {!admin  && <span className="mobile">0</span>}   
-                    <span className="desktop">{admin ? "Novo prato" : "Pedidos (0)"}</span>
+                    <span className="desktop">Pedidos (0)</span>
                 </button>
             )}
 

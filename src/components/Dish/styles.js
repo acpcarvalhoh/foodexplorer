@@ -24,7 +24,6 @@ export const Container = styled.div`
         position: absolute;
         top: 1.6rem;
         right: 1.6rem;
-
     }
 
     .like-edit-button.favorited {
@@ -34,6 +33,9 @@ export const Container = styled.div`
     img{
         width: 8.8rem;
         height: 8.8rem;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid ${({ theme }) => theme.COLORS.DARK_900}; 
     }
 
     h3{
@@ -99,6 +101,8 @@ export const Container = styled.div`
         height: 460px;
         width: 304px;
         gap: 1.5rem;
+        overflow: hidden;
+        
 
         img{
             width: 17.6rem;
@@ -109,7 +113,8 @@ export const Container = styled.div`
             font-size: 2.4rem;
             font-style: normal;
             font-weight: 700;
-            line-height: 140%; 
+            line-height: 140%;
+            text-align: center;
         }
 
         .dish-price{
@@ -124,6 +129,14 @@ export const Container = styled.div`
             font-weight: 400;
             line-height: 160%;
             color: ${({ theme }) => theme.COLORS.LIGHT_400};
+            text-align: center;
+            max-height: 4.6rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; 
+            -webkit-box-orient: vertical;
+            width: 240px;
         }
 
         .user-buttons-content{

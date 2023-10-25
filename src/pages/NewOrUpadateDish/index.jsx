@@ -4,24 +4,40 @@ import { Footer } from "../../components/Footer"
 import { Input } from "../../components/Input"
 import { IngredientItem } from "../../components/IngredientItem"
 import { Button } from "../../components/Button"
-
 import { PiCaretLeftBold, PiUploadSimpleBold } from "react-icons/pi"
 import { FaChevronDown, FaChevronUp, FaCheckCircle} from 'react-icons/fa';
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 import { api } from "../../services/api"
 
 
 export function NewOrUpdateDish(){
+    const { dish_id } = useParams();
+    const [dish, setDish] = useState({});
+
+    useEffect(() => {
+        async function fetchDishes() {
+          const response = await api.get(`/dishes/${dish_id}`);
+          setDish(response.data);
+          
+        }
+      
+        fetchDishes();
+    
+    }, []);
+
+   
     const [isDropdownVisible, setDropdownVisibility] = useState(false);
     const [categories, setCategories] = useState("Selecione a categoria");
     const [ingredients, setIngredients] = useState([]);
     const [newIngredients, setNewIngredients] = useState("");
-    const [name, setName] = useState("");
+    const [name, setName] = useState(dish_id ? dish.name : "");
     const [image, setImage] = useState(null);
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
+    const navigate = useNavigate();
 
-
+    console.log(name);
     function hadleChangeInputPrice(e){
         const updatedPrice = e.target.value.replace(/[^0-9]/g, '');
         if(updatedPrice !== ""){
@@ -85,20 +101,24 @@ export function NewOrUpdateDish(){
         
     }
 
-    const dishExist = false;
 
+    function handleBack(){
+        navigate(-1);
+    };
+
+   
     return (
         <Container>
             <Header/> 
             <main>
-                <button className="button-back">
+                <button className="button-back" onClick={handleBack}>
                     <PiCaretLeftBold size={22}/>
                     Voltar
                 </button>
 
                 <form noValidate>
                     <h2 className="mobile">Novo prato</h2>
-                    <h2 className="desktop">{dishExist ? "Editar" : "Adicionar"} prato</h2>
+                    <h2 className="desktop">{dish_id ? "Editar" : "Adicionar"} prato</h2>
                     <div className="image-name-category">
 
                         <div className="img-content">
@@ -117,11 +137,11 @@ export function NewOrUpdateDish(){
                         <Input
                             className="input-name"
                             label="Nome"
+                            value={name}
                             type="text"
                             placeholder="Ex.: Salada Ceasar"
                             id="dish_name"
                             onChange={e => setName(e.target.value)}
-                            
                         />
                         
                         <CustomSelect>
@@ -152,21 +172,21 @@ export function NewOrUpdateDish(){
 
                                 </li>
                                 <li>
-                                    <span>Pratos principais</span>
-                                    <input 
-                                        type="radio"
-                                        value="Pratos principais"
-                                        name="category"
-                                        onClick={() => handleCategorySelect("Pratos principais")}
-                                    />
-                                </li>
-                                <li>
                                     <span>Sobremesas</span>
                                     <input 
                                         type="radio"
                                         value="Sobremesas"
                                         name="category"
                                         onClick={() => handleCategorySelect("Sobremesas")}
+                                    />
+                                </li>
+                                <li>
+                                    <span>Bebidas</span>
+                                    <input 
+                                        type="radio"
+                                        value="Bebidas"
+                                        name="category"
+                                        onClick={() => handleCategorySelect("Bebidas")}
                                     />
                                 </li>
                             </ul>
@@ -224,7 +244,7 @@ export function NewOrUpdateDish(){
                     </div>
                     
                     <div className="custom-buttons">
-                        {dishExist &&  
+                        {dish_id &&  
                             <Button
                                 className="button-delete"
                                 title="Excluir prato"
