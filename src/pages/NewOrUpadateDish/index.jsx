@@ -110,12 +110,26 @@ export function NewOrUpdateDish(){
         };    
     };
 
+    async function handleDeleteDish(){
+        try {
+            const response = await api.delete(`/dishes/${dish_id}`);
+
+            alert(response.data.message);
+            
+        } catch (error) {
+            if(error.response){
+                alert(error.response.data.message);
+
+            }else{
+                alert("Erro ao excluir prato");
+            };
+        };    
+    };
+
 
     function handleBack(){
         navigate(-1);
     };
-
-
 
     useEffect(() => {
         if(dish_id){
@@ -195,18 +209,19 @@ export function NewOrUpdateDish(){
                                     <input 
                                         type="radio"
                                         value="Refeições"
-                                        name="category"
+                                        name="meals"
                                         onClick={() => handleCategorySelect("Refeições")}
+    
                                     />
-
                                 </li>
                                 <li>
                                     <span>Sobremesas</span>
                                     <input 
                                         type="radio"
                                         value="Sobremesas"
-                                        name="category"
+                                        name="desserts"
                                         onClick={() => handleCategorySelect("Sobremesas")}
+                                        id="category"
                                     />
                                 </li>
                                 <li>
@@ -214,7 +229,7 @@ export function NewOrUpdateDish(){
                                     <input 
                                         type="radio"
                                         value="Bebidas"
-                                        name="category"
+                                        name="drinks"
                                         onClick={() => handleCategorySelect("Bebidas")}
                                     />
                                 </li>
@@ -225,16 +240,14 @@ export function NewOrUpdateDish(){
                     <div className="ingredients-price">
                         <div className="ingredients-container">
                             <label htmlFor="igredients_label">Ingredientes</label>
-                            <Ingredients 
-                                id="igredients_label"
-                                
-                            >
+                            <Ingredients>
                                 <IngredientItem 
                                     isNew
                                     placeholder="Adicionar"
                                     value={newIngredients}
                                     onChange={e => setNewIngredients(e.target.value)}
                                     onClick={handleAddIngredient}
+                                    id="igredients_label"
                                 />
                                 
                                 {
@@ -243,6 +256,7 @@ export function NewOrUpdateDish(){
                                             key={String(index)} 
                                             value={ingredient}
                                             onClick={() => handleRemoveIngredient(ingredient)}
+                                            id={String(index)}
                                         />
                                     ))
                                 }
@@ -255,7 +269,7 @@ export function NewOrUpdateDish(){
                                 value={price}
                                 type="text"
                                 placeholder="R$ 00,00"
-                                id="price"
+                                id="Preço"
                                 onChange={handleChangeInputPrice}
                             />
                         </div>
@@ -278,6 +292,7 @@ export function NewOrUpdateDish(){
                             <Button
                                 className="button-delete"
                                 title="Excluir prato"
+                                onClick={handleDeleteDish}
                             /> 
                         }
                        
