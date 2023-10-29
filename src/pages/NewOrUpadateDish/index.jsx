@@ -13,32 +13,18 @@ import { api } from "../../services/api"
 
 export function NewOrUpdateDish(){
     const { dish_id } = useParams();
-    const [dish, setDish] = useState({});
-
-    useEffect(() => {
-        async function fetchDishes() {
-          const response = await api.get(`/dishes/${dish_id}`);
-          setDish(response.data);
-          
-        }
-      
-        fetchDishes();
-    
-    }, []);
-
-   
     const [isDropdownVisible, setDropdownVisibility] = useState(false);
     const [categories, setCategories] = useState("Selecione a categoria");
     const [ingredients, setIngredients] = useState([]);
     const [newIngredients, setNewIngredients] = useState("");
-    const [name, setName] = useState(dish_id ? dish.name : "");
+    const [name, setName] = useState("");
     const [image, setImage] = useState(null);
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const navigate = useNavigate();
 
-    console.log(name);
-    function hadleChangeInputPrice(e){
+   
+    function handleChangeInputPrice(e){
         const updatedPrice = e.target.value.replace(/[^0-9]/g, '');
         if(updatedPrice !== ""){
             
@@ -97,14 +83,57 @@ export function NewOrUpdateDish(){
         }    
     }
 
-    function UpdateDish(){
-        
-    }
+    async function handleUpdateDish(){
+        try {
+            const dishForm = new FormData();
+            if(image !== null){
+                dishForm.append("image", image);
+            };
+
+            dishForm.append("name", name);
+            dishForm.append("ingredients", ingredients);
+            dishForm.append("categories", categories);
+            dishForm.append("description", description)
+            dishForm.append("price", price);
+
+            const response = await api.put(`/dishes/${dish_id}`, dishForm);
+
+            alert(response.data.message);
+            
+        } catch (error) {
+            if(error.response){
+                alert(error.response.data.message);
+
+            }else{
+                alert("Não foi possível atualizar o prato");
+            };
+        };    
+    };
 
 
     function handleBack(){
         navigate(-1);
     };
+
+
+
+    useEffect(() => {
+        if(dish_id){
+            async function fetchDishes() {
+                const response = await api.get(`/dishes/${dish_id}`);
+
+                setName(response.data.name);
+                setDescription(response.data.description);
+                setCategories(response.data.categories.map(category => category.name));
+                setPrice((response.data.price).toFixed(2));
+                setIngredients(response.data.ingredients.map(ingredient => ingredient.name));
+            }
+            
+            fetchDishes();
+        };
+      
+    
+    }, [dish_id]);
 
    
     return (
@@ -227,7 +256,7 @@ export function NewOrUpdateDish(){
                                 type="text"
                                 placeholder="R$ 00,00"
                                 id="price"
-                                onChange={hadleChangeInputPrice}
+                                onChange={handleChangeInputPrice}
                             />
                         </div>
                        
@@ -240,6 +269,7 @@ export function NewOrUpdateDish(){
                             id="description"
                             placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
                             onChange={e => setDescription(e.target.value)}
+                            value={description}
                         />  
                     </div>
                     
@@ -254,7 +284,7 @@ export function NewOrUpdateDish(){
                         <Button
                             className="button-submit"
                             title="Salvar Alterações"
-                            onClick={handleCreateDish}
+                            onClick={dish_id? handleUpdateDish : handleCreateDish}
                         />
                     </div>                                    
                 </form>
