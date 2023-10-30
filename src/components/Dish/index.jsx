@@ -24,19 +24,24 @@ export function Dish({ data, ...rest }){
 
     }, [value, data.price]);
     
-    const handleDecrease = () => {
+    const handleDecrease = (e) => {
+        e.stopPropagation();
+
         if (value > 1) {
             setValue(value - 1);
         }
 
     };
 
-    const handleIncrease = () => {
+    const handleIncrease = (e) => {
+        e.stopPropagation();
+
         setValue(value + 1);
     
     };
 
-    const handleHeartClick = () => {
+    const handleHeartClick = (e) => {
+        e.stopPropagation();
         setIsFavorited(!isFavorited);
     };
 
@@ -44,10 +49,14 @@ export function Dish({ data, ...rest }){
         navigate(`/new-update/${dishId}`);
     };
 
+    function HandleDetails(dishId) {
+        navigate(`/details/${dishId}`);
+    };
+
     const admin = user.role === "admin";
 
     return (
-        <Container {...rest}>
+        <Container {...rest} onClick={() => HandleDetails(data.id)}>
 
             <button className={`like-edit-button ${isFavorited && !admin  ? 'favorited' : ''} `}
                 onClick={admin ? () => HandleEditDish(data.id) : handleHeartClick}

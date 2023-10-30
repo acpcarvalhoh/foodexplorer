@@ -1,26 +1,23 @@
 import { Container, DishDetails, Ingredients, QuantityAndOrderSelector } from "./styles"
-import { Header } from "../../components/Header"
-import { Footer } from "../../components/Footer"
-import { Ingredient } from "../../components/Ingredient"
-
-import { PiCaretLeftBold, PiReceipt } from "react-icons/pi"
-import { FiPlus, FiMinus } from "react-icons/fi"
-
-import salade  from "../../assets/salade.svg"
-import { useEffect, useState } from "react"
+import { Header } from "../../components/Header";
+import { Footer } from "../../components/Footer";
+import { Ingredient } from "../../components/Ingredient";
+import { PiCaretLeftBold, PiReceipt } from "react-icons/pi";
+import { FiPlus, FiMinus } from "react-icons/fi";
+import { useEffect, useState } from "react";
+import { useAuth } from "../../hooks/auth";
+import { useNavigate, useParams } from "react-router-dom";
+import { api } from "../../services/api";
 
 
 export function Details(){
-    const dishPrice = 25.00
+    const { user } = useAuth();
+    const { dish_id } = useParams();
+    const [dish, setDish] = useState({});
     const [dishQuantity, setDishQuantity] = useState(1);
-    const [totalDishPrice, setTotalDishPrice] = useState(dishPrice);
-    
-
-    useEffect(() => {
-        setTotalDishPrice((dishQuantity * dishPrice).toFixed(2).replace(".", ","))
-
-    }, [dishQuantity, dishPrice])
-
+    const [totalDishPrice, setTotalDishPrice] = useState(dish.price);
+    const navigate = useNavigate();
+    const dishImg = `${api.defaults.baseURL}/files/${dish.image}`    
 
     function handleDicrease(){
         if(dishQuantity > 1){
@@ -32,30 +29,48 @@ export function Details(){
         setDishQuantity(dishQuantity + 1);
     };
 
-   
-    const admin = true;
+    function handleBack(){
+        navigate(-1);
+    };
 
+   
+    const admin = user.role === 'admin';
+
+    useEffect(() => {
+        setTotalDishPrice((dishQuantity * dish.price).toFixed(2).replace(".", ","))
+
+    }, [dishQuantity, dish.price])
+
+    useEffect(() => {
+        async function getDish(){
+            const reponse = await api.get(`/dishes/${dish_id}`)
+           
+           setDish(reponse.data);
+        };
+
+        getDish()
+
+    }, [])
+
+    console.log(dish_id);
     return (
         <Container>
             <Header/>
             <div className="content-container">
                 <main>
-                    <button>
+                    <button onClick={handleBack}>
                         <PiCaretLeftBold size={32}/>
                         Voltar
                     </button>
                     <DishDetails>
-                        <img src={salade} alt="Salada Ravanello" />
+                        <img src={dishImg} alt={`Imagem de ${dish.name}`} />
                         <div className="dish_description">
-                            <h2>Salada Ravanello</h2>
-                            <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.</p>
+                            <h2>{dish.name}</h2>
+                            <p>{dish.description}</p>
                             <Ingredients>
-                                <Ingredient title="alface"/>
-                                <Ingredient title="cebola"/>
-                                <Ingredient title="pão naan"/>
-                                <Ingredient title="pepino"/>
-                                <Ingredient title="rabanete"/>
-                                <Ingredient title="tomate"/>
+                                {dish.ingredients && dish.ingredients.map((ingredient, index) => (
+                                    <Ingredient title={ingredient.name} key={index}/>
+                                ))}
                             </Ingredients>
 
                             

@@ -53,6 +53,10 @@ export const DishDetails = styled.section`
       width: 26.4rem;
       height: 26.4rem;
       margin-bottom: 1.6rem;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center center;
+      border: 5px solid ${({ theme }) => theme.COLORS.DARK_900}; 
    }
 
    .dish_description{

@@ -17,6 +17,7 @@ export const Container = styled.div`
     position: relative;
     
     
+    
     .like-edit-button{
         background: none;
         border: none;
