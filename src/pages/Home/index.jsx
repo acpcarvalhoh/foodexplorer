@@ -6,7 +6,6 @@ import dishImgDesktop  from "../../assets/dish-img-desktop.svg"
 import { Section } from '../../components/Section'
 import { Dish } from '../../components/Dish'
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi"
-import salade from "../../assets/salade.svg"
 import { useEffect, useRef, useState } from 'react'
 import { api } from '../../services/api'
 

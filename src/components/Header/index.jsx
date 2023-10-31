@@ -11,15 +11,20 @@ import { useAuth } from "../../hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 
 export function Header(){
-    const { hanleLogout, user } = useAuth();
+    const { logout, user } = useAuth();
     const [ $isMenuOpen, $setIsMenuOpen] = useState(false);
     const navigate = useNavigate();
+
+    function hanleLogout(){
+        navigate("/login");
+        logout();
+    };
 
     function handleShowMenu(){
         $setIsMenuOpen(!$isMenuOpen);
     };
 
-    const admin = user.role === "admin";
+    const admin = user && user.role === "admin";
 
     
     function backToHome(){
@@ -48,7 +53,7 @@ export function Header(){
     return(
         <Container $isMenuOpen={$isMenuOpen}>
             <div className="favorites-and-orderhistory">
-                {!admin  &&  <Link to="/favorites">Meus favoritos</Link>}
+                {!admin  &&  <Link to="/fatorites">Meus favoritos</Link>}
                 {admin ? 
                     <Link to="/new-update">Novo prato</Link> : 
                     <Link to="/order-history">Histórico de pedidos</Link>
@@ -77,7 +82,7 @@ export function Header(){
                     />
                   
                     <div className="close-menu">
-                        {!admin &&  <Link to="/favorites">Meus favoritos</Link>}
+                        {!admin &&  <Link to="/fatorites">Meus favoritos</Link>}
                         {admin ? 
                             <Link to="/new-update">Novo prato</Link> : 
                             <Link to="/order-history">Histórico de pedidos</Link>

@@ -3,7 +3,6 @@ import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 import { Section } from '../../components/Section'
 import { CiFaceFrown } from "react-icons/ci"
-import salade from "../../assets/salade.svg"
 import {  useState } from 'react'
 import { useEffect } from 'react'
 
@@ -11,6 +10,7 @@ import { useEffect } from 'react'
 export function Favorites() {
 
   const data = [
+   /*  {name: "Salada Radish", image: salade},
     {name: "Salada Radish", image: salade},
     {name: "Salada Radish", image: salade},
     {name: "Salada Radish", image: salade},
@@ -19,8 +19,7 @@ export function Favorites() {
     {name: "Salada Radish", image: salade},
     {name: "Salada Radish", image: salade},
     {name: "Salada Radish", image: salade},
-    {name: "Salada Radish", image: salade},
-    {name: "Salada Radish", image: salade},
+    {name: "Salada Radish", image: salade}, */
   ]
 
   const [favorites, setFavorites] = useState([])

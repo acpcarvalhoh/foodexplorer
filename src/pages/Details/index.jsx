@@ -52,7 +52,7 @@ export function Details(){
 
     }, [])
 
-    console.log(dish_id);
+    
     return (
         <Container>
             <Header/>

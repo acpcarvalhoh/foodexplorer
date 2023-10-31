@@ -31,7 +31,7 @@ function AuthProvider({ children }) {
         };
     };
 
-    function hanleLogout(){
+    function logout(){
         localStorage.removeItem("@foodexplorer:user");
         localStorage.removeItem("@foodexplorer:token");
 
@@ -59,7 +59,7 @@ function AuthProvider({ children }) {
         <AuthContext.Provider value={{ 
             user: data.user,
             signIn,
-            hanleLogout 
+            logout 
         }}>
             {children}
         </AuthContext.Provider>

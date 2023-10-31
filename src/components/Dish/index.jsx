@@ -53,7 +53,7 @@ export function Dish({ data, ...rest }){
         navigate(`/details/${dishId}`);
     };
 
-    const admin = user.role === "admin";
+    const admin = user && user.role === "admin";
 
     return (
         <Container {...rest} onClick={() => HandleDetails(data.id)}>
