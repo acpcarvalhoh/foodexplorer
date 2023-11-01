@@ -6,7 +6,7 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
-   
+    cursor: pointer;
 
     >h1{
         font-size: 3rem /* clamp(3.7rem, 4.7rem, 10vw); */;

@@ -17,7 +17,8 @@ export function Details(){
     const [dishQuantity, setDishQuantity] = useState(1);
     const [totalDishPrice, setTotalDishPrice] = useState(dish.price);
     const navigate = useNavigate();
-    const dishImg = `${api.defaults.baseURL}/files/${dish.image}`    
+    const dishImg = `${api.defaults.baseURL}/files/${dish.image}`
+    
 
     function handleDicrease(){
         if(dishQuantity > 1){
@@ -33,9 +34,8 @@ export function Details(){
         navigate(-1);
     };
 
-   
-    const admin = user.role === 'admin';
-
+    const admin = user && user.role === "admin";
+    
     useEffect(() => {
         setTotalDishPrice((dishQuantity * dish.price).toFixed(2).replace(".", ","))
 
@@ -43,16 +43,16 @@ export function Details(){
 
     useEffect(() => {
         async function getDish(){
-            const reponse = await api.get(`/dishes/${dish_id}`)
-           
-           setDish(reponse.data);
+            const response = await api.get(`/dishes/${dish_id}`)
+            setDish(response.data);
+
         };
 
         getDish()
 
     }, [])
 
-    
+      
     return (
         <Container>
             <Header/>

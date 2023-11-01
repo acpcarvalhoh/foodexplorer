@@ -5,11 +5,11 @@ import { useAuth } from "../hooks/auth";
 
 export function Routes(){
     const { user } = useAuth();
-    
+    const admin = user && user.role === "admin";
 
     return(
         <BrowserRouter>
-            { user  ? <AdminRoutes/> : <AppRoutes/> }
+            { admin ? <AdminRoutes/> : <AppRoutes/> }
         </BrowserRouter>
     )
 };

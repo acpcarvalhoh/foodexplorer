@@ -71,7 +71,7 @@ export function SignUp(){
                 />
 
                 
-                <Link to="..">
+                <Link to="/login">
                     Já tenho uma conta
                 </Link>
                 

@@ -14,7 +14,7 @@ export function AppRoutes(){
     return(
         <Routes>
             <Route path="/" element={ <Home/> }/>
-            <Route path="/details/:id" element={ <Details/> }/>
+            <Route path="/details/:dish_id" element={ <Details/> }/>
             {user  && <Route path="/favorites" element={ <Favorites/> }/>}
             {user && <Route path="/order-history" element={ <OrderHistory/> }/>}
             {user && <Route path="*" element={ <Home/> }/>}

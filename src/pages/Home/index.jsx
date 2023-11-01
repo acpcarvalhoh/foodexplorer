@@ -7,13 +7,15 @@ import { Section } from '../../components/Section'
 import { Dish } from '../../components/Dish'
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi"
 import { useEffect, useRef, useState } from 'react'
+import { useSearch } from "../../hooks/useSearch"
 import { api } from '../../services/api'
 
 
 export function Home() {
+  const { search } = useSearch()
   const carouselRef = useRef(null);
   const [dishes, setDishes] = useState([]);
-  const [search, setSearch] = useState("");
+  
   const [ingredients, setIngredient] = useState([])
 
   function handleRightClick() {
@@ -26,13 +28,13 @@ export function Home() {
 
   useEffect(() => {
     async function fetchDishes() {
-      const response = await api.get(`/dishes?name&ingredients`);
+      const response = await api.get(`/dishes?search=${search}`);
       setDishes(response.data);
-    }
+    };
   
     fetchDishes();
 
-  }, []);
+  }, [search]);
   
 
   

@@ -5,13 +5,14 @@ import { MdClose } from "react-icons/md";
 import { PiSignOutBold } from 'react-icons/pi';
 import { Input } from "../Input"
 import { useState, useEffect } from "react";
-
 import logoImg  from "../../assets/Polygon .svg";
 import { useAuth } from "../../hooks/auth";
+import { useSearch } from "../../hooks/useSearch";
 import { Link, useNavigate } from "react-router-dom";
 
 export function Header(){
     const { logout, user } = useAuth();
+    const { setSearch } = useSearch();
     const [ $isMenuOpen, $setIsMenuOpen] = useState(false);
     const navigate = useNavigate();
 
@@ -79,10 +80,11 @@ export function Header(){
                         placeholder="Busque por pratos ou ingredientes"
                         type="text"
                         icon={FiSearch}
+                        onChange={e => setSearch(e.target.value)}
                     />
                   
                     <div className="close-menu">
-                        {!admin &&  <Link to="/fatorites">Meus favoritos</Link>}
+                        {!admin &&  <Link to="/favorites">Meus favoritos</Link>}
                         {admin ? 
                             <Link to="/new-update">Novo prato</Link> : 
                             <Link to="/order-history">Histórico de pedidos</Link>
@@ -99,7 +101,7 @@ export function Header(){
                     placeholder="Busque por pratos ou ingredientes"
                     type="text"
                     icon={FiSearch}
-                        
+                    onChange={e => setSearch(e.target.value)}
                 />
            </div>
             
