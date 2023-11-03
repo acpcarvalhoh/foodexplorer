@@ -36,23 +36,24 @@ export function Home() {
 
   }, [search]);
   
-
   
   return (
-    <Container>
+    <Container $search={search}>
       <Header/>
       <div className="content-container">
         <main>
+          {
+            !search && 
+            <article>
+              <img className="mobile-img" src={dishImg} alt="imagem de prato" />
+              <img className="desktop-only-img" src={dishImgDesktop} alt="imagem de prato" />
+              <div>
+                <h2>Sabores inigualáveis</h2>
+                <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
+              </div>
+            </article>
+          }
           
-          <article>
-            <img className="mobile-img" src={dishImg} alt="imagem de prato" />
-            <img className="desktop-only-img" src={dishImgDesktop} alt="imagem de prato" />
-            <div>
-              <h2>Sabores inigualáveis</h2>
-              <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
-            </div>
-          </article>
-
           <Section title="Refeiçoes">
             <div className="carousel-container">
               <button className="button_left" onClick={handleLeftClick}>

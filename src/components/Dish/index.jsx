@@ -35,18 +35,16 @@ export function Dish({ data, ...rest }){
 
     const handleIncrease = (e) => {
         e.stopPropagation();
-
         setValue(value + 1);
     
     };
 
-    const handleHeartClick = (e) => {
-        e.stopPropagation();
+    const handleHeartClick = () => {
+       
         setIsFavorited(!isFavorited);
     };
 
-    function HandleEditDish(dishId, event) {
-        event.stopPropagation();
+    function HandleEditDish(dishId) {
         navigate(`/new-update/${dishId}`);
     };
 
@@ -60,7 +58,16 @@ export function Dish({ data, ...rest }){
         <Container {...rest} onClick={() => HandleDetails(data.id)}>
 
             <button className={`like-edit-button ${isFavorited && !admin  ? 'favorited' : ''} `}
-                onClick={admin ? () => HandleEditDish(data.id, event) : handleHeartClick}
+                onClick={(e) => {
+                    if (admin) {
+                      e.stopPropagation();
+                      HandleEditDish(data.id);
+
+                    } else {
+                      e.stopPropagation(); 
+                      handleHeartClick();
+                    };
+                }}
             >
                 {admin ? (
                     <PiPencilSimpleLight size={24} />

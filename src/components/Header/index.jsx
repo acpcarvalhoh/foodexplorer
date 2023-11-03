@@ -54,7 +54,7 @@ export function Header(){
     return(
         <Container $isMenuOpen={$isMenuOpen}>
             <div className="favorites-and-orderhistory">
-                {!admin  &&  <Link to="/fatorites">Meus favoritos</Link>}
+                {!admin  &&  <Link to="/favorites">Meus favoritos</Link>}
                 {admin ? 
                     <Link to="/new-update">Novo prato</Link> : 
                     <Link to="/order-history">Histórico de pedidos</Link>

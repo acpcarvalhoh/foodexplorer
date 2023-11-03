@@ -25,6 +25,12 @@ export const Container = styled.div`
         position: absolute;
         top: 1.6rem;
         right: 1.6rem;
+        
+
+        svg{
+            z-index: 2;
+        }
+       
     }
 
     .like-edit-button.favorited {

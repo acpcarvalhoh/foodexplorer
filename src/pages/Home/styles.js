@@ -16,9 +16,9 @@ export const Container = styled.div`
       overflow-x:auto;
       width: 100%;
       margin: auto;
-      padding: 0 2.4rem;
+      padding: ${({ $search }) => ($search  ? '1rem 2.4rem 0 2.4rem' : '0 2.4rem')};
       
-     
+       
       article{
         width: 100%;
         border-radius: 3px;
@@ -91,7 +91,7 @@ export const Container = styled.div`
         overflow-x:auto;
         margin: auto;
         width: 100%;
-        padding: 0 11.4rem;
+        padding: ${({ $search }) => ($search  ? '3rem 11.4rem 0 11.4rem' : '0 11.4rem')};
         
 
         article{
