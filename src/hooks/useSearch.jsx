@@ -4,9 +4,18 @@ const SearchContext = createContext({});
 
 function SearchProvider({children}){
     const [search, setSearch] = useState("");
+    const [orders, setOrders] = useState([]);
+    const [newOrders, setNewOrders] = useState("");
     
     return (
-        <SearchContext.Provider value={{search, setSearch}}>
+        <SearchContext.Provider value={{
+            search, 
+            setSearch, 
+            orders, 
+            setOrders,
+            newOrders, 
+            setNewOrders
+        }}>
             {children}
         </SearchContext.Provider>
     )

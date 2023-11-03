@@ -6,11 +6,13 @@ import { Button } from "../Button";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
+import { useSearch } from "../../hooks/useSearch";
 import { useNavigate } from "react-router-dom";
 
 
 export function Dish({ data, ...rest }){
     const { user } = useAuth();
+    const { orders, setOrders, newOrders, setNewOrders } = useSearch();
     const [totalPrice, setTotalPrice] = useState(data.price);
     const [value, setValue] = useState(1);
     const [isFavorited, setIsFavorited] = useState(false);
@@ -51,6 +53,19 @@ export function Dish({ data, ...rest }){
     function HandleDetails(dishId) {
         navigate(`/details/${dishId}`);
     };
+   
+
+    function handleAddDish(){
+        console.log("clicado")
+       
+
+        setNewOrders(data);
+        setOrders(prevState => [...prevState, data]);
+        console.log(orders)
+        
+    };
+
+    
 
     const admin = user && user.role === "admin";
 
@@ -105,6 +120,8 @@ export function Dish({ data, ...rest }){
                     <Button
                         className="include-button"
                         title="incluir"
+                        onClick={(e) => { e.stopPropagation(); handleAddDish(); }}
+
                     />                  
                 </div>
             )}

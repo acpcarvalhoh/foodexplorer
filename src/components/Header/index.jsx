@@ -12,7 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 export function Header(){
     const { logout, user } = useAuth();
-    const { setSearch } = useSearch();
+    const { setSearch, orders } = useSearch();
     const [ $isMenuOpen, $setIsMenuOpen] = useState(false);
     const navigate = useNavigate();
 
@@ -109,8 +109,8 @@ export function Header(){
             {!$isMenuOpen && (
                 <button className="number-requests" onClick={hanleOrderHistory}>
                     <PiReceipt size={24}/>
-                    {!admin  && <span className="mobile">0</span>}   
-                    <span className="desktop">Pedidos (0)</span>
+                    {!admin  && <span className="mobile">{orders.length}</span>}   
+                    <span className="desktop">Pedidos ({orders.length})</span>
                 </button>
             )}
 

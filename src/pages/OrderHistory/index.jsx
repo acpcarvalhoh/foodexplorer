@@ -6,9 +6,10 @@ import { IoEllipse } from "react-icons/io5"
 import { CiFaceFrown } from "react-icons/ci"
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import {  useState,  useEffect, useRef } from 'react'
-
+import { useSearch } from "../../hooks/useSearch";
 
 export function OrderHistory() {
+  const { orders, setOrders } = useSearch();
   const [dropDown, setDropDown] = useState(false);
   const [ordersHistory, setOrdersHistory] = useState([]);
   const [status, setStatus] = useState("Pendente");
@@ -21,6 +22,8 @@ export function OrderHistory() {
       detailing: [{quantity: 1, name: "Suco de maracujá"}, {quantity: 2, name: "Salada Radish"}],
       timestamp: new Date('2023-10-15T14:30:00')
     },
+
+    
 
    /*  {
       status: "Entregre", 
@@ -37,6 +40,8 @@ export function OrderHistory() {
     } */
     
   ]
+
+  console.log(orders)
 
   function formatDateAndTime(timestamp){
     const day = String(timestamp.getDate()).padStart("0", 2);
