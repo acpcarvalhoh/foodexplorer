@@ -6,17 +6,16 @@ import dishImgDesktop  from "../../assets/dish-img-desktop.svg"
 import { Section } from '../../components/Section'
 import { Dish } from '../../components/Dish'
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi"
-import { useEffect, useRef, useState } from 'react'
 import { useSearch } from "../../hooks/useSearch"
 import { api } from '../../services/api'
+import { useEffect, useRef, useState } from 'react'
 
 
 export function Home() {
   const { search } = useSearch()
   const carouselRef = useRef(null);
   const [dishes, setDishes] = useState([]);
-  
-  const [ingredients, setIngredient] = useState([])
+ 
 
   function handleRightClick() {
     carouselRef.current.scrollLeft += carouselRef.current.offsetWidth

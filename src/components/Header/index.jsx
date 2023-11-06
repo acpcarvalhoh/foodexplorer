@@ -107,7 +107,7 @@ export function Header(){
             
             
             {!$isMenuOpen && (
-                <button className="number-requests" onClick={hanleOrderHistory}>
+                <button className="number-requests">
                     <PiReceipt size={24}/>
                     {!admin  && <span className="mobile">{orders.length}</span>}   
                     <span className="desktop">Pedidos ({orders.length})</span>

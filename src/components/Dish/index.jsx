@@ -3,16 +3,17 @@ import { FiHeart, FiPlus, FiMinus } from "react-icons/fi"
 import { PiPencilSimpleLight } from "react-icons/pi"
 import { FaHeart } from "react-icons/fa"
 import { Button } from "../Button";
-import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
 import { useSearch } from "../../hooks/useSearch";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import formatCurrency from "../../utils/formatCurrency";
 
 
 export function Dish({ data, ...rest }){
     const { user } = useAuth();
-    const { orders, setOrders, newOrders, setNewOrders } = useSearch();
+    const { orders, setOrders } = useSearch();
     const [totalPrice, setTotalPrice] = useState(data.price);
     const [value, setValue] = useState(1);
     const [isFavorited, setIsFavorited] = useState(false);
@@ -22,7 +23,7 @@ export function Dish({ data, ...rest }){
 
     useEffect(() => {
 
-        setTotalPrice((data.price * value).toFixed(2).replace('.', ','))
+        setTotalPrice(data.price * value);
 
     }, [value, data.price]);
     
@@ -42,8 +43,7 @@ export function Dish({ data, ...rest }){
     };
 
     const handleHeartClick = () => {
-       
-        setIsFavorited(!isFavorited);
+       setIsFavorited(!isFavorited);
     };
 
     function HandleEditDish(dishId) {
@@ -56,16 +56,15 @@ export function Dish({ data, ...rest }){
    
 
     function handleAddDish(){
-        console.log("clicado")
-       
-
-        setNewOrders(data);
-        setOrders(prevState => [...prevState, data]);
-        console.log(orders)
-        
+        const alreadyAddedDish = orders.some(order => order.id === data.id);
+        if(!alreadyAddedDish){
+           setOrders(prevState => [...prevState, data]);
+        }else{
+            return alert("Este prato já foi adicionado ao carrinho");
+        };  
+               
     };
 
-    
 
     const admin = user && user.role === "admin";
 
@@ -99,7 +98,7 @@ export function Dish({ data, ...rest }){
 
             <p className="dish_description">{data.description}</p>
 
-            <p className="dish-price">R$ {totalPrice}</p>
+            <p className="dish-price">{formatCurrency(totalPrice, "BRL")}</p>
 
             {!admin  && (
                 <div className="user-buttons-content">

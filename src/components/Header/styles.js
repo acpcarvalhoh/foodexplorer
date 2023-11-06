@@ -281,7 +281,8 @@ export const Container = styled.header`
         }
 
         .number-requests{
-            max-width: clamp(1rem, -9.4464rem + 33.4286vw, 16.625rem);
+            max-width: clamp(1rem, -9.4464rem + 33.4286vw, 17.625rem);
+            width: 100%;
             padding: clamp(1rem, 1.1786rem + -0.5714vw, 0.95rem) clamp(1rem, 0.2857rem + 2.2857vw, 2rem);
             border-radius: 5px;
             background: ${({ theme }) => theme.COLORS.TOMATO_100};
@@ -304,8 +305,7 @@ export const Container = styled.header`
                 font-style: normal;
                 font-weight: 500;
                 line-height: 2.4rem;
-
-               
+                padding: 5px 2px;
             }
         }
 

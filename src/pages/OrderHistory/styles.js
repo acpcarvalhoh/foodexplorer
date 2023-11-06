@@ -33,14 +33,19 @@ export const Container = styled.div`
             display: flex;
             gap: 3.1rem;
             flex-wrap: wrap;
-           
 
+            border: 2px solid red;
+           
+            
             .order-status{
                 display: flex;
                 align-items: center;
                 gap: 7px;
-                order: ${({ admin }) => admin? 1 : 2};
+                order: ${({ admin }) => admin ? 1 : 2};
                 width: 100%;
+                svg{
+                    display: flex;
+                }
                
                 .custon-select{
                     width: 100%;

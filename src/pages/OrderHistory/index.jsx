@@ -2,18 +2,20 @@ import  { Container} from './styles'
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 import { Section } from '../../components/Section'
-import { IoEllipse } from "react-icons/io5"
 import { CiFaceFrown } from "react-icons/ci"
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
-import {  useState,  useEffect, useRef } from 'react'
-import { useSearch } from "../../hooks/useSearch";
+import formatDateAndTime from '../../utils/formatDateAndTime'
+import formatOrderStatus from '../../utils/formatOrderStatus'
+import {  useState,  useEffect } from 'react'
+import { useAuth } from '../../hooks/auth'
+
 
 export function OrderHistory() {
-  const { orders, setOrders } = useSearch();
+  const { user } = useAuth();
   const [dropDown, setDropDown] = useState(false);
   const [ordersHistory, setOrdersHistory] = useState([]);
   const [status, setStatus] = useState("Pendente");
-
+  const admin = false;
 
   const data = [
     {
@@ -24,7 +26,6 @@ export function OrderHistory() {
     },
 
     
-
    /*  {
       status: "Entregre", 
       code: "0002", 
@@ -41,43 +42,13 @@ export function OrderHistory() {
     
   ]
 
-  console.log(orders)
-
-  function formatDateAndTime(timestamp){
-    const day = String(timestamp.getDate()).padStart("0", 2);
-    const month = String(timestamp.getMonth() + 1).padStart("0", 2);
-    const hours = String(timestamp.getHours()).padStart("0", 2);
-    const minutes = String(timestamp.getMinutes()).padStart("0", 2);
-
-    return `${day}/${month} às ${hours}h${minutes}`
-
-  };
-
-  function formatStatus(status){
-    let color = "";
-
-    if (status === "Pendente") {
-      color = "#AB222E";
-
-    } else if (status === "Preparando") {
-      color = "#FBA94C";
-      
-    } else {
-      color = "#04D361";
-    
-    }
-
-    return <IoEllipse style={{ color }} />;
-
-  };
-
+  
   function toggleDropDown() {
     setDropDown(prevState => !prevState);
   }
 
   const statusOptions = ["Pendente", "Preparando", "Entregue"]
   
-  const admin = true;
 
   useEffect( () => {
     setOrdersHistory(data)
@@ -110,41 +81,49 @@ export function OrderHistory() {
               <div className="orders-details" key={index}>
                 <span className="order-code">{order.code}</span>
                 <div className="order-status">
-                  {/* <span>{formatStatus(order.status)}</span>
-                  <span>{order.status}</span> */}
-
-                  <div className="custon-select" onClick={toggleDropDown}>
-                    <div className="select-button">
-                      <div id="selected-value">
-                        <span>{formatStatus(status)}</span>
-                        {status}
+                 {/*  { !admin ? 
+                    <div>
+                      <span>{formatOrderStatus(order.status)}</span>
+                      <span>{order.status}</span>
+                    </div> 
+                    :
+                    (
+                      <div className="custon-select" onClick={toggleDropDown}>
+                        <div className="select-button">
+                          <div id="selected-value">
+                            <span>{formatOrderStatus(status)}</span>
+                            {status}
+                          </div>
+                          <div id="chevrons">
+                            {dropDown? <FaChevronUp /> : <FaChevronDown />}
+                          </div>
+                        </div>
+                        {dropDown && (
+    
+                          <ul>
+                            {statusOptions.filter((option) => option !== status)
+                            .map((option, index) => (
+                              <li key={index}>
+                                <span>{option}</span>
+                                <input 
+                                  type="radio"
+                                  value={option}
+                                  name="category"
+                                  onChange={e => setStatus(e.target.value)}
+                                    
+                                />
+                              </li>
+                            ))}
+                            
+                          </ul>
+                        )}
+                       
                       </div>
-                      <div id="chevrons">
-                        {dropDown? <FaChevronUp /> : <FaChevronDown />}
-                      </div>
-                    </div>
-                    {dropDown && (
+                    )
+                  } */}
 
-                      <ul>
-                        {statusOptions.filter((option) => option !== status)
-                        .map((option, index) => (
-                          <li key={index}>
-                            <span>{option}</span>
-                            <input 
-                              type="radio"
-                              value={option}
-                              name="category"
-                              onChange={e => setStatus(e.target.value)}
-                                
-                            />
-                          </li>
-                        ))}
-                        
-                      </ul>
-                    )}
-                     
-                  </div>
-
+                  <span>{formatOrderStatus(order.status)}</span>
+                  <span>{order.status}</span>
 
                 </div>
                 <div className="order-date">

@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/auth";
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../services/api";
+import formatCurrency from "../../utils/formatCurrency";
 
 
 export function Details(){
@@ -15,7 +16,8 @@ export function Details(){
     const { dish_id } = useParams();
     const [dish, setDish] = useState({});
     const [dishQuantity, setDishQuantity] = useState(1);
-    const [totalDishPrice, setTotalDishPrice] = useState(dish.price);
+    const [totalDishPrice, setTotalDishPrice] = useState(dish.price || 0);
+
     const navigate = useNavigate();
     const dishImg = `${api.defaults.baseURL}/files/${dish.image}`
     
@@ -37,7 +39,7 @@ export function Details(){
     const admin = user && user.role === "admin";
     
     useEffect(() => {
-        setTotalDishPrice((dishQuantity * dish.price).toFixed(2).replace(".", ","))
+        setTotalDishPrice(dishQuantity * dish.price);
 
     }, [dishQuantity, dish.price])
 
@@ -96,8 +98,8 @@ export function Details(){
                                             <div> 
                                                 <span>Incluir </span>
                                                 <span>Pedir </span> 
-                                                ∙ R$
-                                                <span> {totalDishPrice}</span>
+                                                ∙
+                                                <span> {formatCurrency(totalDishPrice, "BRL")}</span>
                                             </div>
                                         </div>
                                     }

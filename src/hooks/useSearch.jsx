@@ -5,7 +5,6 @@ const SearchContext = createContext({});
 function SearchProvider({children}){
     const [search, setSearch] = useState("");
     const [orders, setOrders] = useState([]);
-    const [newOrders, setNewOrders] = useState("");
     
     return (
         <SearchContext.Provider value={{
@@ -13,8 +12,6 @@ function SearchProvider({children}){
             setSearch, 
             orders, 
             setOrders,
-            newOrders, 
-            setNewOrders
         }}>
             {children}
         </SearchContext.Provider>
