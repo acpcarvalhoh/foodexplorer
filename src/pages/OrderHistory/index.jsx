@@ -15,15 +15,15 @@ export function OrderHistory() {
   const [dropDown, setDropDown] = useState(false);
   const [ordersHistory, setOrdersHistory] = useState([]);
   const [status, setStatus] = useState("Pendente");
-  const admin = false;
+  const admin = user && user.role === "admin";
 
   const data = [
-    {
+    /* {
       status: "Pendente", 
       code: "0001", 
       detailing: [{quantity: 1, name: "Suco de maracujá"}, {quantity: 2, name: "Salada Radish"}],
       timestamp: new Date('2023-10-15T14:30:00')
-    },
+    }, */
 
     
    /*  {
@@ -81,11 +81,11 @@ export function OrderHistory() {
               <div className="orders-details" key={index}>
                 <span className="order-code">{order.code}</span>
                 <div className="order-status">
-                 {/*  { !admin ? 
-                    <div>
+                 {!admin ? 
+                    <>
                       <span>{formatOrderStatus(order.status)}</span>
                       <span>{order.status}</span>
-                    </div> 
+                    </> 
                     :
                     (
                       <div className="custon-select" onClick={toggleDropDown}>
@@ -120,11 +120,7 @@ export function OrderHistory() {
                        
                       </div>
                     )
-                  } */}
-
-                  <span>{formatOrderStatus(order.status)}</span>
-                  <span>{order.status}</span>
-
+                  }
                 </div>
                 <div className="order-date">
                   <span className="date">

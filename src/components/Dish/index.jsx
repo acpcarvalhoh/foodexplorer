@@ -13,7 +13,7 @@ import formatCurrency from "../../utils/formatCurrency";
 
 export function Dish({ data, ...rest }){
     const { user } = useAuth();
-    const { orders, setOrders } = useSearch();
+    const { orders, setOrders, favorites, setFavorites } = useSearch();
     const [totalPrice, setTotalPrice] = useState(data.price);
     const [value, setValue] = useState(1);
     const [isFavorited, setIsFavorited] = useState(false);
@@ -42,9 +42,6 @@ export function Dish({ data, ...rest }){
     
     };
 
-    const handleHeartClick = () => {
-       setIsFavorited(!isFavorited);
-    };
 
     function HandleEditDish(dishId) {
         navigate(`/new-update/${dishId}`);
@@ -52,6 +49,12 @@ export function Dish({ data, ...rest }){
 
     function HandleDetails(dishId) {
         navigate(`/details/${dishId}`);
+    };
+
+    const handleFavoriteDish = () => {
+        setIsFavorited(!isFavorited);
+        setFavorites(prevState => [...prevState, data]);
+        localStorage.setItem("@foodexplorer:favorites", JSON.stringify(favorites));
     };
    
 
@@ -64,6 +67,8 @@ export function Dish({ data, ...rest }){
         };  
                
     };
+
+    console.log(favorites)
 
 
     const admin = user && user.role === "admin";
@@ -79,7 +84,7 @@ export function Dish({ data, ...rest }){
 
                     } else {
                       e.stopPropagation(); 
-                      handleHeartClick();
+                      handleFavoriteDish();
                     };
                 }}
             >

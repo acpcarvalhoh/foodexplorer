@@ -3,30 +3,28 @@ import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 import { Section } from '../../components/Section'
 import { CiFaceFrown } from "react-icons/ci"
-import {  useState } from 'react'
 import { useEffect } from 'react'
-
+import { useSearch } from '../../hooks/useSearch'
+import { api } from '../../services/api'
 
 export function Favorites() {
+  const { favorites, setFavorites } = useSearch();
 
-  const data = [
-   /*  {name: "Salada Radish", image: salade},
-    {name: "Salada Radish", image: salade},
-    {name: "Salada Radish", image: salade},
-    {name: "Salada Radish", image: salade},
-    {name: "Salada Radish", image: salade},
-    {name: "Salada Radish", image: salade},
-    {name: "Salada Radish", image: salade},
-    {name: "Salada Radish", image: salade},
-    {name: "Salada Radish", image: salade},
-    {name: "Salada Radish", image: salade}, */
-  ]
+  function HandleRemoveFavorite(favoriteToRemove) {
+    const updatedFavorites = favorites.filter(favorite => favorite !== favoriteToRemove);
+    setFavorites(updatedFavorites);
+    
+    localStorage.setItem("@foodexplorer:favorites", JSON.stringify(updatedFavorites));
+  };
 
-  const [favorites, setFavorites] = useState([])
-
+  console.log(favorites);
+  
   useEffect( () => {
-    setFavorites(data)
-
+    const favoritesDishes = localStorage.getItem("@foodexplorer:favorites");
+    if(favoritesDishes){
+      setFavorites(JSON.parse(favoritesDishes));
+      
+    };
 
   }, [])
 
@@ -40,11 +38,11 @@ export function Favorites() {
                 <div className="content">
                   {favorites && favorites.map((favorite, index) => (
                       <div className='favorite-content' key={index}>
-                          <img src={favorite.image} alt={`Imagem de ${favorite.name}`} />
+                          <img src={`${api.defaults.baseURL}/files/${favorite.image}`} alt={`Imagem de ${favorite.name}`} />
                           <div>
                               <p>{favorite.name}</p>
-                              <button>
-                                  Remover dos favoritos
+                              <button onClick={() => HandleRemoveFavorite(favorite)}>
+                                Remover dos favoritos
                               </button> 
                           </div>
                       </div>

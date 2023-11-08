@@ -35,6 +35,11 @@ export function Home() {
 
   }, [search]);
   
+  const myComponentStyle = {
+    color: 'blue',
+    lineHeight: 10,
+    padding: '1.5em',
+  }
   
   return (
     <Container $search={search}>
@@ -109,8 +114,9 @@ export function Home() {
           
         </main>
 
-        <Footer />
+        <Footer className={`${dishes.length <= 0 ? "empty-content" : "" }`}/>
       </div>
+     
     </Container>
   )
 }

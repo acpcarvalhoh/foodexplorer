@@ -2,14 +2,22 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
   margin: auto;
   height: 100vh;
+
+  .empty-content{
+    position: absolute;
+    bottom: 0;
+    
+  }
  
   .content-container{
     overflow-y: auto;
     width: 100%;
+    height: 100vh;
    
     
     main{
@@ -187,6 +195,8 @@ export const Container = styled.div`
         }   
       }
     }
+
+   
     
 
   }

@@ -31,6 +31,10 @@ export const Container = styled.div`
             img{
                 width: 10rem;
                 height: 10rem;
+                border-radius: 50%;
+                border: 4px solid ${({ theme }) => theme.COLORS.DARK_900}; 
+                object-fit: cover;
+                object-position: center center;
             }
 
             div{

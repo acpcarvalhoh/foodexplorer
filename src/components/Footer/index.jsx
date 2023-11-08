@@ -1,9 +1,9 @@
 import { Container } from "./styles";
 import LogoImg from "../../assets/Polygon2.svg"
 
-export function Footer(){
+export function Footer({...rest}){
     return(
-        <Container>
+        <Container {...rest}>
             <div className="logo">
                 <img src={LogoImg} alt="Poligono" />
                 <p>food explorer</p>

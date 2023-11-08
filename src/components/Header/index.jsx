@@ -32,10 +32,7 @@ export function Header(){
         navigate("/")
     };
 
-    function hanleOrderHistory(){
-        navigate("/order-history")
-    };
-
+    
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth > 768 && $isMenuOpen) {
@@ -55,10 +52,8 @@ export function Header(){
         <Container $isMenuOpen={$isMenuOpen}>
             <div className="favorites-and-orderhistory">
                 {!admin  &&  <Link to="/favorites">Meus favoritos</Link>}
-                {admin ? 
-                    <Link to="/new-update">Novo prato</Link> : 
-                    <Link to="/order-history">Histórico de pedidos</Link>
-                }                
+                {admin  && <Link to="/new-update">Novo prato</Link>}
+                <Link to="/order-history">Histórico de pedidos</Link>
             </div>
 
             <button className="menu" onClick={handleShowMenu}>

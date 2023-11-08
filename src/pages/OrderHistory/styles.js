@@ -32,17 +32,15 @@ export const Container = styled.div`
             color: ${({ theme }) => theme.COLORS.LIGHT_400};
             display: flex;
             gap: 3.1rem;
-            flex-wrap: wrap;
-
-            border: 2px solid red;
-           
+            flex-wrap: wrap;           
             
             .order-status{
                 display: flex;
                 align-items: center;
                 gap: 7px;
-                order: ${({ admin }) => admin ? 1 : 2};
-                width: 100%;
+                order: ${({ $admin }) => $admin ? 1 : "auto"}; 
+                width: ${({ $admin }) => $admin ? "100%" : "auto"}; 
+                
                 svg{
                     display: flex;
                 }
@@ -119,6 +117,8 @@ export const Container = styled.div`
                     }
                 };
             }
+
+           
 
             .order-date{
                 display: flex;
