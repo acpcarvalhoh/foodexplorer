@@ -6,6 +6,8 @@ import dishImgDesktop  from "../../assets/dish-img-desktop.svg"
 import { Section } from '../../components/Section'
 import { Dish } from '../../components/Dish'
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi"
+import { FaSearchMinus } from "react-icons/fa"
+import { CiFaceFrown } from "react-icons/ci"
 import { useSearch } from "../../hooks/useSearch"
 import { api } from '../../services/api'
 import { useEffect, useRef, useState } from 'react'
@@ -14,32 +16,32 @@ import { useEffect, useRef, useState } from 'react'
 export function Home() {
   const { search } = useSearch()
   const carouselRef = useRef(null);
-  const [dishes, setDishes] = useState([]);
+  const [dishes, setDishes] = useState([] || null);
+  const [meals, setMeals] = useState([]);
+  const [desserts, setDesserts] = useState([]);
+  const [drinks, setDrinks] = useState([]);
  
 
   function handleRightClick() {
-    carouselRef.current.scrollLeft += carouselRef.current.offsetWidth
+    carouselRef.current.scrollLeft += carouselRef.current.offsetWidth;
   }
 
   function handleLeftClick() {
-    carouselRef.current.scrollLeft -= carouselRef.current.offsetWidth
+    carouselRef.current.scrollLeft -= carouselRef.current.offsetWidth;
   }
 
   useEffect(() => {
     async function fetchDishes() {
       const response = await api.get(`/dishes?search=${search}`);
       setDishes(response.data);
+      setMeals(response.data.filter(item => item.category === "Refeições"));
+      setDesserts(response.data.filter(item => item.category === "Sobremesas"));
+      setDrinks(response.data.filter(item => item.category === "Bebidas"));
     };
   
     fetchDishes();
 
   }, [search]);
-  
-  const myComponentStyle = {
-    color: 'blue',
-    lineHeight: 10,
-    padding: '1.5em',
-  }
   
   return (
     <Container $search={search}>
@@ -58,60 +60,75 @@ export function Home() {
             </article>
           }
           
-          <Section title="Refeiçoes">
-            <div className="carousel-container">
-              <button className="button_left" onClick={handleLeftClick}>
-                <PiCaretLeftBold />
-              </button>
-              
-              <Content className="carousel" ref={carouselRef} >
-                {dishes.filter(item => item.category === "Refeições").map((dish, index) => ( 
-                  <Dish data={dish} key={index}/>
-                ))}
-                                
-              </Content>
-              <button className="button_right" onClick={handleRightClick}>
-                <PiCaretRightBold />
-              </button>
-            </div>
-          </Section>
-
-          <Section title="Sobremesas">
-            <div className="carousel-container">
-              <button className="button_left" onClick={handleLeftClick}>
-                <PiCaretLeftBold />
-              </button>
-              
-              <Content className="carousel" ref={carouselRef} >
-                {dishes.filter(item => item.category === "Sobremesas").map((dish, index) => ( 
-                  <Dish data={dish} key={index}/>
-                ))}
-                                
-              </Content>
-              <button className="button_right" onClick={handleRightClick}>
-                <PiCaretRightBold />
-              </button>
-            </div>
-          </Section>
-
-          <Section title="Bebidas">
-            <div className="carousel-container">
-              <button className="button_left" onClick={handleLeftClick}>
-                <PiCaretLeftBold />
-              </button>
-              
-              <Content className="carousel" ref={carouselRef} >
-                {dishes.filter(item => item.category === "Bebidas").map((dish, index) => ( 
-                  <Dish data={dish} key={index}/>
-                ))}
-                                
-              </Content>
-              <button className="button_right" onClick={handleRightClick}>
-                <PiCaretRightBold />
-              </button>
-            </div>
-          </Section>
+          {meals.length > 0 && 
+            <Section title="Refeiçoes">
+              <div className="carousel-container">
+                <button className="button_left" onClick={handleLeftClick}>
+                  <PiCaretLeftBold />
+                </button>
+                
+                <Content className="carousel" ref={carouselRef} >
+                  {meals.map((dish, index) => ( 
+                    <Dish data={dish} key={index}/>
+                  ))}
+                                  
+                </Content>
+                <button className="button_right" onClick={handleRightClick}>
+                  <PiCaretRightBold />
+                </button>
+              </div>
+            </Section>
+          }
           
+          {
+            desserts.length > 0 &&   
+            <Section title="Sobremesas">
+              <div className="carousel-container">
+                <button className="button_left" onClick={handleLeftClick}>
+                  <PiCaretLeftBold />
+                </button>
+                
+                <Content className="carousel" ref={carouselRef} >
+                  {desserts.map((dish, index) => ( 
+                    <Dish data={dish} key={index}/>
+                  ))}
+                                  
+                </Content>
+                <button className="button_right" onClick={handleRightClick}>
+                  <PiCaretRightBold />
+                </button>
+              </div>
+            </Section>
+          }
+         
+          {
+            drinks.length > 0 &&
+            <Section title="Bebidas">
+              <div className="carousel-container">
+                <button className="button_left" onClick={handleLeftClick}>
+                  <PiCaretLeftBold />
+                </button>
+                
+                <Content className="carousel" ref={carouselRef} >
+                  {drinks.map((dish, index) => ( 
+                    <Dish data={dish} key={index}/>
+                  ))}
+                                  
+                </Content>
+                <button className="button_right" onClick={handleRightClick}>
+                  <PiCaretRightBold />
+                </button>
+              </div>
+            </Section>
+          }
+
+          {
+            search  && dishes.length <= 0 &&
+            <div className="not-found-content">
+              <p>Nenhum prato ou ingredediente</p>
+              <CiFaceFrown/>
+            </div>
+          }
         </main>
 
         <Footer className={`${dishes.length <= 0 ? "empty-content" : "" }`}/>

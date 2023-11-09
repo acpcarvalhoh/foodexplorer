@@ -21,12 +21,12 @@ export const Container = styled.div`
       padding: 0 2rem;
       
 
-      .favorite-content{
-        margin-top: 2.9rem;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 1rem;
+        .favorite-content{
+            margin-top: 2.9rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
 
             img{
                 width: 10rem;

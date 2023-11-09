@@ -11,8 +11,9 @@ export const Container = styled.div`
   .empty-content{
     position: absolute;
     bottom: 0;
-    
+      
   }
+
  
   .content-container{
     overflow-y: auto;
@@ -65,6 +66,21 @@ export const Container = styled.div`
           color: ${({ theme }) => theme.COLORS.LIGHT_300};
         }
       }
+
+      .not-found-content{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 5rem;
+        border: 1px solid ${({ theme }) => theme.COLORS.CAKE_100};
+        font-size: 2rem; 
+        height: 20rem;
+        border-radius: 8px;
+        
+      }
+
+
     }
 
     main::-webkit-scrollbar {
@@ -192,7 +208,17 @@ export const Container = styled.div`
         .carousel-container::after {
           right: 0;
           background: linear-gradient(90deg, rgba(0, 10, 15, 0.1) 0%,  #000A0F 95%);
-        }   
+        }
+        
+        
+        .not-found-content{
+          width: 100%;
+          
+          p, svg{
+            font-size: 3rem;
+          }
+           
+        }
       }
     }
 
