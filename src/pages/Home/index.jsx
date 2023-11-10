@@ -1,4 +1,5 @@
-import  { Container, Content } from './styles'
+import  { Container } from './styles'
+import { Slider } from '../../components/Slider'
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 import dishImg  from "../../assets/dish-img.svg"
@@ -6,7 +7,6 @@ import dishImgDesktop  from "../../assets/dish-img-desktop.svg"
 import { Section } from '../../components/Section'
 import { Dish } from '../../components/Dish'
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi"
-import { FaSearchMinus } from "react-icons/fa"
 import { CiFaceFrown } from "react-icons/ci"
 import { useSearch } from "../../hooks/useSearch"
 import { api } from '../../services/api'
@@ -30,6 +30,7 @@ export function Home() {
     carouselRef.current.scrollLeft -= carouselRef.current.offsetWidth;
   }
 
+  
   useEffect(() => {
     async function fetchDishes() {
       const response = await api.get(`/dishes?search=${search}`);
@@ -62,63 +63,33 @@ export function Home() {
           
           {meals.length > 0 && 
             <Section title="Refeiçoes">
-              <div className="carousel-container">
-                <button className="button_left" onClick={handleLeftClick}>
-                  <PiCaretLeftBold />
-                </button>
-                
-                <Content className="carousel" ref={carouselRef} >
-                  {meals.map((dish, index) => ( 
-                    <Dish data={dish} key={index}/>
-                  ))}
-                                  
-                </Content>
-                <button className="button_right" onClick={handleRightClick}>
-                  <PiCaretRightBold />
-                </button>
-              </div>
+              <Slider>
+                {meals.map((dish, index) => ( 
+                  <Dish data={dish} key={index}/>
+                ))}
+             </Slider>
             </Section>
           }
           
           {
             desserts.length > 0 &&   
             <Section title="Sobremesas">
-              <div className="carousel-container">
-                <button className="button_left" onClick={handleLeftClick}>
-                  <PiCaretLeftBold />
-                </button>
-                
-                <Content className="carousel" ref={carouselRef} >
-                  {desserts.map((dish, index) => ( 
-                    <Dish data={dish} key={index}/>
-                  ))}
-                                  
-                </Content>
-                <button className="button_right" onClick={handleRightClick}>
-                  <PiCaretRightBold />
-                </button>
-              </div>
+              <Slider>
+                {desserts.map((dish, index) => ( 
+                  <Dish data={dish} key={index}/>
+                ))}   
+              </Slider>
             </Section>
           }
          
           {
             drinks.length > 0 &&
             <Section title="Bebidas">
-              <div className="carousel-container">
-                <button className="button_left" onClick={handleLeftClick}>
-                  <PiCaretLeftBold />
-                </button>
-                
-                <Content className="carousel" ref={carouselRef} >
-                  {drinks.map((dish, index) => ( 
-                    <Dish data={dish} key={index}/>
-                  ))}
-                                  
-                </Content>
-                <button className="button_right" onClick={handleRightClick}>
-                  <PiCaretRightBold />
-                </button>
-              </div>
+              <Slider>
+                {drinks.map((dish, index) => ( 
+                  <Dish data={dish} key={index}/>
+                ))}
+              </Slider>
             </Section>
           }
 

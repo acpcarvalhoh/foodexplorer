@@ -15,6 +15,7 @@ export const Container = styled.div`
     height: 292px;
     padding: 2.4rem;
     position: relative;
+    cursor: pointer;
     
     
     
