@@ -15,21 +15,11 @@ import { useEffect, useRef, useState } from 'react'
 
 export function Home() {
   const { search } = useSearch()
-  const carouselRef = useRef(null);
   const [dishes, setDishes] = useState([] || null);
   const [meals, setMeals] = useState([]);
   const [desserts, setDesserts] = useState([]);
   const [drinks, setDrinks] = useState([]);
  
-
-  function handleRightClick() {
-    carouselRef.current.scrollLeft += carouselRef.current.offsetWidth;
-  }
-
-  function handleLeftClick() {
-    carouselRef.current.scrollLeft -= carouselRef.current.offsetWidth;
-  }
-
   
   useEffect(() => {
     async function fetchDishes() {

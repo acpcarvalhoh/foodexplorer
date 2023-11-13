@@ -1,66 +1,65 @@
-import { Container, Content } from "./styles";
-import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi"
-import { useEffect, useRef, useState } from 'react'
+import { Container } from "./styles";
+import { PiCaretRightBold } from "react-icons/pi";
+import { Splide } from '@splidejs/splide';
+import '@splidejs/splide/css/skyblue';
+import { useEffect, useRef, useState } from 'react';
 
-
-export function Slider({ children, ...rest}){
-    const carouselRef = useRef(null);
-    const [showLeftButton, setShowLeftButton] = useState(false);
-    const [showRightButton, setShowRightButton] = useState(true);
+export function Slider({ children }) {
+    const id = crypto.randomUUID();
+    const containerRef = useRef(null);
+    const [hasScrollLeft, setHasScrollLeft] = useState(false);
+    const [hasScrollRight, setHasScrollRight] = useState(false);
 
     useEffect(() => {
+        const container = containerRef.current;
+
         const handleScroll = () => {
-          setShowLeftButton(carouselRef.current.scrollLeft > 0);
-          setShowRightButton(
-            carouselRef.current.scrollLeft <
-            carouselRef.current.scrollWidth - carouselRef.current.offsetWidth
-          );
-
+            setHasScrollLeft(container.scrollLeft > 0);
+            setHasScrollRight(container.scrollLeft < container.scrollWidth - container.clientWidth);
         };
-    
-        carouselRef.current.addEventListener("scroll", handleScroll);
-    
+
+        container.addEventListener('scroll', handleScroll);
+
         return () => {
-            if (carouselRef.current) {
-                carouselRef.current.removeEventListener("scroll", handleScroll);
-            }
+            container.removeEventListener('scroll', handleScroll);
         };
-
     }, []);
 
-    
-
-    function handleRightClick() {
-        carouselRef.current.scrollLeft += carouselRef.current.offsetWidth;
-    };
-    
-    function handleLeftClick() {
-        carouselRef.current.scrollLeft -= carouselRef.current.offsetWidth;
-    };
-
+    useEffect(() => {
+        new Splide(`#splide${id}`, {
+            focus: 'left',
+            pagination: false,
+            autoWidth: true,
+            gap: 25,
+        }).mount();
+    }, [children, id]);
 
     return (
-        
-        <Container className="carousel-container" 
-            $showLeftButton={showLeftButton}
-            $showRightButton={showRightButton}
+        <Container
+            ref={containerRef}
+            className={`splide ${hasScrollLeft ? 'has-scroll-left' : ''} ${hasScrollRight ? 'has-scroll-right' : ''}`}
+            id={`splide${id}`}
+            aria-label="Refeicoes"
         >
-            {showLeftButton && (
-                <button className="button_left" onClick={handleLeftClick}>
-                    <PiCaretLeftBold />
-                </button> 
-            )}
-           
-            <Content className="carousel" ref={carouselRef}>
-                {children}                           
-            </Content> 
-
-            {showRightButton && (
-                <button className="button_right" onClick={handleRightClick}>
-                    <PiCaretRightBold />
-                </button> 
-            )}            
-        </Container> 
-        
+            <div className="teste">
+                <div className="splide__arrows">
+                    <button className="splide__arrow splide__arrow--prev">
+                        <PiCaretRightBold />
+                    </button>
+                    <button className="splide__arrow splide__arrow--next">
+                        <PiCaretRightBold />
+                    </button>
+                </div>
+                <div className="splide__track">
+                    <ul className="splide__list">
+                        {children.map((child, index) => (
+                            <li key={index} className="splide__slide">
+                                {child}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+        </Container>
     );
-}; 
+}
