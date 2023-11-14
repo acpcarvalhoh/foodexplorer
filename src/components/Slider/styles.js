@@ -6,39 +6,52 @@ export const Container = styled.div`
         display: none ;
     }
 
-    ${({ $showLeftButton }) => $showLeftButton && `
-            &::before{
-                content: "";
-                position: absolute;
-                top: 0;
-                width: 200px; 
-                height: 100%;
-                z-index: 1;
-                transition: opacity 0.4s ease;
-            }
+    .splide__arrow svg {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
 
-            &::before {
-                left: 0;
-                background: linear-gradient(90deg, #000A0F 15%, rgba(0, 10, 15, 0.1) 95%);
-            }
-        `}
+   
+    .splide__arrow--prev{
+        left: -30px;
+        background: linear-gradient(90deg, #000A0F 15%, rgba(0, 10, 15, 0.1) 95%);
+        height: 100%;
+        width: 90px;
+        transition: opacity 0.4s ease;
+    }
 
-        ${({ $showRightButton }) => $showRightButton && `
-            &::after {
-                content: "";
-                position: absolute;
-                top: 0;
-                width: 200px; 
-                height: 100%;
-                z-index: 1;
-                transition: opacity 0.4s ease;
-            }
+    
 
-            &::after {
-                right: 0;
-                background: linear-gradient(90deg, rgba(0, 10, 15, 0.1) 0%,  #000A0F 95%);
-            }
-        `}
+    .splide__arrow--next{
+        right: 0;
+        background: linear-gradient(90deg, rgba(0, 10, 15, 0.1) 0%,  #000A0F 95%);
+        height: 100%;
+        width: 85px;
+        transition: opacity 0.4s ease;
+    }
+
+
+    @media screen and (min-width: 768px){
+        .splide__arrow--prev{
+            left: -25px;
+        }
+
+        .splide__arrow--next{
+            right: 0;
+           
+        }
+
+        .splide__arrow svg {
+            width: 3.8rem;
+            height: 3.8rem;
+        }
+    }
+
+
+
+  
+
+       
    
    
 

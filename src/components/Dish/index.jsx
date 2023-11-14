@@ -74,7 +74,11 @@ export function Dish({ data, ...rest }){
     const admin = user && user.role === "admin";
 
     return (
-        <Container {...rest} onClick={() => HandleDetails(data.id)}>
+        <Container 
+            {...rest} 
+            onClick={() => HandleDetails(data.id)}
+            $admin={admin}
+        >
 
             <button className={`like-edit-button ${isFavorited && !admin  ? 'favorited' : ''} `}
                 onClick={(e) => {

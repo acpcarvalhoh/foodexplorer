@@ -51,6 +51,17 @@ export const Container = styled.div`
         font-style: normal;
         font-weight: 500;
         line-height: 24px;
+        text-align: center;
+
+        ${({ $admin }) => !$admin && `
+            max-height: 4.6rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1; 
+            -webkit-box-orient: vertical;
+            width: 160px;
+        `}
     }
 
     .dish-price{
@@ -123,6 +134,15 @@ export const Container = styled.div`
             font-weight: 700;
             line-height: 140%;
             text-align: center;
+            ${({ $admin }) => !$admin && `
+                max-height: 4.6rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 1; 
+                -webkit-box-orient: vertical;
+                width: 240px;
+            `}
         }
 
         .dish-price{
