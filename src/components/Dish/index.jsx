@@ -16,15 +16,15 @@ export function Dish({ data, ...rest }){
     const { orders, setOrders, favorites, setFavorites } = useSearch();
     const [totalPrice, setTotalPrice] = useState(data.price);
     const [value, setValue] = useState(1);
-    const [isFavorited, setIsFavorited] = useState(false);
     const navigate = useNavigate();
-
     const dishImg = `${api.defaults.baseURL}/files/${data.image}`
-
+    const admin = user && user.role === "admin";
+    const isFavorited = favorites.map(fav => fav.id)
+    
     useEffect(() => {
-
+       
         setTotalPrice(data.price * value);
-
+        
     }, [value, data.price]);
     
     const handleDecrease = (e) => {
@@ -42,7 +42,6 @@ export function Dish({ data, ...rest }){
     
     };
 
-
     function HandleEditDish(dishId) {
         navigate(`/new-update/${dishId}`);
     };
@@ -51,36 +50,88 @@ export function Dish({ data, ...rest }){
         navigate(`/details/${dishId}`);
     };
 
-    const handleFavoriteDish = () => {
-        setIsFavorited(!isFavorited);
-        setFavorites(prevState => [...prevState, data]);
-        localStorage.setItem("@foodexplorer:favorites", JSON.stringify(favorites));
-    };
-   
+    async function handleFavoriteDish(dish) {
+        const favorite = favorites.filter((favorite) => favorite.id === dish);
+      
+        
+        if (favorite.length === 0) {
+            try {
+                
+                setFavorites(prevState => [...prevState, data]);
+                
+                const response = await api.post("/favorites", { dish_id: dish });
+        
+                alert(response.data.message);
+
+            } catch (error) {
+                if (error.response) {
+                    alert(error.response.data.message);
+                } else {
+                    alert("Erro ao favoritar prato");
+                };
+            };
+
+        } else {
+            try {
+                
+                setFavorites((prevFavorites) =>
+                    prevFavorites.filter((favorite) => favorite.id !== dish)
+                );
+        
+                const response = await api.delete(`/favorites/${dish}`);
+                alert(response.data.message);
+            } catch (error) {
+                if (error.response) {
+                    alert(error.response.data.message);
+                } else {
+                    alert("Erro ao excluir favorito");
+                };
+            };
+        };
+    }
+      
+    
 
     function handleAddDish(){
         const alreadyAddedDish = orders.some(order => order.id === data.id);
         if(!alreadyAddedDish){
            setOrders(prevState => [...prevState, data]);
+
         }else{
             return alert("Este prato já foi adicionado ao carrinho");
         };  
                
     };
-
-    console.log(favorites)
-
-
-    const admin = user && user.role === "admin";
+    
+    useEffect(() => {
+        async function fetchFavorites() {
+          try {
+            const response = await api.get("/favorites");
+            setFavorites(response.data);
+    
+          } catch (error) {
+            if (error.response) {
+              alert(error.response.data.message);
+              
+            } else {
+              alert("Erro ao carregar favoritos");
+            }
+          }
+        }
+      
+        fetchFavorites();
+        
+    }, []); 
+    
 
     return (
         <Container 
             {...rest} 
             onClick={() => HandleDetails(data.id)}
-            $admin={admin}
+            $admin={admin}           
         >
 
-            <button className={`like-edit-button ${isFavorited && !admin  ? 'favorited' : ''} `}
+            <button className={`like-edit-button ${isFavorited.includes(data.id)  && !admin  ? 'favorited' : ''} `}
                 onClick={(e) => {
                     if (admin) {
                       e.stopPropagation();
@@ -88,14 +139,14 @@ export function Dish({ data, ...rest }){
 
                     } else {
                       e.stopPropagation(); 
-                      handleFavoriteDish();
+                      handleFavoriteDish(data.id);
                     };
                 }}
             >
                 {admin ? (
                     <PiPencilSimpleLight size={24} />
                 ) : (
-                    isFavorited ? <FaHeart size={24} /> : <FiHeart size={24} />
+                    isFavorited.includes(data.id) ? <FaHeart size={24} /> : <FiHeart size={24} />
                 )}
                 
             </button>

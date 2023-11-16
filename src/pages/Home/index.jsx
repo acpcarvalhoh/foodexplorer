@@ -1,16 +1,16 @@
-import  { Container } from './styles'
+import  { Container, Loading} from './styles'
 import { Slider } from '../../components/Slider'
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
+import { Dish } from '../../components/Dish'
 import dishImg  from "../../assets/dish-img.svg"
 import dishImgDesktop  from "../../assets/dish-img-desktop.svg"
 import { Section } from '../../components/Section'
-import { Dish } from '../../components/Dish'
-import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi"
 import { CiFaceFrown } from "react-icons/ci"
+import { ImSpinner8 } from "react-icons/im";
 import { useSearch } from "../../hooks/useSearch"
 import { api } from '../../services/api'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 
 export function Home() {
@@ -19,6 +19,7 @@ export function Home() {
   const [meals, setMeals] = useState([]);
   const [desserts, setDesserts] = useState([]);
   const [drinks, setDrinks] = useState([]);
+  const [loading, setLoading] = useState(true);
  
   
   useEffect(() => {
@@ -28,6 +29,7 @@ export function Home() {
       setMeals(response.data.filter(item => item.category === "Refeições"));
       setDesserts(response.data.filter(item => item.category === "Sobremesas"));
       setDrinks(response.data.filter(item => item.category === "Bebidas"));
+      setLoading(false);
     };
   
     fetchDishes();
@@ -50,7 +52,15 @@ export function Home() {
               </div>
             </article>
           }
-          
+
+          {
+            !search && loading && 
+            <Loading>
+              <ImSpinner8 />
+              <p>Carregando pratos...</p>
+            </Loading>
+          }
+           
           {meals.length > 0 && 
             <Section title="Refeiçoes">
               <Slider>
@@ -92,7 +102,7 @@ export function Home() {
           }
         </main>
 
-        <Footer className={`${dishes.length <= 0 ? "empty-content" : "" }`}/>
+        <Footer className={`${search && dishes.length <= 0 ? "empty-content" : "" }`}/>
       </div>
      
     </Container>
