@@ -1,5 +1,5 @@
 import  { Container, Loading} from './styles'
-import { Slider } from '../../components/Slider'
+import { Carousel } from '../../components/Carousel'
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 import { Dish } from '../../components/Dish'
@@ -54,7 +54,7 @@ export function Home() {
           }
 
           {
-            !search && loading && 
+            loading && 
             <Loading>
               <ImSpinner8 />
               <p>Carregando pratos...</p>
@@ -63,33 +63,33 @@ export function Home() {
            
           {meals.length > 0 && 
             <Section title="Refeiçoes">
-              <Slider>
+              <Carousel>
                 {meals.map((dish, index) => ( 
                   <Dish data={dish} key={index}/>
                 ))}
-             </Slider>
+             </Carousel>
             </Section>
           }
           
           {
             desserts.length > 0 &&   
             <Section title="Sobremesas">
-              <Slider>
+              <Carousel>
                 {desserts.map((dish, index) => ( 
                   <Dish data={dish} key={index}/>
                 ))}   
-              </Slider>
+              </Carousel>
             </Section>
           }
          
           {
             drinks.length > 0 &&
             <Section title="Bebidas">
-              <Slider>
+              <Carousel>
                 {drinks.map((dish, index) => ( 
                   <Dish data={dish} key={index}/>
                 ))}
-              </Slider>
+              </Carousel>
             </Section>
           }
 

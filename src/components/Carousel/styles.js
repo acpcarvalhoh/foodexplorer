@@ -11,6 +11,7 @@ export const Container = styled.div`
       height: 2.5rem;
     }
 
+
    
     .splide__arrow--prev{
         left: -30px;

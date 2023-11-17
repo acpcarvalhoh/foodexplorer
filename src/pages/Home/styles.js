@@ -18,13 +18,14 @@ export const Container = styled.div`
     overflow-y: auto;
     width: 100%;
     height: 100vh;
+    flex: 1;
    
     
     main{
       overflow-x:auto;
       width: 100%;
       margin: auto;
-      padding: ${({ $search }) => ($search  ? '1rem 2.4rem 0 2.4rem' : '0 2.4rem')};
+      padding: ${({ $search }) => ($search  ? '5rem 2.4rem 0 2.4rem' : '0 2.4rem')};
       
        
       article{
@@ -35,7 +36,7 @@ export const Container = styled.div`
         display: flex;
         align-items: center;
         height: 120px;
-        padding: 2rem;
+        padding:  2rem 1rem 2rem;
         
         .mobile-img{
           margin-left: -4.5rem;

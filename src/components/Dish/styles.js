@@ -16,6 +16,7 @@ export const Container = styled.div`
     padding: 2.4rem;
     position: relative;
     cursor: pointer;
+   
     
     
     
@@ -30,12 +31,28 @@ export const Container = styled.div`
 
         svg{
             z-index: 2;
+            
         }
        
     }
 
+
+
     .like-edit-button.favorited {
         color: ${({ theme }) => theme.COLORS.TOMATO_200}; 
+        animation: 0.5s ease-in-out turn-icon;
+    }
+
+    @keyframes turn-icon{
+        0% {
+           transform: scale(1);
+        }
+        25% {
+           transform: scale(1.4);
+        }
+        100% {
+           transform: scale(1);
+        }
     }
 
     img{

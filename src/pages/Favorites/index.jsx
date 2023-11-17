@@ -18,7 +18,7 @@ export function Favorites() {
       );
   
       const response = await api.delete(`/favorites/${favoriteToRemove}`);
-      alert(response.data.message);
+      
 
     } catch (error) {
       if (error.response) {

@@ -6,6 +6,7 @@ import { PiCaretLeftBold, PiReceipt } from "react-icons/pi";
 import { FiPlus, FiMinus } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/auth";
+import { useSearch } from "../../hooks/useSearch";
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../services/api";
 import formatCurrency from "../../utils/formatCurrency";
@@ -17,8 +18,10 @@ export function Details(){
     const [dish, setDish] = useState({});
     const [dishQuantity, setDishQuantity] = useState(1);
     const [totalDishPrice, setTotalDishPrice] = useState(dish.price || 0);
-
+    const [loading, setLoading] = useState(true);
+    const { orders, setOrders } = useSearch();
     const navigate = useNavigate();
+
     const dishImg = `${api.defaults.baseURL}/files/${dish.image}`
     
 
@@ -43,10 +46,26 @@ export function Details(){
 
     }, [dishQuantity, dish.price])
 
+    function HandleEditDish(dishId) {
+        navigate(`/new-update/${dishId}`);
+    };
+
+    function handleAddDish(){
+        const alreadyAddedDish = orders.some(order => order.id === dish.id);
+        if(!alreadyAddedDish){
+           setOrders(prevState => [...prevState, dish]);
+
+        }else{
+            return alert("Este prato já foi adicionado ao carrinho");
+        };  
+               
+    };
+
     useEffect(() => {
         async function getDish(){
             const response = await api.get(`/dishes/${dish_id}`)
             setDish(response.data);
+            setLoading(false);
 
         };
 
@@ -64,6 +83,7 @@ export function Details(){
                         <PiCaretLeftBold size={32}/>
                         Voltar
                     </button>
+                
                     <DishDetails>
                         <img src={dishImg} alt={`Imagem de ${dish.name}`} />
                         <div className="dish_description">
@@ -91,7 +111,9 @@ export function Details(){
                                     </div>
                                 }                     
                                 
-                                <button className="button-order-or-edit-dish">
+                                <button className="button-order-or-edit-dish"
+                                  onClick={admin ? () => HandleEditDish(dish.id) : handleAddDish}
+                                >
                                     {admin? "Editar prato" : 
                                         <div className="order-price">
                                             <PiReceipt size={21}/>

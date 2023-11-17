@@ -61,11 +61,11 @@ export function Dish({ data, ...rest }){
                 
                 const response = await api.post("/favorites", { dish_id: dish });
         
-                alert(response.data.message);
 
             } catch (error) {
                 if (error.response) {
                     alert(error.response.data.message);
+
                 } else {
                     alert("Erro ao favoritar prato");
                 };
@@ -79,10 +79,12 @@ export function Dish({ data, ...rest }){
                 );
         
                 const response = await api.delete(`/favorites/${dish}`);
-                alert(response.data.message);
+                
+
             } catch (error) {
                 if (error.response) {
                     alert(error.response.data.message);
+
                 } else {
                     alert("Erro ao excluir favorito");
                 };
