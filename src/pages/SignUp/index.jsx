@@ -3,42 +3,53 @@ import { Brand } from "../../components/Brand";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { api } from "../../services/api"
-
+import { createUserFormSchema } from "../../validators/registerValidator";
+import { useForm } from "react-hook-form"
+import { joiResolver } from '@hookform/resolvers/joi';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useState } from "react";
 
 export function SignUp(){
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const navigate = useNavigate();
-    
-    async function HandleRegister(){
-        if(!name || !email || !password){
-           return alert("Preencha todos os campos!")
-        };
+    const [isLoading, setIsLoading] = useState(false);
+       
+    const { register, handleSubmit, formState: { errors }} = useForm({
+        resolver: joiResolver(createUserFormSchema)
+    });
 
+   
+    async function HandleRegister(data){
+       
         try{
-           const response = await api.post("/users", { name, email, password });
+           setIsLoading(true);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            const response = await api.post("/users", data);
 
-           alert(response.data.message);
-           navigate(-1);
+            toast.success(response.data.message);
+
+            navigate(-1);
 
         }catch(error){
             if(error.response){
-                alert(error.response.data.message);
-
+                toast.error(error.response.data.message);
+                setIsLoading(true);
             }else{
-                alert("Não foi possível cadastar!");
+                toast.error("Não foi possível cadastar!");
             };
-        };
+        }finally{
+            setIsLoading(false);
+        }
+
+       
     };
 
 
     return (
         <Container >
             <Brand />
-            <Form noValidate>
+            <Form  onSubmit={handleSubmit(HandleRegister)} noValidate>
                 <h2>Crie sua conta</h2>
 
                 <Input
@@ -46,35 +57,39 @@ export function SignUp(){
                     placeholder="Exemplo: Adão Carvalho"
                     type="text"
                     id="input_name"
-                    onChange={e => setName(e.target.value)}
+                    {...register("name")}
+                    error={errors.name && errors.name.message}
                 />
-                
+                              
                 <Input
                     label="Email"
                     placeholder="Exemplo: exemplo@exemplo.com.br"
                     type="email"
                     id="input_mail"
-                    onChange={e => setEmail(e.target.value)}
+                    {...register("email")}
+                    error={errors.email && errors.email.message}                    
                 />
-
+                
                 <Input
                     label="Senha"
                     placeholder="No mínimo 6 caracteres"
                     type="password"
                     id="input_password"
-                    onChange={e => setPassword(e.target.value)}
+                    {...register("password")}
+                    error={errors.password  && errors.password.message}
+                    
                 />
 
                 <Button 
                     title="Entrar"
-                    onClick={HandleRegister}
+                    type="submit"
+                    $loading={isLoading}
                 />
-
-                
+               
                 <Link to="/login">
                     Já tenho uma conta
                 </Link>
-                
+                <ToastContainer />
             </Form>
         </Container >
     )

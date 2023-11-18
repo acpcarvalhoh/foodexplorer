@@ -6,7 +6,7 @@ export function Brand(){
     const navigate = useNavigate();
 
     function navigateToHome(){
-        navigate(-1);
+        navigate("/");
     };
 
     return (

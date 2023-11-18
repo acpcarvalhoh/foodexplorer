@@ -19,7 +19,7 @@ export function Details(){
     const [dishQuantity, setDishQuantity] = useState(1);
     const [totalDishPrice, setTotalDishPrice] = useState(dish.price || 0);
     const [loading, setLoading] = useState(true);
-    const { orders, setOrders } = useSearch();
+    const { orders, setOrders, setSearch } = useSearch();
     const navigate = useNavigate();
 
     const dishImg = `${api.defaults.baseURL}/files/${dish.image}`
@@ -36,6 +36,7 @@ export function Details(){
     };
 
     function handleBack(){
+        setSearch("")
         navigate(-1);
     };
 

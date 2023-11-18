@@ -30,6 +30,7 @@ export function Header(){
     
     function backToHome(){
         navigate("/")
+        setSearch("")
     };
 
     

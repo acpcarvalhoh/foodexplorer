@@ -1,6 +1,7 @@
-import { Container } from "./styles"
+import { Container } from "./styles";
+import React, { forwardRef } from 'react';
 
-export function Input({icon: Icon, label, id, ...rest}){
+export const Input = forwardRef(({ icon: Icon, label, id, error, ...rest }, ref) => {
     const inputId = id || rest.name || rest.placeholder; 
 
     return(
@@ -9,9 +10,9 @@ export function Input({icon: Icon, label, id, ...rest}){
 
             {Icon && <Icon size={24}/>}
 
-            <input id={inputId} {...rest} />
+            <input id={inputId} {...rest} ref={ref}/>
+
+            {error && <span>{error}</span>}
         </Container>
     )
-   
-    
-};
+});

@@ -106,22 +106,26 @@ export function Dish({ data, ...rest }){
     };
     
     useEffect(() => {
-        async function fetchFavorites() {
-          try {
-            const response = await api.get("/favorites");
-            setFavorites(response.data);
-    
-          } catch (error) {
-            if (error.response) {
-              alert(error.response.data.message);
-              
-            } else {
-              alert("Erro ao carregar favoritos");
+
+        if(user){
+            async function fetchFavorites() {
+            
+                try {
+                    const response = await api.get("/favorites");
+                    setFavorites(response.data);
+            
+                } catch (error) {
+                    if (error.response) {
+                    alert(error.response.data.message);
+                    
+                    } else {
+                    alert("Erro ao carregar favoritos");
+                    }
+                }
             }
-          }
+        
+            fetchFavorites();
         }
-      
-        fetchFavorites();
         
     }, []); 
     

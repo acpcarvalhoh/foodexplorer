@@ -21,8 +21,6 @@ export const Container = styled.div`
         &placeholder{
             color: ${({ theme }) => theme.COLORS.LIGHT_500};
         }
-
-        
     }
 
     svg{
@@ -42,6 +40,15 @@ export const Container = styled.div`
         font: 400 16px/100% Roboto;
         color: ${({ theme }) => theme.COLORS.LIGHT_400};
         align-self: flex-start;
+    }
+
+    span{
+        color: red;
+        font-size: 1.3rem;
+        align-self: flex-start;
+        position: absolute;
+        bottom: -22px;
+        font-weight: 500;
     }
 
 `

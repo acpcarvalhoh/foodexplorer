@@ -43,7 +43,7 @@ export function SignIn(){
                 />
 
                 <Link to="/register">
-                   Já tenho uma conta
+                    Criar uma conta
                 </Link>
             </Form>
         </Container >
