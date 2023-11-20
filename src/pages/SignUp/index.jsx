@@ -26,18 +26,21 @@ export function SignUp(){
            setIsLoading(true);
             await new Promise(resolve => setTimeout(resolve, 1000));
             const response = await api.post("/users", data);
-
             toast.success(response.data.message);
 
-            navigate(-1);
+            setTimeout(() => {
+                navigate(-1);
 
+            }, 1000);
+           
         }catch(error){
             if(error.response){
                 toast.error(error.response.data.message);
-                setIsLoading(true);
+
             }else{
                 toast.error("Não foi possível cadastar!");
             };
+            
         }finally{
             setIsLoading(false);
         }
@@ -76,12 +79,12 @@ export function SignUp(){
                     type="password"
                     id="input_password"
                     {...register("password")}
-                    error={errors.password  && errors.password.message}
+                    error={errors.password && errors.password.message} 
                     
                 />
 
                 <Button 
-                    title="Entrar"
+                    title="Cadastrar"
                     type="submit"
                     $loading={isLoading}
                 />

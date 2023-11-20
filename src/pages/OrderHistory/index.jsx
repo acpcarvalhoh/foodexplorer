@@ -108,7 +108,7 @@ export function OrderHistory() {
                                 <input 
                                   type="radio"
                                   value={option}
-                                  name="category"
+                                  name="status"
                                   onChange={e => setStatus(e.target.value)}
                                     
                                 />

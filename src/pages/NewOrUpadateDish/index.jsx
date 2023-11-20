@@ -9,11 +9,14 @@ import { FaChevronDown, FaChevronUp, FaCheckCircle} from 'react-icons/fa';
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { api } from "../../services/api"
+import { createDishFormSchema } from "../../validators/dishFormValidator";
+import { joiResolver } from '@hookform/resolvers/joi';
+import { useForm, useFieldArray } from "react-hook-form"
 
 
 export function NewOrUpdateDish(){
     const { dish_id } = useParams();
-    const [isDropdownVisible, setDropdownVisibility] = useState(false);
+    const [dropDown, setDropDown] = useState(false);
     const [categories, setCategories] = useState("Selecione a categoria");
     const [ingredients, setIngredients] = useState([]);
     const [newIngredients, setNewIngredients] = useState("");
@@ -23,8 +26,12 @@ export function NewOrUpdateDish(){
     const [price, setPrice] = useState("");
     const navigate = useNavigate();
 
+
+    const { register, handleSubmit, formState: { errors }, control} = useForm({
+        resolver: joiResolver(createDishFormSchema)
+    });
    
-    function handleChangeInputPrice(e){
+   /*  function handleChangeInputPrice(e){
         const updatedPrice = e.target.value.replace(/[^0-9]/g, '');
         if(updatedPrice !== ""){
             
@@ -33,7 +40,7 @@ export function NewOrUpdateDish(){
             setPrice("");
         };
 
-    };
+    }; */
 
     function handleAddIngredient(){
         if(!newIngredients || ingredients.includes(newIngredients)){
@@ -50,24 +57,18 @@ export function NewOrUpdateDish(){
     };
 
     function toggleDropdown(){
-        setDropdownVisibility(!isDropdownVisible);
+        setDropDown(prevState => !prevState);
     };
 
-    function handleCategorySelect(category){
-        setCategories(category);
-
-        setDropdownVisibility(false);
-    };
-
-    async function handleCreateDish(){
+    async function handleCreateDish(data){
         try {
             const dishForm = new FormData();
-            dishForm.append("name", name);
-            dishForm.append("image", image);
-            dishForm.append("ingredients", ingredients);
-            dishForm.append("categories", categories);
-            dishForm.append("description", description)
-            dishForm.append("price", price);
+            dishForm.append("name", data.name);
+            dishForm.append("image", data.image[0]);
+            dishForm.append("ingredients", data.ingredients);
+            dishForm.append("categories", data.categories);
+            dishForm.append("description", data.description)
+            dishForm.append("price", data.price);
 
             const response = await api.post("/dishes", dishForm);
 
@@ -83,7 +84,7 @@ export function NewOrUpdateDish(){
         }    
     }
 
-    async function handleUpdateDish(){
+   /*  async function handleUpdateDish(){
         try {
             const dishForm = new FormData();
             if(image !== null){
@@ -108,9 +109,9 @@ export function NewOrUpdateDish(){
                 alert("Não foi possível atualizar o prato");
             };
         };    
-    };
+    }; */
 
-    async function handleDeleteDish(){
+   /*  async function handleDeleteDish(){
         try {
             const response = await api.delete(`/dishes/${dish_id}`);
 
@@ -124,14 +125,16 @@ export function NewOrUpdateDish(){
                 alert("Erro ao excluir prato");
             };
         };    
-    };
+    }; */
 
 
     function handleBack(){
         navigate(-1);
     };
 
-    useEffect(() => {
+    const categoryOptions =  ["Refeições", "Sobremesas", "Bebidas"]
+
+   /*  useEffect(() => {
         if(dish_id){
             async function fetchDishes() {
                 const response = await api.get(`/dishes/${dish_id}`);
@@ -147,8 +150,9 @@ export function NewOrUpdateDish(){
         };
       
     
-    }, [dish_id]);
+    }, [dish_id]); */
 
+    console.log(errors);
    
     return (
         <Container>
@@ -159,7 +163,7 @@ export function NewOrUpdateDish(){
                     Voltar
                 </button>
 
-                <form noValidate>
+                <form onSubmit={handleSubmit(handleCreateDish)} noValidate>
                     <h2 className="mobile">Novo prato</h2>
                     <h2 className="desktop">{dish_id ? "Editar" : "Adicionar"} prato</h2>
                     <div className="image-name-category">
@@ -184,56 +188,54 @@ export function NewOrUpdateDish(){
                             type="text"
                             placeholder="Ex.: Salada Ceasar"
                             id="dish_name"
-                            onChange={e => setName(e.target.value)}
+                            {...register("name")}
+                            onChange={(e) => {
+                                register("name").onChange(e); 
+                                setName(e.target.value); 
+                            }}
+
+                            error={errors.name && errors.name.message}
                         />
                         
                         <CustomSelect>
                             <div id="category-select">
                                 <label htmlFor="select-button">Categoria</label>
                             </div>
-
-                            <div 
-                                id="select-button" 
-                                onClick={toggleDropdown}
-                                tabIndex="0"
-                            >
-                                <div id="selected-value">{categories}</div>
-                                <div id="chevrons">
-                                    {isDropdownVisible ? <FaChevronUp /> : <FaChevronDown />}
+                            <div className="custon-select" onClick={toggleDropdown}>
+                                <div 
+                                    id="select-button" 
+                                    tabIndex="0"
+                                >
+                                    <div id="selected-value">{categories}</div>
+                                    <div id="chevrons">
+                                        {dropDown ? <FaChevronUp /> : <FaChevronDown />}
+                                    </div>
                                 </div>
-                            </div>
 
-                            <ul className={isDropdownVisible ? '' : 'hidden'}>
-                                <li>
-                                    <span>Refeições</span>
-                                    <input 
-                                        type="radio"
-                                        value="Refeições"
-                                        name="meals"
-                                        onClick={() => handleCategorySelect("Refeições")}
-    
-                                    />
-                                </li>
-                                <li>
-                                    <span>Sobremesas</span>
-                                    <input 
-                                        type="radio"
-                                        value="Sobremesas"
-                                        name="desserts"
-                                        onClick={() => handleCategorySelect("Sobremesas")}
-                                        id="category"
-                                    />
-                                </li>
-                                <li>
-                                    <span>Bebidas</span>
-                                    <input 
-                                        type="radio"
-                                        value="Bebidas"
-                                        name="drinks"
-                                        onClick={() => handleCategorySelect("Bebidas")}
-                                    />
-                                </li>
-                            </ul>
+                                {dropDown && (
+                                    <ul>
+                                        {categoryOptions.filter((option) => option !== categories)
+                                        .map((option, index) => (
+                                            <li key={index}>
+                                                <span>{option}</span>
+                                                <input 
+                                                    type="radio"
+                                                    value={option}
+                                                    name="category"
+                                                    {...register("categories")}
+                                                   
+                                                    onChange={(e) => {
+                                                        register("categories").onChange(e); 
+                                                        setCategories(e.target.value); 
+                                                    }}
+                                                />
+                                            </li>
+                                        ))}                               
+                                    </ul>
+                                )}
+
+                                {errors.categories && <span className="error-msg">{errors.categories.message}</span>}
+                           </div>
                         </CustomSelect>
                     </div>
                     
@@ -270,7 +272,14 @@ export function NewOrUpdateDish(){
                                 type="text"
                                 placeholder="R$ 00,00"
                                 id="Preço"
-                                onChange={handleChangeInputPrice}
+                                {...register("price")}
+
+                                onChange={(e) => {
+                                    register("price").onChange(e); 
+                                    setPrice(e.target.value); 
+                                }}
+
+                                error={errors.price && errors.price.message}
                             />
                         </div>
                        
@@ -282,9 +291,16 @@ export function NewOrUpdateDish(){
                         <textarea 
                             id="description"
                             placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
-                            onChange={e => setDescription(e.target.value)}
                             value={description}
-                        />  
+                            {...register("description")}
+
+                            onChange={(e) => {
+                                register("description").onChange(e); 
+                                setDescription(e.target.value); 
+                            }}
+                        />
+
+                        {errors.description && <span className="error-msg-desc">{errors.description.message}</span>}  
                     </div>
                     
                     <div className="custom-buttons">
@@ -292,14 +308,14 @@ export function NewOrUpdateDish(){
                             <Button
                                 className="button-delete"
                                 title="Excluir prato"
-                                onClick={handleDeleteDish}
+                               /*  onClick={handleDeleteDish} */
                             /> 
                         }
                        
                         <Button
                             className="button-submit"
                             title="Salvar Alterações"
-                            onClick={dish_id? handleUpdateDish : handleCreateDish}
+                            type="submit"
                         />
                     </div>                                    
                 </form>

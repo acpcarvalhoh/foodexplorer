@@ -27,7 +27,7 @@ export const Container = styled.div`
          margin-top: 3.5rem;
          display: flex;
          flex-direction: column;
-         gap: 2.4rem;
+         gap: 2.5rem;
          
          .mobile{
             font-size: 3.2rem;
@@ -129,6 +129,16 @@ export const Container = styled.div`
             display: flex;
             flex-direction: column;
             gap: 1.4rem;
+            position: relative;
+
+            .error-msg-desc{
+               color: red;
+               font-size: 1.3rem;
+               align-self: flex-start;
+               position: absolute;
+               bottom: -22px;
+               font-weight: 500;
+            }
 
             label{
                font-family: Roboto;
@@ -295,9 +305,15 @@ export const Container = styled.div`
 export const CustomSelect = styled.div`
    position: relative;
 
-   .hidden {
-     display: none;
+   .error-msg{
+      color: red;
+      font-size: 1.3rem;
+      align-self: flex-start;
+      position: absolute;
+      bottom: -22px;
+      font-weight: 500;
    }
+
 
    #category-select{
       label{

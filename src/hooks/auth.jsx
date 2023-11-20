@@ -1,20 +1,25 @@
 import { useContext, createContext, useState, useEffect } from "react";
 import { api } from "../services/api";
+import { toast } from 'react-toastify';
 
 const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
     const [data, setData]= useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
-    async function signIn({ email, password }){
-        if(!email || !password){
-            return alert("Preecha todos campos")
-        }
-
+    async function signIn(data){
+        
         try{
-            const response = await api.post("/sessions", { email, password });
+            setIsLoading(true);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            
+            const response = await api.post("/sessions", data);
+            console.log(response.data)
             const { user, token } = response.data;
 
+          
             api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
             localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
             localStorage.setItem("@foodexplorer:token", token);
@@ -23,11 +28,14 @@ function AuthProvider({ children }) {
 
         }catch(error){
             if(error.response){
-                alert(error.response.data.message);
+                toast.error(error.response.data.message);
 
             }else{
-                alert("Não foi possível entrar!");
+                toast.error("Não foi possível entrar!");
             };
+
+        }finally{
+            setIsLoading(false);
         };
     };
 
@@ -59,7 +67,8 @@ function AuthProvider({ children }) {
         <AuthContext.Provider value={{ 
             user: data.user,
             signIn,
-            logout 
+            logout,
+            isLoading 
         }}>
             {children}
         </AuthContext.Provider>

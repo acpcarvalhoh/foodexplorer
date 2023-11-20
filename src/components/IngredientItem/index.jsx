@@ -1,15 +1,16 @@
 import { Container } from "./styles";
 import { FiPlus, FiX } from "react-icons/fi"
+import React, { forwardRef } from 'react';
 
-export function IngredientItem({isNew, value, onClick, ...rest}) {
-
+export const IngredientItem = forwardRef(({isNew, value, onClick, ...rest}, ref) => {
     return (
         <Container $isnew={isNew}>
             <input 
                 type="text"
                 readOnly={!isNew}
                 value={value}
-                {...rest} 
+                {...rest}
+                ref={ref} 
             />
 
             <button  type="button" onClick={onClick}>
@@ -17,4 +18,4 @@ export function IngredientItem({isNew, value, onClick, ...rest}) {
             </button>
         </Container>
     )
-}
+});

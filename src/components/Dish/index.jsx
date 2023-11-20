@@ -59,7 +59,7 @@ export function Dish({ data, ...rest }){
                 
                 setFavorites(prevState => [...prevState, data]);
                 
-                const response = await api.post("/favorites", { dish_id: dish });
+                await api.post("/favorites", { dish_id: dish });
         
 
             } catch (error) {
@@ -78,7 +78,7 @@ export function Dish({ data, ...rest }){
                     prevFavorites.filter((favorite) => favorite.id !== dish)
                 );
         
-                const response = await api.delete(`/favorites/${dish}`);
+                await api.delete(`/favorites/${dish}`);
                 
 
             } catch (error) {
@@ -116,10 +116,10 @@ export function Dish({ data, ...rest }){
             
                 } catch (error) {
                     if (error.response) {
-                    alert(error.response.data.message);
+                        alert(error.response.data.message);
                     
                     } else {
-                    alert("Erro ao carregar favoritos");
+                        alert("Erro ao carregar favoritos");
                     }
                 }
             }

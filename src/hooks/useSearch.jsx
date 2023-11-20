@@ -6,8 +6,7 @@ function SearchProvider({children}){
     const [search, setSearch] = useState("");
     const [orders, setOrders] = useState([]);
     const [favorites, setFavorites] = useState([]);
-    
-    
+        
     return (
         <SearchContext.Provider value={{
             search, 
