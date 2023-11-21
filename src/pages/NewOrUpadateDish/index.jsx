@@ -10,8 +10,9 @@ import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { api } from "../../services/api"
 import { createDishFormSchema } from "../../validators/dishFormValidator";
+import { validateImage } from "../../validators/imageValidator"
 import { joiResolver } from '@hookform/resolvers/joi';
-import { useForm, useFieldArray } from "react-hook-form"
+import { useForm } from "react-hook-form"
 
 
 export function NewOrUpdateDish(){
@@ -24,11 +25,14 @@ export function NewOrUpdateDish(){
     const [image, setImage] = useState(null);
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
-    const navigate = useNavigate();
+    const [imageError, setImageError] = useState(null);
+    const [ingredientsError, setiIngredientsError] = useState(null);
+    const navigate = useNavigate(); 
 
 
-    const { register, handleSubmit, formState: { errors }, control} = useForm({
-        resolver: joiResolver(createDishFormSchema)
+    const { register, handleSubmit, formState: { errors }} = useForm({
+        resolver: joiResolver(createDishFormSchema),
+
     });
    
    /*  function handleChangeInputPrice(e){
@@ -46,26 +50,55 @@ export function NewOrUpdateDish(){
         if(!newIngredients || ingredients.includes(newIngredients)){
             return
         };
-
+        
+        setiIngredientsError("")
         setIngredients(prevState => [...prevState, newIngredients]);
+        
         setNewIngredients("");
     };
 
     function handleRemoveIngredient(ingredientToDelete){
         const updatedIngredients = ingredients.filter(ingredient => ingredient !== ingredientToDelete);
         setIngredients(updatedIngredients);
+        if (updatedIngredients.length === 0) {
+            setiIngredientsError('Adicione pelo menos um ingrediente');
+
+        }
+
     };
 
     function toggleDropdown(){
         setDropDown(prevState => !prevState);
     };
 
+    const handleImageChange = (e) => {
+        const selectedImage = e.target.files[0];
+        const error = validateImage(selectedImage);
+    
+        if (!error) {
+            setImage(selectedImage);
+        };
+    
+        setImageError(error);
+    };
+
+
     async function handleCreateDish(data){
+        if (!image ) {
+            setImageError('Selecione uma imagem');
+            return;
+        };
+
+        if (ingredients.length === 0) {
+            setiIngredientsError('Adicione pelo menos um ingrediente');
+            return;
+        }
+        
         try {
             const dishForm = new FormData();
             dishForm.append("name", data.name);
-            dishForm.append("image", data.image[0]);
-            dishForm.append("ingredients", data.ingredients);
+            dishForm.append("image", image);
+            dishForm.append("ingredients", ingredients);
             dishForm.append("categories", data.categories);
             dishForm.append("description", data.description)
             dishForm.append("price", data.price);
@@ -152,8 +185,7 @@ export function NewOrUpdateDish(){
     
     }, [dish_id]); */
 
-    console.log(errors);
-   
+    console.log(ingredientsError)
     return (
         <Container>
             <Header/> 
@@ -172,13 +204,20 @@ export function NewOrUpdateDish(){
                             <p>Imagem do prato</p>
                             <label htmlFor="dish_img" className="icon_label">
                                 <PiUploadSimpleBold/>
-                                {image !== null ? <span className="selected-img">Imagem selecionada<FaCheckCircle/></span> : <span>Selecione imagem</span>}               
+                                {
+                                    !imageError && 
+                                    image !== null ? 
+                                    <span className="selected-img">Imagem selecionada<FaCheckCircle/></span> : <span>Selecione imagem</span>
+                                }               
                                 <input 
                                     type="file" 
                                     id="dish_img"
-                                    onChange={e => setImage(e.target.files[0])}
+                                    name="image"
+                                    onChange={handleImageChange}
                                 />
                             </label>
+
+                            {imageError && <span className="error-image">{imageError}</span>}
                         </div>
                         
                         <Input
@@ -262,6 +301,8 @@ export function NewOrUpdateDish(){
                                         />
                                     ))
                                 }
+
+                                {ingredientsError && <span className="error-ingredient">{ingredientsError}</span>}
                             </Ingredients>
                         </div>
                         

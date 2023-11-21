@@ -51,6 +51,7 @@ export const Container = styled.div`
                display: flex;
                flex-direction: column;
                gap: 2.5rem;
+               position: relative;
 
                p{
                   font-family: Roboto;
@@ -105,15 +106,23 @@ export const Container = styled.div`
                      display: none;
                   }
                }
+
+               .error-image{
+                  color: red;
+                  font-size: 1.3rem;
+                  align-self: flex-start;
+                  position: absolute;
+                  bottom: -22px;
+                  font-weight: 500;
+               }
             }
-
-           
-
-           
+            
          }
         
 
          .ingredients-container{
+            position: relative;
+
             label{
                font-family: Roboto;
                font-size: 1.6rem;
@@ -191,10 +200,7 @@ export const Container = styled.div`
                border-radius: 5px;
                font-size: 1.4rem;
             }
-         }
-
-        
-
+         }      
 
       }
 
@@ -425,6 +431,17 @@ export const Ingredients = styled.div`
    align-items: center;
    gap: 1.6rem;
    margin-top: 1.4rem;
+   position: relative;
+
+
+   .error-ingredient{
+      color: red;
+      font-size: 1.3rem;
+      align-self: flex-start;
+      position: absolute;
+      bottom: -22px;
+      font-weight: 500;
+   }
 
 `
 

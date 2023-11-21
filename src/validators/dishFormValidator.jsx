@@ -19,7 +19,7 @@ export const createDishFormSchema = Joi.object({
       'any.required': 'Selecione uma categoria.'
     }),
 
-
+  
   }).messages({
   'object.base': 'Preencha todos os campos corretamente.',
 });
