@@ -13,6 +13,8 @@ import { createDishFormSchema } from "../../validators/dishFormValidator";
 import { validateImage } from "../../validators/imageValidator"
 import { joiResolver } from '@hookform/resolvers/joi';
 import { useForm } from "react-hook-form"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export function NewOrUpdateDish(){
@@ -27,24 +29,16 @@ export function NewOrUpdateDish(){
     const [price, setPrice] = useState("");
     const [imageError, setImageError] = useState(null);
     const [ingredientsError, setiIngredientsError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const categoryOptions =  ["Refeições", "Sobremesas", "Bebidas"]
     const navigate = useNavigate(); 
 
 
-    const { register, handleSubmit, formState: { errors }} = useForm({
+    const { register, handleSubmit, setValue, formState: { errors }} = useForm({
         resolver: joiResolver(createDishFormSchema),
 
     });
-   
-   /*  function handleChangeInputPrice(e){
-        const updatedPrice = e.target.value.replace(/[^0-9]/g, '');
-        if(updatedPrice !== ""){
-            
-            setPrice((+updatedPrice / 100).toFixed(2));
-        }else{
-            setPrice("");
-        };
 
-    }; */
 
     function handleAddIngredient(){
         if(!newIngredients || ingredients.includes(newIngredients)){
@@ -73,7 +67,7 @@ export function NewOrUpdateDish(){
 
     const handleImageChange = (e) => {
         const selectedImage = e.target.files[0];
-        const error = validateImage(selectedImage);
+        const error = validateImage(selectedImage, dish_id);
     
         if (!error) {
             setImage(selectedImage);
@@ -103,46 +97,73 @@ export function NewOrUpdateDish(){
             dishForm.append("description", data.description)
             dishForm.append("price", data.price);
 
+            setIsLoading(true);
+
+            await new Promise(resolve => setTimeout(resolve, 1000));
             const response = await api.post("/dishes", dishForm);
 
-            alert(response.data.message);
+            toast.success(response.data.message);
+
+            setTimeout(() => {
+                navigate("/");
+
+            }, 1000);
             
         } catch (error) {
             if(error.response){
-                alert(error.response.data.message);
+                toast.error(error.response.data.message);
 
             }else{
-                alert("Não foi possível cadastrar prato");
+                toast.error("Não foi possível cadastrar prato");
             };
+
+        }finally{
+            setIsLoading(false);
         }    
     }
 
-   /*  async function handleUpdateDish(){
+    async function handleUpdateDish(data){
+        if (ingredients.length === 0) {
+            setiIngredientsError('Adicione pelo menos um ingrediente');
+            return;
+        };
+
         try {
             const dishForm = new FormData();
             if(image !== null){
                 dishForm.append("image", image);
             };
 
-            dishForm.append("name", name);
+            dishForm.append("name", data.name);
             dishForm.append("ingredients", ingredients);
-            dishForm.append("categories", categories);
-            dishForm.append("description", description)
-            dishForm.append("price", price);
+            dishForm.append("categories", data.categories);
+            dishForm.append("description", data.description)
+            dishForm.append("price", data.price);
 
+            setIsLoading(true);
+
+            await new Promise(resolve => setTimeout(resolve, 1000));
             const response = await api.put(`/dishes/${dish_id}`, dishForm);
 
-            alert(response.data.message);
+            toast.success(response.data.message);
+
+            setTimeout(() => {
+                navigate("/");
+
+            }, 1000);
             
         } catch (error) {
             if(error.response){
-                alert(error.response.data.message);
+                toast.error(error.response.data.message);
 
             }else{
-                alert("Não foi possível atualizar o prato");
+                toast.error("Não foi possível atualizar o prato");
             };
-        };    
-    }; */
+            
+        }finally{
+            setIsLoading(false);
+        }     
+    };
 
    /*  async function handleDeleteDish(){
         try {
@@ -165,9 +186,9 @@ export function NewOrUpdateDish(){
         navigate(-1);
     };
 
-    const categoryOptions =  ["Refeições", "Sobremesas", "Bebidas"]
+    
 
-   /*  useEffect(() => {
+    useEffect(() => {
         if(dish_id){
             async function fetchDishes() {
                 const response = await api.get(`/dishes/${dish_id}`);
@@ -177,15 +198,20 @@ export function NewOrUpdateDish(){
                 setCategories(response.data.categories.map(category => category.name));
                 setPrice((response.data.price).toFixed(2));
                 setIngredients(response.data.ingredients.map(ingredient => ingredient.name));
+
+                setValue("name", response.data.name);
+                setValue("description", response.data.description);
+                setValue("categories", response.data.categories.map(category => category.name).toString());
+                setValue("price", response.data.price);               
             }
             
             fetchDishes();
         };
       
     
-    }, [dish_id]); */
+    }, [dish_id]);
 
-    console.log(ingredientsError)
+    
     return (
         <Container>
             <Header/> 
@@ -195,7 +221,7 @@ export function NewOrUpdateDish(){
                     Voltar
                 </button>
 
-                <form onSubmit={handleSubmit(handleCreateDish)} noValidate>
+                <form onSubmit={handleSubmit(dish_id ? handleUpdateDish : handleCreateDish)} noValidate>
                     <h2 className="mobile">Novo prato</h2>
                     <h2 className="desktop">{dish_id ? "Editar" : "Adicionar"} prato</h2>
                     <div className="image-name-category">
@@ -357,11 +383,14 @@ export function NewOrUpdateDish(){
                             className="button-submit"
                             title="Salvar Alterações"
                             type="submit"
+                            $loading={isLoading}
                         />
                     </div>                                    
                 </form>
             </main>
             <Footer/> 
+
+            <ToastContainer />
         </Container >
     )
 };

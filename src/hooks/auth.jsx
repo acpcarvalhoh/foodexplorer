@@ -16,7 +16,7 @@ function AuthProvider({ children }) {
             
             
             const response = await api.post("/sessions", data);
-            console.log(response.data)
+            
             const { user, token } = response.data;
 
           

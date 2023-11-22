@@ -1,5 +1,5 @@
-export const validateImage = (file) => {
-    if (!file) {
+export const validateImage = (file, dish_id) => {
+    if (!dish_id && !file) {
       return 'Selecione uma imagem';
     }
 
