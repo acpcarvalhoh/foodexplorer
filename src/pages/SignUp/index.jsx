@@ -87,6 +87,7 @@ export function SignUp(){
                     title="Cadastrar"
                     type="submit"
                     $loading={isLoading}
+                    $message="Cadastrando"
                 />
                
                 <Link to="/login">

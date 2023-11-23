@@ -23,13 +23,11 @@ export function NewOrUpdateDish(){
     const [categories, setCategories] = useState("Selecione a categoria");
     const [ingredients, setIngredients] = useState([]);
     const [newIngredients, setNewIngredients] = useState("");
-    const [name, setName] = useState("");
     const [image, setImage] = useState(null);
-    const [description, setDescription] = useState("");
-    const [price, setPrice] = useState("");
     const [imageError, setImageError] = useState(null);
     const [ingredientsError, setiIngredientsError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
     const categoryOptions =  ["Refeições", "Sobremesas", "Bebidas"]
     const navigate = useNavigate(); 
 
@@ -165,21 +163,34 @@ export function NewOrUpdateDish(){
         }     
     };
 
-   /*  async function handleDeleteDish(){
+
+
+    async function handleDeleteDish(){
         try {
+            setIsDeleting(true);
+
+            await new Promise(resolve => setTimeout(resolve, 1000));
             const response = await api.delete(`/dishes/${dish_id}`);
 
-            alert(response.data.message);
+            toast.success(response.data.message);
+
+            setTimeout(() => {
+                navigate("/");
+
+            }, 1000);
             
         } catch (error) {
             if(error.response){
-                alert(error.response.data.message);
+                toast.error(error.response.data.message);
 
             }else{
-                alert("Erro ao excluir prato");
+                toast.error("Erro ao excluir prato");
             };
-        };    
-    }; */
+
+        }finally{
+            setIsDeleting(false);
+        };     
+    };
 
 
     function handleBack(){
@@ -193,10 +204,7 @@ export function NewOrUpdateDish(){
             async function fetchDishes() {
                 const response = await api.get(`/dishes/${dish_id}`);
 
-                setName(response.data.name);
-                setDescription(response.data.description);
                 setCategories(response.data.categories.map(category => category.name));
-                setPrice((response.data.price).toFixed(2));
                 setIngredients(response.data.ingredients.map(ingredient => ingredient.name));
 
                 setValue("name", response.data.name);
@@ -249,16 +257,11 @@ export function NewOrUpdateDish(){
                         <Input
                             className="input-name"
                             label="Nome"
-                            value={name}
                             type="text"
                             placeholder="Ex.: Salada Ceasar"
                             id="dish_name"
                             {...register("name")}
-                            onChange={(e) => {
-                                register("name").onChange(e); 
-                                setName(e.target.value); 
-                            }}
-
+                    
                             error={errors.name && errors.name.message}
                         />
                         
@@ -335,16 +338,10 @@ export function NewOrUpdateDish(){
                         <div className="input-price">
                             <Input
                                 label="Preço"
-                                value={price}
                                 type="text"
                                 placeholder="R$ 00,00"
                                 id="Preço"
                                 {...register("price")}
-
-                                onChange={(e) => {
-                                    register("price").onChange(e); 
-                                    setPrice(e.target.value); 
-                                }}
 
                                 error={errors.price && errors.price.message}
                             />
@@ -358,13 +355,7 @@ export function NewOrUpdateDish(){
                         <textarea 
                             id="description"
                             placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
-                            value={description}
-                            {...register("description")}
-
-                            onChange={(e) => {
-                                register("description").onChange(e); 
-                                setDescription(e.target.value); 
-                            }}
+                           {...register("description")}
                         />
 
                         {errors.description && <span className="error-msg-desc">{errors.description.message}</span>}  
@@ -375,7 +366,9 @@ export function NewOrUpdateDish(){
                             <Button
                                 className="button-delete"
                                 title="Excluir prato"
-                               /*  onClick={handleDeleteDish} */
+                                onClick={handleDeleteDish}
+                                $loading={isDeleting}
+                                $message="Excluindo"
                             /> 
                         }
                        
@@ -384,6 +377,7 @@ export function NewOrUpdateDish(){
                             title="Salvar Alterações"
                             type="submit"
                             $loading={isLoading}
+                            $message={dish_id ? "Atualizando" : "Carregando"}                            
                         />
                     </div>                                    
                 </form>

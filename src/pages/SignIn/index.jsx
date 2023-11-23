@@ -50,6 +50,7 @@ export function SignIn(){
                     title="Entrar"
                     type="submit"
                     $loading={isLoading}
+                    $message="Carregando"
                 />
 
                 <Link to="/register">
