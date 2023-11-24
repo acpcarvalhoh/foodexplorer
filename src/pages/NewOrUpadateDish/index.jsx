@@ -1,11 +1,12 @@
-import { Container, CustomSelect, Ingredients } from "./styles"
+import { Container, Ingredients } from "./styles"
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 import { Input } from "../../components/Input"
 import { IngredientItem } from "../../components/IngredientItem"
 import { Button } from "../../components/Button"
+import { CustomSelect } from "../../components/CustomSelect"
 import { PiCaretLeftBold, PiUploadSimpleBold } from "react-icons/pi"
-import { FaChevronDown, FaChevronUp, FaCheckCircle} from 'react-icons/fa';
+import { FaCheckCircle } from 'react-icons/fa';
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { api } from "../../services/api"
@@ -19,7 +20,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export function NewOrUpdateDish(){
     const { dish_id } = useParams();
-    const [dropDown, setDropDown] = useState(false);
     const [categories, setCategories] = useState("Selecione a categoria");
     const [ingredients, setIngredients] = useState([]);
     const [newIngredients, setNewIngredients] = useState("");
@@ -57,10 +57,6 @@ export function NewOrUpdateDish(){
 
         }
 
-    };
-
-    function toggleDropdown(){
-        setDropDown(prevState => !prevState);
     };
 
     const handleImageChange = (e) => {
@@ -204,7 +200,7 @@ export function NewOrUpdateDish(){
             async function fetchDishes() {
                 const response = await api.get(`/dishes/${dish_id}`);
 
-                setCategories(response.data.categories.map(category => category.name));
+                setCategories(response.data.categories.map(category => category.name).toString());
                 setIngredients(response.data.ingredients.map(ingredient => ingredient.name));
 
                 setValue("name", response.data.name);
@@ -218,7 +214,6 @@ export function NewOrUpdateDish(){
       
     
     }, [dish_id]);
-
     
     return (
         <Container>
@@ -259,52 +254,27 @@ export function NewOrUpdateDish(){
                             label="Nome"
                             type="text"
                             placeholder="Ex.: Salada Ceasar"
+                            autoComplete="name"
+                            name="dish_name"
                             id="dish_name"
                             {...register("name")}
                     
                             error={errors.name && errors.name.message}
                         />
                         
-                        <CustomSelect>
-                            <div id="category-select">
-                                <label htmlFor="select-button">Categoria</label>
-                            </div>
-                            <div className="custon-select" onClick={toggleDropdown}>
-                                <div 
-                                    id="select-button" 
-                                    tabIndex="0"
-                                >
-                                    <div id="selected-value">{categories}</div>
-                                    <div id="chevrons">
-                                        {dropDown ? <FaChevronUp /> : <FaChevronDown />}
-                                    </div>
-                                </div>
-
-                                {dropDown && (
-                                    <ul>
-                                        {categoryOptions.filter((option) => option !== categories)
-                                        .map((option, index) => (
-                                            <li key={index}>
-                                                <span>{option}</span>
-                                                <input 
-                                                    type="radio"
-                                                    value={option}
-                                                    name="category"
-                                                    {...register("categories")}
+                        <CustomSelect
+                            label="Categoria"
+                            state={categories}
+                            options={categoryOptions}
+                            {...register("categories")}
+                            error={errors.categories && errors.categories.message}
                                                    
-                                                    onChange={(e) => {
-                                                        register("categories").onChange(e); 
-                                                        setCategories(e.target.value); 
-                                                    }}
-                                                />
-                                            </li>
-                                        ))}                               
-                                    </ul>
-                                )}
-
-                                {errors.categories && <span className="error-msg">{errors.categories.message}</span>}
-                           </div>
-                        </CustomSelect>
+                            onChange={(e) => {
+                                register("categories").onChange(e); 
+                                setCategories(e.target.value); 
+                            }}
+                           
+                        />                    
                     </div>
                     
                     <div className="ingredients-price">

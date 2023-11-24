@@ -8,6 +8,7 @@ import { useAuth } from "../../hooks/auth";
 import { useSearch } from "../../hooks/useSearch";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { toast } from 'react-toastify';
 import formatCurrency from "../../utils/formatCurrency";
 
 
@@ -51,46 +52,55 @@ export function Dish({ data, ...rest }){
     };
 
     async function handleFavoriteDish(dish) {
-        const favorite = favorites.filter((favorite) => favorite.id === dish);
-      
-        
-        if (favorite.length === 0) {
-            try {
-                
-                setFavorites(prevState => [...prevState, data]);
-                
-                await api.post("/favorites", { dish_id: dish });
-        
 
-            } catch (error) {
-                if (error.response) {
-                    alert(error.response.data.message);
+        if(user){
+            const favorite = favorites.filter((favorite) => favorite.id === dish);
 
-                } else {
-                    alert("Erro ao favoritar prato");
+            if (favorite.length === 0) {
+                try {
+                    
+                    setFavorites(prevState => [...prevState, data]);
+                    
+                    await api.post("/favorites", { dish_id: dish });
+            
+    
+                } catch (error) {
+                    if (error.response) {
+                        toast.error(error.response.data.message);
+    
+                    } else {
+                        toast.error("Erro ao favoritar prato");
+                    };
+                };
+    
+            } else {
+                try {
+                    
+                    setFavorites((prevFavorites) =>
+                        prevFavorites.filter((favorite) => favorite.id !== dish)
+                    );
+            
+                    await api.delete(`/favorites/${dish}`);
+                    
+    
+                } catch (error) {
+                    if (error.response) {
+                        toast.error(error.response.data.message);
+    
+                    } else {
+                        toast.error("Erro ao excluir favorito");
+                    };
                 };
             };
 
-        } else {
-            try {
-                
-                setFavorites((prevFavorites) =>
-                    prevFavorites.filter((favorite) => favorite.id !== dish)
-                );
-        
-                await api.delete(`/favorites/${dish}`);
-                
+        }else{
+            toast.error("Faça login para favoritar pratos");
 
-            } catch (error) {
-                if (error.response) {
-                    alert(error.response.data.message);
-
-                } else {
-                    alert("Erro ao excluir favorito");
-                };
-            };
+            setTimeout(() => navigate("/login"), 1500);
         };
-    }
+        
+       
+    };
       
     
 
@@ -120,12 +130,12 @@ export function Dish({ data, ...rest }){
                     
                     } else {
                         alert("Erro ao carregar favoritos");
-                    }
-                }
-            }
+                    };
+                };
+            };
         
             fetchFavorites();
-        }
+        };
         
     }, []); 
     

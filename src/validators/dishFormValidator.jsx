@@ -24,7 +24,8 @@ export const createDishFormSchema = Joi.object({
 
 
     categories: Joi.string().required().messages({
-      'any.required': 'Selecione uma categoria.'
+      'any.required': 'Selecione uma categoria.',
+      'string.base': 'Selecione uma categoria.',
     }),
 
   

@@ -10,6 +10,8 @@ import { CiFaceFrown } from "react-icons/ci"
 import { ImSpinner8 } from "react-icons/im";
 import { useSearch } from "../../hooks/useSearch"
 import { api } from '../../services/api'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react'
 
 
@@ -105,6 +107,7 @@ export function Home() {
         <Footer className={`${search && dishes.length <= 0 ? "empty-content" : "" }`}/>
       </div>
      
+     <ToastContainer/>
     </Container>
   )
 }
