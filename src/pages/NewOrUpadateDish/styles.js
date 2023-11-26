@@ -29,7 +29,7 @@ export const Container = styled.div`
          flex-direction: column;
          gap: 2.5rem;
          
-         .mobile{
+         .add-or-edit{
             font-size: 3.2rem;
             font-style: normal;
             font-weight: 500;
@@ -241,8 +241,7 @@ export const Container = styled.div`
                display: none;
             }
 
-            .desktop{
-               display: block;
+            .add-or-edit{
                font-size: 3.2rem;
                font-style: normal;
                font-weight: 500;

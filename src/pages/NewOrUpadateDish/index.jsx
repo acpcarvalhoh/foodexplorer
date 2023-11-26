@@ -49,6 +49,13 @@ export function NewOrUpdateDish(){
         setNewIngredients("");
     };
 
+    function handleKeyPressAdd(e){
+        if(e.key === "Enter"){
+            e.preventDefault();
+            handleAddIngredient();
+        };
+    };
+
     function handleRemoveIngredient(ingredientToDelete){
         const updatedIngredients = ingredients.filter(ingredient => ingredient !== ingredientToDelete);
         setIngredients(updatedIngredients);
@@ -141,10 +148,7 @@ export function NewOrUpdateDish(){
 
             toast.success(response.data.message);
 
-            setTimeout(() => {
-                navigate("/");
-
-            }, 1000);
+            setTimeout(() => navigate("/"), 1000);
             
         } catch (error) {
             if(error.response){
@@ -170,10 +174,7 @@ export function NewOrUpdateDish(){
 
             toast.success(response.data.message);
 
-            setTimeout(() => {
-                navigate("/");
-
-            }, 1000);
+            setTimeout(() => navigate("/"), 1000);
             
         } catch (error) {
             if(error.response){
@@ -224,9 +225,10 @@ export function NewOrUpdateDish(){
                     Voltar
                 </button>
 
-                <form onSubmit={handleSubmit(dish_id ? handleUpdateDish : handleCreateDish)} noValidate>
-                    <h2 className="mobile">Novo prato</h2>
-                    <h2 className="desktop">{dish_id ? "Editar" : "Adicionar"} prato</h2>
+                <form onSubmit={handleSubmit(dish_id ? handleUpdateDish : handleCreateDish)} noValidate
+                    
+                >
+                    <h2 className="add-or-edit">{dish_id ? "Editar" : "Novo"} prato</h2>
                     <div className="image-name-category">
 
                         <div className="img-content">
@@ -287,6 +289,7 @@ export function NewOrUpdateDish(){
                                     value={newIngredients}
                                     onChange={e => setNewIngredients(e.target.value)}
                                     onClick={handleAddIngredient}
+                                    onKeyDown={handleKeyPressAdd}
                                     id="igredients_label"
                                 />
                                 
@@ -297,6 +300,7 @@ export function NewOrUpdateDish(){
                                             value={ingredient}
                                             onClick={() => handleRemoveIngredient(ingredient)}
                                             id={String(index)}
+                                            onKeyDown={e => e.preventDefault()}
                                         />
                                     ))
                                 }

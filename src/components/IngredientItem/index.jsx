@@ -3,14 +3,16 @@ import { FiPlus, FiX } from "react-icons/fi"
 import React, { forwardRef } from 'react';
 
 export const IngredientItem = forwardRef(({isNew, value, onClick, ...rest}, ref) => {
+
     return (
         <Container $isnew={isNew}>
             <input 
                 type="text"
                 readOnly={!isNew}
                 value={value}
-                {...rest}
                 ref={ref} 
+                {...rest} 
+                             
             />
 
             <button  type="button" onClick={onClick}>

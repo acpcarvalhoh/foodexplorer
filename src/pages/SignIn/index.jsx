@@ -31,6 +31,7 @@ export function SignIn(){
                 <Input
                     label="Email"
                     placeholder="Exemplo: exemplo@exemplo.com.br"
+                    autoComplete="email"
                     type="email"
                     id="input_mail"
                     {...register("email")}

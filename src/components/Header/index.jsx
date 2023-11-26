@@ -9,6 +9,7 @@ import logoImg  from "../../assets/Polygon .svg";
 import { useAuth } from "../../hooks/auth";
 import { useSearch } from "../../hooks/useSearch";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 export function Header(){
     const { logout, user } = useAuth();
@@ -33,6 +34,15 @@ export function Header(){
         setSearch("")
     };
 
+    const handleInfo = (page) => {
+        if(!user){
+            setTimeout(() => {
+                toast.info(`Login necessário para ${page}`)
+            }, 500);
+        };
+          
+    };
+
     
     useEffect(() => {
         const handleResize = () => {
@@ -52,9 +62,9 @@ export function Header(){
     return(
         <Container $isMenuOpen={$isMenuOpen}>
             <div className="favorites-and-orderhistory">
-                {!admin  &&  <Link to="/favorites">Meus favoritos</Link>}
+                {!admin  &&  <Link to="/favorites" onClick={() => handleInfo("Meus favoritos")}>Meus favoritos</Link>}
                 {admin  && <Link to="/new-update">Novo prato</Link>}
-                <Link to="/order-history">Histórico de pedidos</Link>
+                <Link to="/order-history" onClick={() => handleInfo("Histórico de pedidos")}>Histórico de pedidos</Link>
             </div>
 
             <button className="menu" onClick={handleShowMenu}>
@@ -77,13 +87,14 @@ export function Header(){
                         type="text"
                         icon={FiSearch}
                         onChange={e => setSearch(e.target.value)}
+                        id="mobile_search"
                     />
                   
                     <div className="close-menu">
-                        {!admin &&  <Link to="/favorites">Meus favoritos</Link>}
+                        {!admin &&  <Link to="/favorites" onClick={() => handleInfo("Meus favoritos")}>Meus favoritos</Link>}
                         {admin ? 
                             <Link to="/new-update">Novo prato</Link> : 
-                            <Link to="/order-history">Histórico de pedidos</Link>
+                            <Link to="/order-history" onClick={() => handleInfo("Histórico de pedidos")}>Histórico de pedidos</Link>
                         } 
                         <button onClick={hanleLogout}>
                             sair
@@ -98,6 +109,7 @@ export function Header(){
                     type="text"
                     icon={FiSearch}
                     onChange={e => setSearch(e.target.value)}
+                    id="desktop_search"
                 />
            </div>
             

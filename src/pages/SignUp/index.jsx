@@ -28,10 +28,7 @@ export function SignUp(){
             const response = await api.post("/users", data);
             toast.success(response.data.message);
 
-            setTimeout(() => {
-                navigate(-1);
-
-            }, 1000);
+            setTimeout(() => navigate(-1), 1000);
            
         }catch(error){
             if(error.response){
@@ -58,6 +55,7 @@ export function SignUp(){
                 <Input
                     label="Seu nome"
                     placeholder="Exemplo: Adão Carvalho"
+                    autoComplete="name"
                     type="text"
                     id="input_name"
                     {...register("name")}
@@ -66,6 +64,7 @@ export function SignUp(){
                               
                 <Input
                     label="Email"
+                    autoComplete="email"
                     placeholder="Exemplo: exemplo@exemplo.com.br"
                     type="email"
                     id="input_mail"

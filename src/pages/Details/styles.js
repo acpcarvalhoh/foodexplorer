@@ -41,6 +41,53 @@ export const Container = styled.div`
    }
 `
 
+export const Loading = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  display: flex;
+  gap: 5px;
+ 
+
+
+  svg{
+    color: ${({ theme }) => theme.COLORS.LIGHT_700};
+    display: flex;
+    width: 3rem;
+    height: 3rem;
+    animation: rotate .5s infinite linear;
+  }
+
+  p{
+    color: ${({ theme }) => theme.COLORS.LIGHT_700};
+    font-size: 2rem;
+  }
+  
+ 
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+
+  @media screen and (min-width: 768px){
+    p{
+      color: ${({ theme }) => theme.COLORS.LIGHT_700};
+      font-size: 3rem;
+    }
+  }
+
+`
+
+
 export const DishDetails = styled.section`
    margin-top: 1.6rem;
    display: flex; 
@@ -264,9 +311,8 @@ export const QuantityAndOrderSelector = styled.div`
       }
       
    }
-      
-   
 
+   
   
 `
 
