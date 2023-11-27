@@ -15,9 +15,14 @@ export function Header(){
     const { logout, user } = useAuth();
     const { setSearch, orders } = useSearch();
     const [ $isMenuOpen, $setIsMenuOpen] = useState(false);
+    const admin = user && user.role === "admin";
     const navigate = useNavigate();
 
-    function hanleLogout(){
+    function hanleOrders(){
+        navigate("/orders");
+    };
+
+    function handleLogout(){
         navigate("/login");
         logout();
     };
@@ -25,10 +30,7 @@ export function Header(){
     function handleShowMenu(){
         $setIsMenuOpen(!$isMenuOpen);
     };
-
-    const admin = user && user.role === "admin";
-
-    
+   
     function backToHome(){
         navigate("/")
         setSearch("")
@@ -42,8 +44,7 @@ export function Header(){
         };
           
     };
-
-    
+   
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth > 768 && $isMenuOpen) {
@@ -115,14 +116,14 @@ export function Header(){
             
             
             {!$isMenuOpen && (
-                <button className="number-requests">
+                <button className="number-requests" onClick={hanleOrders}>
                     <PiReceipt size={24}/>
                     {!admin  && <span className="mobile">{orders.length}</span>}   
                     <span className="desktop">Pedidos ({orders.length})</span>
                 </button>
             )}
 
-            <button className="button-exit-desktop" onClick={hanleLogout}>
+            <button className="button-exit-desktop" onClick={handleLogout}>
                 <PiSignOutBold size={32} />
             </button>
         </Container>

@@ -6,6 +6,7 @@ import { Details } from "../pages/Details";
 import { OrderHistory } from "../pages/OrderHistory";
 import { SignIn } from "../pages/SignIn";
 import { SignUp } from "../pages/SignUp";
+import { Orders } from "../pages/Orders"
 import { useAuth } from "../hooks/auth";
 
 export function AppRoutes(){
@@ -15,6 +16,7 @@ export function AppRoutes(){
         <Routes>
             <Route path="/" element={ <Home/> }/>
             <Route path="/details/:dish_id" element={ <Details/> }/>
+            <Route path="/orders" element={ <Orders/> }/>
             {user  && <Route path="/favorites" element={ <Favorites/> }/>}
             {user && <Route path="/order-history" element={ <OrderHistory/> }/>}
             {user && <Route path="*" element={ <Home/> }/>}

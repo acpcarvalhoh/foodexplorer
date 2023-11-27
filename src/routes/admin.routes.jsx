@@ -6,6 +6,7 @@ import { Details } from "../pages/Details";
 import { OrderHistory } from "../pages/OrderHistory";
 import { NewOrUpdateDish } from "../pages/NewOrUpadateDish";
 
+
 export function AdminRoutes(){
     return(
         <Routes>
@@ -14,6 +15,7 @@ export function AdminRoutes(){
             <Route path="/order-history" element={ <OrderHistory/> }/>
             <Route path="/new-update/:dish_id?" element={ <NewOrUpdateDish /> }/>
             <Route path="/details/:dish_id" element={ <Details/> }/>
+            
             <Route path="*" element={ <Home/> }/>
         </Routes>
     )

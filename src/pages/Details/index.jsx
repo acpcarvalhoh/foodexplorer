@@ -23,7 +23,7 @@ export function Details(){
     const { orders, setOrders, setSearch } = useSearch();
     const navigate = useNavigate();
     const dishImg = `${api.defaults.baseURL}/files/${dish.image}`
-    
+    const admin = user && user.role === "admin";
 
     function handleDicrease(){
         if(dishQuantity > 1){
@@ -40,13 +40,6 @@ export function Details(){
         navigate(-1);
     };
 
-    const admin = user && user.role === "admin";
-    
-    useEffect(() => {
-        setTotalDishPrice(dishQuantity * dish.price);
-
-    }, [dishQuantity, dish.price])
-
     function HandleEditDish(dishId) {
         navigate(`/new-update/${dishId}`);
     };
@@ -61,6 +54,11 @@ export function Details(){
         };  
                
     };
+
+    useEffect(() => {
+        setTotalDishPrice(dishQuantity * dish.price);
+
+    }, [dishQuantity, dish.price])
 
     useEffect(() => {
         async function getDish(){
@@ -118,7 +116,7 @@ export function Details(){
                                     }                     
                                     
                                     <button className="button-order-or-edit-dish"
-                                    onClick={admin ? () => HandleEditDish(dish.id) : handleAddDish}
+                                        onClick={admin ? () => HandleEditDish(dish.id) : handleAddDish}
                                     >
                                         {admin? "Editar prato" : 
                                             <div className="order-price">

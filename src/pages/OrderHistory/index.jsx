@@ -16,6 +16,8 @@ export function OrderHistory() {
   const [ordersHistory, setOrdersHistory] = useState([]);
   const [status, setStatus] = useState("Pendente");
   const admin = user && user.role === "admin";
+  const statusOptions = ["Pendente", "Preparando", "Entregue"]
+
 
   const data = [
     /* {
@@ -47,8 +49,6 @@ export function OrderHistory() {
     setDropDown(prevState => !prevState);
   }
 
-  const statusOptions = ["Pendente", "Preparando", "Entregue"]
-  
 
   useEffect( () => {
     setOrdersHistory(data)
