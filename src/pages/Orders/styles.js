@@ -3,16 +3,54 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: grid;
   flex: 1;
+  
     
   main{
     width: 100%;
     margin: auto;
-    margin-top: 5rem;
-    padding: 0 2rem;
+    padding: 5rem 2rem;
+    
+    .button-back{
+      background: none;
+      border: none;
+      margin-bottom: 2rem;
+      color: ${({ theme }) => theme.COLORS.LIGHT_300};
+      display: ${({ $currentSection }) => $currentSection  ? "block" : "none"}; 
+      
+    }
 
     .my-orders{
-      display: flex;
       flex-direction: column;
+      animation: ${({ $currentSection }) => $currentSection  ? "slideOutToLeft 1s forwards" : "none"};
+      display: ${({ $currentSection }) => $currentSection  ? "none" : "flex"};   
+    }
+
+    .payment{
+      display: ${({ $currentSection }) => $currentSection  ? "block" : "none"};
+      animation: slideInFromRight 1.5s forwards; 
+    }
+
+    @keyframes slideOutToLeft {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        display: none;
+        transform: translateX(-100%);
+        
+      }
+    }
+
+    @keyframes slideInFromRight {
+      from {
+        transform: translateX(100%);
+        display: block;
+      }
+
+      to {
+        transform: translateX(0);
+      }
     }
       
 
@@ -131,6 +169,10 @@ export const Container = styled.div`
         
       }
 
+      .pix-payment.active, .credit-card-payment.active{
+        background: ${({ theme }) => theme.COLORS.DARK_800};
+      }
+
       .pix-payment{
         border-top-left-radius: 8px;
         border-right: 2px solid ${({ theme }) => theme.COLORS.LIGHT_600};         
@@ -174,13 +216,17 @@ export const Container = styled.div`
         form{
           width: 100%;
           height: 100%;
-          margin-top: 10rem;
+          margin-top: 5rem;
           padding: 0 2.5rem;
 
           .expirydate-and-cvc{
             margin-top: 3.5rem;
             display: flex;
             gap: 1.7rem;
+          }
+
+          button{
+            margin-top: 3.5rem;
           }
         }
       }
@@ -206,16 +252,30 @@ export const Container = styled.div`
   @media screen and (min-width: 768px){
     main{
       width: 100%;
-      padding: 0 15rem;
+      padding: 5rem 15rem;
       display: flex;
       gap: 6rem;
+
+      .button-back{
+        display: none;
+      }
+
+      .my-orders{
+        display: flex;
+        animation: none;
+      }
+
+      .payment{
+        display: block;
+        animation: none;
+      }
 
       .content{
         display: flex;
         flex-wrap: wrap;
         gap: 2rem;
         flex-direction: column;
-        margin-top: 3.4rem;
+        margin-top: 2.5rem;
 
 
         .orders-content{
