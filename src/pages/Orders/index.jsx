@@ -8,14 +8,16 @@ import { CiFaceFrown } from 'react-icons/ci';
 import { PiCreditCardFill } from "react-icons/pi";
 import { MdPix } from "react-icons/md";
 import { BsQrCode } from "react-icons/bs";
-import { FaArrowLeftLong } from "react-icons/fa6";
 import { useEffect, useState } from 'react';
+import { useSearch } from '../../hooks/useSearch';
+import formatCurrency from '../../utils/formatCurrency';
 
 export function Orders() {
-    const [orders, setOders] = useState();
+    const { orders, setOrders } = useSearch();
     const [creditCard, setCreditCard] = useState(false);
     const [pix, setPix] = useState(true);
     const [currentSection, setCurrentSection] = useState(false);
+    const totalOrderPrice = orders.reduce((acc, item) => item.totalPrice + acc, 0);
 
     function handlePayment(paymentMethod) {
         if (paymentMethod === "pix") {
@@ -28,6 +30,12 @@ export function Orders() {
         };
     };
 
+    function handleRemovItem(order){
+        const updatedOrders = orders.filter(item => item !== order);
+
+        setOrders(updatedOrders);
+    };
+
     function handleCurrentSection() {
         setCurrentSection(true);
     };
@@ -36,61 +44,33 @@ export function Orders() {
         setCurrentSection(false);
     };
 
-    const data = [
-        {
-            code: "0001",
-            detailing: [{ quantity: 2, name: "Suco de maracujá", price: 29.99 }],
-            image: disImg
-        },
-        {
-            code: "0001",
-            detailing: [{ quantity: 1, name: "Suco uva", price: 29.99 }],
-            image: disImg
-        },
-        {
-            code: "0001",
-            detailing: [{ quantity: 1, name: "Suco de Goiaba", price: 29.99 }],
-            image: disImg
-        },
-    ];
-
-    useEffect(() => {
-        setOders(data);
-
-    }, [])
-
     return (
         <Container $currentSection={currentSection}>
             <Header />
             <main>
-                {/* <button onClick={handleBack} className='button-back'>
-                    <FaArrowLeftLong />
-                </button> */}
                 <Section title="Meu pedido" className="my-orders">
                     <div className="content">
                         {orders && orders.map((order, index) => (
                             <div className='orders-content' key={index}>
                                 <img src={order.image} alt={order.name} />
-                                
-                                {order.detailing.map((dish, index) => (
-                                    <div key={index} className='order-content'>
-                                        <div className='order-detailing'>
-                                            <p>{dish.quantity} x</p>
-                                            <p>{dish.name}</p>
-                                            <p>R$ {dish.price}</p>
-                                        </div>
-                                        
-                                        <button>
-                                            Remover item
-                                        </button>
-                                    </div>
-                                ))}
+                                                        
+                                <div className='order-content'>
+                                    <div className='order-detailing'>
+                                        <p>{order.quantity} x</p>
+                                        <p>{order.name}</p>
+                                        <p>{formatCurrency(order.totalPrice, "BRL")}</p>
+                                    </div>  
+                                    
+                                    <button onClick={() => handleRemovItem(order)}>
+                                        Remover item
+                                    </button>
+                                </div>
                             </div>
                         ))}
                     </div>
 
                     <div className='total-price'>
-                        <p>Total: $ 29.90</p>
+                        <p>{formatCurrency(totalOrderPrice, "BRL")}</p>
                     </div>
 
                     <Button
@@ -153,7 +133,14 @@ export function Orders() {
                                 </form>
                             </div>
                         )}
+
                     </div>
+
+                    <Button
+                        className='button-back'
+                        title="Voltar"
+                        onClick={handleBack}
+                    />
                 </Section>
             </main>
         </Container>

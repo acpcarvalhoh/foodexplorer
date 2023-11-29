@@ -47,6 +47,8 @@ export function Details(){
     function handleAddDish(){
         const alreadyAddedDish = orders.some(order => order.id === dish.id);
         if(!alreadyAddedDish){
+           dish.quantity = dishQuantity;
+           dish.totalPrice = totalDishPrice;
            setOrders(prevState => [...prevState, dish]);
 
         }else{

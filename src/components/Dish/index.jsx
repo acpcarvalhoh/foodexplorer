@@ -16,7 +16,7 @@ export function Dish({ data, ...rest }){
     const { user } = useAuth();
     const { orders, setOrders, favorites, setFavorites } = useSearch();
     const [totalPrice, setTotalPrice] = useState(data.price);
-    const [value, setValue] = useState(1);
+    const [quantity, setQuantity] = useState(1);
     const navigate = useNavigate();
     const dishImg = `${api.defaults.baseURL}/files/${data.image}`
     const admin = user && user.role === "admin";
@@ -24,22 +24,22 @@ export function Dish({ data, ...rest }){
     
     useEffect(() => {
        
-        setTotalPrice(data.price * value);
+        setTotalPrice(data.price * quantity);
         
-    }, [value, data.price]);
+    }, [quantity, data.price]);
     
     const handleDecrease = (e) => {
         e.stopPropagation();
 
-        if (value > 1) {
-            setValue(value - 1);
+        if (quantity > 1) {
+            setQuantity(quantity - 1);
         }
 
     };
 
     const handleIncrease = (e) => {
         e.stopPropagation();
-        setValue(value + 1);
+        setQuantity(quantity + 1);
     
     };
 
@@ -104,9 +104,14 @@ export function Dish({ data, ...rest }){
       
     
 
-    function handleAddDish(){
+    function handleAddDish(e){
+        e.stopPropagation();
+
         const alreadyAddedDish = orders.some(order => order.id === data.id);
         if(!alreadyAddedDish){
+           data.quantity = quantity;
+           data.totalPrice = totalPrice;
+
            setOrders(prevState => [...prevState, data]);
 
         }else{
@@ -184,7 +189,7 @@ export function Dish({ data, ...rest }){
                             <FiMinus size={24}/>
                         </button>
 
-                        <span>{value}</span>
+                        <span>{quantity}</span>
 
                         <button onClick={handleIncrease}>
                             <FiPlus size={24}/>
@@ -195,8 +200,7 @@ export function Dish({ data, ...rest }){
                     <Button
                         className="include-button"
                         title="incluir"
-                        onClick={(e) => { e.stopPropagation(); handleAddDish(); }}
-
+                        onClick={handleAddDish}
                     />                  
                 </div>
             )}

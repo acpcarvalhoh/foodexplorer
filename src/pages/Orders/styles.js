@@ -3,26 +3,22 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: grid;
   flex: 1;
-  
-    
+      
   main{
     width: 100%;
     margin: auto;
     padding: 5rem 2rem;
     
     .button-back{
-      background: none;
-      border: none;
-      margin-bottom: 2rem;
-      color: ${({ theme }) => theme.COLORS.LIGHT_300};
       display: ${({ $currentSection }) => $currentSection  ? "block" : "none"}; 
-      
+      margin-top: 8rem;
+      width: 50%;
     }
 
     .my-orders{
+      display: ${({ $currentSection }) => $currentSection  ? "none" : "flex"};  
       flex-direction: column;
-      animation: ${({ $currentSection }) => $currentSection  ? "slideOutToLeft 1s forwards" : "none"};
-      display: ${({ $currentSection }) => $currentSection  ? "none" : "flex"};   
+      animation: ${({ $currentSection }) => !$currentSection  ? "slideOutToLeft 1s forwards" : "none"};
     }
 
     .payment{
@@ -32,12 +28,12 @@ export const Container = styled.div`
 
     @keyframes slideOutToLeft {
       from {
-        transform: translateX(0);
+        transform: translateX(-100%);
       }
 
       to {
-        display: none;
-        transform: translateX(-100%);
+        display: block;
+        transform: translateX(0);
         
       }
     }
@@ -126,9 +122,10 @@ export const Container = styled.div`
     }
 
     .button-advance{
-      max-width: 216px;
-      margin-top: 6rem;
-      align-self: flex-end;
+      width: 50%;
+      margin-top: 5rem;
+      padding-bottom: 1rem;
+      margin-left: auto;
     }
 
     .payment-container {
