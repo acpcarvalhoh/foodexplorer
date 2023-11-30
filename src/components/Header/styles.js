@@ -10,6 +10,7 @@ export const Container = styled.header`
     padding: ${({ $isMenuOpen }) => ($isMenuOpen ? '0' : '6rem 2.8rem 3.2rem 2.8rem')}; 
     background: ${({ theme }) => theme.COLORS.DARK_700};
     position: relative;
+    
 
     .favorites-and-orderhistory{
         display: none;

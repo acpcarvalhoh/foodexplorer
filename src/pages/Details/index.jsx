@@ -11,6 +11,7 @@ import { useSearch } from "../../hooks/useSearch";
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../services/api";
 import formatCurrency from "../../utils/formatCurrency";
+import { getImageUrl } from "../../utils/getImage";
 
 
 export function Details(){
@@ -22,7 +23,6 @@ export function Details(){
     const [loading, setLoading] = useState(true);
     const { orders, setOrders, setSearch } = useSearch();
     const navigate = useNavigate();
-    const dishImg = `${api.defaults.baseURL}/files/${dish.image}`
     const admin = user && user.role === "admin";
 
     function handleDicrease(){
@@ -91,7 +91,7 @@ export function Details(){
                         </Loading>
                     :(
                         <DishDetails>
-                            <img src={dishImg} alt={`Imagem de ${dish.name}`} />
+                            <img src={getImageUrl(dish.image)} alt={`Imagem de ${dish.name}`} />
                             <div className="dish_description">
                                 <h2>{dish.name}</h2>
                                 <p>{dish.description}</p>

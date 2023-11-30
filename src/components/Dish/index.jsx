@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from 'react-toastify';
 import formatCurrency from "../../utils/formatCurrency";
+import { getImageUrl } from "../../utils/getImage";
 
 
 export function Dish({ data, ...rest }){
@@ -18,7 +19,7 @@ export function Dish({ data, ...rest }){
     const [totalPrice, setTotalPrice] = useState(data.price);
     const [quantity, setQuantity] = useState(1);
     const navigate = useNavigate();
-    const dishImg = `${api.defaults.baseURL}/files/${data.image}`
+    
     const admin = user && user.role === "admin";
     const isFavorited = favorites.map(fav => fav.id)
     
@@ -115,7 +116,7 @@ export function Dish({ data, ...rest }){
            setOrders(prevState => [...prevState, data]);
 
         }else{
-            return alert("Este prato já foi adicionado ao carrinho");
+            return toast.info("Este prato já foi adicionado ao carrinho");
         };  
                
     };
@@ -173,7 +174,7 @@ export function Dish({ data, ...rest }){
             </button>
 
 
-            <img src={dishImg} alt={`Imagem do prato ${data.name}`} />
+            <img src={getImageUrl(data.image)} alt={`Imagem do prato ${data.name}`} />
             
             <h3>{data.name}</h3>
 

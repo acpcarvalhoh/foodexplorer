@@ -3,11 +3,18 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: grid;
   flex: 1;
-      
+  
+  header{
+    position: fixed;
+    z-index: 2;
+  }
+
   main{
     width: 100%;
     margin: auto;
-    padding: 5rem 2rem;
+    height: 100vh;
+    padding: 15rem 2rem;
+  
     
     .button-back{
       display: ${({ $currentSection }) => $currentSection  ? "block" : "none"}; 
@@ -225,6 +232,11 @@ export const Container = styled.div`
           button{
             margin-top: 3.5rem;
           }
+
+          span{
+            bottom: -28px;
+      
+          }
         }
       }
                         
@@ -249,9 +261,11 @@ export const Container = styled.div`
   @media screen and (min-width: 768px){
     main{
       width: 100%;
-      padding: 5rem 15rem;
+      padding: 13rem 15rem;
       display: flex;
       gap: 6rem;
+      
+  
 
       .button-back{
         display: none;
@@ -303,6 +317,7 @@ export const Container = styled.div`
               font-weight: 400;
               line-height: 160%;
               display: flex;
+              width: 9rem;
             }
           }
 
@@ -328,7 +343,6 @@ export const Container = styled.div`
   }
  
 `
-
 
 
 

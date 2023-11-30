@@ -19,7 +19,19 @@ export function Header(){
     const navigate = useNavigate();
 
     function hanleOrders(){
-        navigate("/orders");
+        if(user){
+            if(admin){
+                navigate("/order-history");
+    
+            }else{
+                navigate("/orders");
+            };
+
+        }else{
+            setTimeout(() => toast.info(`Login necessário!`), 200);
+            navigate("/login");
+        };
+         
     };
 
     function handleLogout(){
@@ -38,9 +50,7 @@ export function Header(){
 
     const handleInfo = (page) => {
         if(!user){
-            setTimeout(() => {
-                toast.info(`Login necessário para ${page}`)
-            }, 500);
+            setTimeout(() => toast.info(`Login necessário para ${page}`), 500);
         };
           
     };
@@ -97,7 +107,7 @@ export function Header(){
                             <Link to="/new-update">Novo prato</Link> : 
                             <Link to="/order-history" onClick={() => handleInfo("Histórico de pedidos")}>Histórico de pedidos</Link>
                         } 
-                        <button onClick={hanleLogout}>
+                        <button onClick={handleLogout}>
                             sair
                         </button>
                     </div>                
