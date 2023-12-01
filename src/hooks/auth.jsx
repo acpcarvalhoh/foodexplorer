@@ -14,17 +14,13 @@ function AuthProvider({ children }) {
             setIsLoading(true);
             await new Promise(resolve => setTimeout(resolve, 1000));
             
+            const response = await api.post("/sessions", data, { withCredentials: true });
             
-            const response = await api.post("/sessions", data);
-            
-            const { user, token } = response.data;
+            const { user } = response.data;
 
-          
-            api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
             localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
-            localStorage.setItem("@foodexplorer:token", token);
-
-            setData({ user, token });
+            
+            setData({ user });
 
         }catch(error){
             if(error.response){
@@ -41,7 +37,6 @@ function AuthProvider({ children }) {
 
     function logout(){
         localStorage.removeItem("@foodexplorer:user");
-        localStorage.removeItem("@foodexplorer:token");
 
         setData({});
     };
@@ -49,13 +44,9 @@ function AuthProvider({ children }) {
 
     useEffect(() => {
         const user = localStorage.getItem("@foodexplorer:user");
-        const token = localStorage.getItem("@foodexplorer:token");
 
-        if(user && token){
-            api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
+        if(user){
             setData({
-                token,
                 user: JSON.parse(user)
             });
         };

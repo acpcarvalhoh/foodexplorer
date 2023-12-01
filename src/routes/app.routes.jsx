@@ -8,9 +8,21 @@ import { SignIn } from "../pages/SignIn";
 import { SignUp } from "../pages/SignUp";
 import { Orders } from "../pages/Orders"
 import { useAuth } from "../hooks/auth";
+import { useEffect } from "react";
+import { api } from "../services/api";
 
 export function AppRoutes(){
-    const { user } = useAuth();
+    const { user, logout } = useAuth();
+
+   /*  useEffect(() => {
+        api.get("/users/validated")
+        .catch((error) => {
+            if(error.response?.status ===  403){
+                logout();
+            };
+        });
+
+    }, []) */
     
     return(
         <Routes>

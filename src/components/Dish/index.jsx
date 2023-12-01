@@ -62,7 +62,7 @@ export function Dish({ data, ...rest }){
                     
                     setFavorites(prevState => [...prevState, data]);
                     
-                    await api.post("/favorites", { dish_id: dish });
+                    await api.post("/favorites", { dish_id: dish }, { withCredentials: true });
             
     
                 } catch (error) {
@@ -81,7 +81,7 @@ export function Dish({ data, ...rest }){
                         prevFavorites.filter((favorite) => favorite.id !== dish)
                     );
             
-                    await api.delete(`/favorites/${dish}`);
+                    await api.delete(`/favorites/${dish}`, { withCredentials: true });
                     
     
                 } catch (error) {
@@ -127,7 +127,7 @@ export function Dish({ data, ...rest }){
             async function fetchFavorites() {
             
                 try {
-                    const response = await api.get("/favorites");
+                    const response = await api.get("/favorites", { withCredentials: true });
                     setFavorites(response.data);
             
                 } catch (error) {

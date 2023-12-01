@@ -17,7 +17,7 @@ export function Favorites() {
         prevFavorites.filter((favorite) => favorite.id !== favoriteToRemove)
       );
   
-      const response = await api.delete(`/favorites/${favoriteToRemove}`);
+      await api.delete(`/favorites/${favoriteToRemove}`, { withCredentials: true });
       
 
     } catch (error) {
@@ -33,7 +33,7 @@ export function Favorites() {
   useEffect(() => {
     async function fetchFavorites() {
       try {
-        const response = await api.get("/favorites");
+        const response = await api.get("/favorites", { withCredentials: true });
         setFavorites(response.data);
 
       } catch (error) {

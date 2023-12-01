@@ -101,7 +101,7 @@ export function NewOrUpdateDish(){
             setIsLoading(true);
 
             await new Promise(resolve => setTimeout(resolve, 1000));
-            const response = await api.post("/dishes", dishForm);
+            const response = await api.post("/dishes", dishForm, { withCredentials: true });
 
             toast.success(response.data.message);
 
@@ -144,7 +144,7 @@ export function NewOrUpdateDish(){
             setIsLoading(true);
 
             await new Promise(resolve => setTimeout(resolve, 1000));
-            const response = await api.put(`/dishes/${dish_id}`, dishForm);
+            const response = await api.put(`/dishes/${dish_id}`, dishForm, { withCredentials: true });
 
             toast.success(response.data.message);
 
@@ -170,7 +170,7 @@ export function NewOrUpdateDish(){
             setIsDeleting(true);
 
             await new Promise(resolve => setTimeout(resolve, 1000));
-            const response = await api.delete(`/dishes/${dish_id}`);
+            const response = await api.delete(`/dishes/${dish_id}`, { withCredentials: true });
 
             toast.success(response.data.message);
 
