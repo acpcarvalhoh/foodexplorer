@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 
 export function Header(){
     const { logout, user } = useAuth();
-    const { setSearch, orders } = useSearch();
+    const { setSearch, orders, setFavorites } = useSearch();
     const [ $isMenuOpen, $setIsMenuOpen] = useState(false);
     const admin = user && user.role === "admin";
     const navigate = useNavigate();
@@ -35,6 +35,7 @@ export function Header(){
     };
 
     function handleLogout(){
+        setFavorites([])
         navigate("/login");
         logout();
     };

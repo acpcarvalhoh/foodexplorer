@@ -2,9 +2,11 @@ import { BrowserRouter } from "react-router-dom";
 import { AppRoutes } from "./app.routes";
 import { AdminRoutes } from "./admin.routes";
 import { useAuth } from "../hooks/auth";
+import { api } from "../services/api";
+import { useEffect } from "react";
 
 export function Routes(){
-    const { user } = useAuth();
+    const { user, logout } = useAuth();
     const admin = user && user.role === "admin";
 
     return(

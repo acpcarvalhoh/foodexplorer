@@ -12,17 +12,7 @@ import { useEffect } from "react";
 import { api } from "../services/api";
 
 export function AppRoutes(){
-    const { user, logout } = useAuth();
-
-   /*  useEffect(() => {
-        api.get("/users/validated")
-        .catch((error) => {
-            if(error.response?.status ===  403){
-                logout();
-            };
-        });
-
-    }, []) */
+    const { user } = useAuth();
     
     return(
         <Routes>
