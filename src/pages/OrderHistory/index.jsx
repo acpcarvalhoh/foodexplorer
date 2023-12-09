@@ -143,7 +143,7 @@ export function OrderHistory() {
             {ordersHistory.length <= 0 && 
               <div className="empty-content">
                 <CiFaceFrown/>
-                <p>{admin ? "Nenhum pedido" : "Você ainda não fez nenhum pedido!"}</p>
+                <p>{admin ? "Nenhum pedido" : "Seu carrinho está vazio!"}</p>
               </div>
             }
         

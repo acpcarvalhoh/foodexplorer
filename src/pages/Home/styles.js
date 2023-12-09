@@ -71,12 +71,19 @@ export const Container = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
         gap: 1rem;
         margin-top: 5rem;
         border: 1px solid ${({ theme }) => theme.COLORS.CAKE_100};
         font-size: 2rem; 
         height: 20rem;
         border-radius: 8px;
+        
+
+        svg{
+          width: 5rem;
+          height: 5rem;
+        }
         
       }
 
