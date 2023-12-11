@@ -13,6 +13,10 @@ export const Container = styled.div`
     bottom: 0;
       
   }
+
+  /* .content-container::-webkit-scrollbar-thumb {
+    background-color: transparent; 
+  } */
  
   .content-container{
     overflow-y: auto;
@@ -25,7 +29,7 @@ export const Container = styled.div`
       overflow-x:auto;
       width: 100%;
       margin: auto;
-      padding: ${({ $search }) => ($search  ? '5rem 2.4rem 0 2.4rem' : '0 2.4rem')};
+      padding: ${({ $search }) => ($search  ? '5rem 2.4rem 0 2.4rem' : '0 1.5rem')};
       
        
       article{

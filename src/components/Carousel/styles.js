@@ -6,6 +6,7 @@ export const Container = styled.div`
         display: none ;
     }
 
+
     .splide__arrow svg {
       width: 2.5rem;
       height: 2.5rem;
@@ -14,7 +15,7 @@ export const Container = styled.div`
 
    
     .splide__arrow--prev{
-        left: -30px;
+        left: -35px;
         background: linear-gradient(90deg, #000A0F 15%, rgba(0, 10, 15, 0.1) 95%);
         height: 100%;
         width: 90px;
@@ -24,10 +25,10 @@ export const Container = styled.div`
     
 
     .splide__arrow--next{
-        right: 0;
+        right: -25px;
         background: linear-gradient(90deg, rgba(0, 10, 15, 0.1) 0%,  #000A0F 95%);
         height: 100%;
-        width: 85px;
+        width: 70px;
         transition: opacity 0.4s ease;
     }
 
