@@ -48,7 +48,7 @@ export function Home() {
             <article>
               <img className="mobile-img" src={dishImg} alt="imagem de prato" />
               <img className="desktop-only-img" src={dishImgDesktop} alt="imagem de prato" />
-              <div>
+              <div className='texts-banner'>
                 <h2>Sabores inigualáveis</h2>
                 <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
               </div>
@@ -111,4 +111,3 @@ export function Home() {
     </Container>
   )
 }
-

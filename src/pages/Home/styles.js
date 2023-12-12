@@ -29,7 +29,7 @@ export const Container = styled.div`
       overflow-x:auto;
       width: 100%;
       margin: auto;
-      padding: ${({ $search }) => ($search  ? '5rem 2.4rem 0 2.4rem' : '0 1.5rem')};
+      padding: ${({ $search }) => ($search  ? '5rem 2.4rem 0 2.4rem' : '0 2rem')};
       
        
       article{
@@ -39,17 +39,27 @@ export const Container = styled.div`
         background: linear-gradient(180deg, #091E26 0%, #00131C 100%);
         display: flex;
         align-items: center;
+        justify-content: flex-end;
         height: 120px;
-        padding:  2rem 1rem 2rem;
+        padding:  2rem 5px 2rem;
+        position: relative;
+        
         
         .mobile-img{
-          margin-left: -4.5rem;
-          margin-top: -3rem;
+          position: absolute;
+          top: -29px;
+          left: -24px;
         }
 
 
         .desktop-only-img{
           display: none;
+        }
+
+        .texts-banner{
+          width: 201px;
+          align-self: flex-end;
+          
         }
         
 
@@ -123,9 +133,13 @@ export const Container = styled.div`
           margin: 16.4rem auto 6.4rem;
           position: relative;
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           justify-content: flex-end;
           height: /* clamp(9.375rem, 5.5433rem + 14.2574vw, 26rem) */26rem;
+
+          .texts-banner{
+            width: auto;
+          }
         
           .mobile-img{
             display: none;
@@ -227,6 +241,5 @@ export const Loading = styled.div`
   }
 
 `
-
 
 

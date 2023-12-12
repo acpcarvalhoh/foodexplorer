@@ -18,17 +18,17 @@ export const Container = styled.div`
         left: -35px;
         background: linear-gradient(90deg, #000A0F 15%, rgba(0, 10, 15, 0.1) 95%);
         height: 100%;
-        width: 90px;
+        width: 80px;
         transition: opacity 0.4s ease;
     }
 
     
 
     .splide__arrow--next{
-        right: -25px;
+        right: 0;
         background: linear-gradient(90deg, rgba(0, 10, 15, 0.1) 0%,  #000A0F 95%);
         height: 100%;
-        width: 70px;
+        width: 85px;
         transition: opacity 0.4s ease;
     }
 
