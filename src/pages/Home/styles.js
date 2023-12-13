@@ -22,6 +22,7 @@ export const Container = styled.div`
     main{
       overflow-x:auto;
       width: 100%;
+      height: 100vh;
       margin: auto;
       padding: ${({ $search }) => ($search  ? '5rem 2.4rem 0 2.4rem' : '0 2rem')};
       
