@@ -78,6 +78,7 @@ export const Container = styled.div`
           font-weight: 400;
           line-height: 140%;
           color: ${({ theme }) => theme.COLORS.LIGHT_300};
+         
         }
       }
 
@@ -115,7 +116,6 @@ export const Container = styled.div`
 
  
  
-
   /* Desktop */
   @media screen and (min-width: 768px){
     width: 100%;
@@ -139,6 +139,7 @@ export const Container = styled.div`
 
           .texts-banner{
             width: auto;
+            align-self: center;
           }
         
           .mobile-img{
@@ -171,14 +172,14 @@ export const Container = styled.div`
             
           }
         }
-       
+        
         .not-found-content{
           width: 100%;
           
           p, svg{
             font-size: 3rem;
           }
-           
+            
         }
 
 
@@ -187,8 +188,14 @@ export const Container = styled.div`
 
     }
 
-   
   
+
+  }
+
+  @media screen and (min-width: 1230px){
+    .desktop-only-img{
+      display: none;
+    }
   }
   
   
