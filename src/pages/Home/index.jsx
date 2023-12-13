@@ -104,7 +104,7 @@ export function Home() {
           }
         </main>
 
-        <Footer className={`${search && dishes.length <= 0 ? "empty-content" : "" }`}/>
+        <Footer/>
       </div>
      
      <ToastContainer/>

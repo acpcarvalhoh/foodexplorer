@@ -8,12 +8,6 @@ export const Container = styled.div`
   margin: auto;
   height: 100vh;
 
-  .empty-content{
-    position: absolute;
-    bottom: 0;
-      
-  }
-
   /* .content-container::-webkit-scrollbar-thumb {
     background-color: transparent; 
   } */
