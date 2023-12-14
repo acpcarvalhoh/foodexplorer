@@ -31,6 +31,10 @@ export const Container = styled.div`
       }
    }
 
+   footer{
+      margin-top: 10rem;
+   }
+
 
   /* Desktop */
    @media screen and (min-width: 768px){

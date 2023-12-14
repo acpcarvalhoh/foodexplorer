@@ -112,7 +112,7 @@ export const Container = styled.div`
  
  
   /* Desktop */
-  @media screen and (min-width: 768px){
+  @media screen and (min-width: 1200px){
     width: 100%;
 
     .content-container{

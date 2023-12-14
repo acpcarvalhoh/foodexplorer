@@ -286,7 +286,7 @@ export function NewOrUpdateDish(){
                                 <IngredientItem 
                                     isNew
                                     placeholder="Adicionar"
-                                    value={newIngredients}
+                                    value={newIngredients.toLocaleLowerCase()}
                                     onChange={e => setNewIngredients(e.target.value)}
                                     onClick={handleAddIngredient}
                                     onKeyDown={handleKeyPressAdd}
