@@ -4,15 +4,21 @@ import styled from "styled-components";
 export const Container = styled.div`
    display: flex;
    flex-direction: column;
-   height: 100vh;
+   
+   
+   header{
+      position: fixed;
+      z-index: 2;
+   }
 
    .content-container{
       overflow-y: auto;
+      padding-top: 13rem;
+     
    }
 
    main{
     max-width: 100%;
-    height: 100vh;
     margin: auto;
     width: 428px;
     padding: 1.6rem 4rem 3.3rem;

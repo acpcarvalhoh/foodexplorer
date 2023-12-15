@@ -109,6 +109,10 @@ export const Container = styled.div`
     }
   }
 
+  footer{
+    margin-top: 0;
+  }
+
  
  
   /* Desktop */
