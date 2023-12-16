@@ -2,8 +2,10 @@ import styled from "styled-components";
 
 
 export const Container = styled.div`
+   flex: 1;
    display: flex;
    flex-direction: column;
+   min-height: 100vh;
    
    
    header{
@@ -11,17 +13,13 @@ export const Container = styled.div`
       z-index: 2;
    }
 
-   .content-container{
-      overflow-y: auto;
-      padding-top: 13rem;
-     
-   }
 
    main{
     max-width: 100%;
     margin: auto;
     width: 428px;
-    padding: 1.6rem 4rem 3.3rem;
+    padding: 13rem 4rem 3.3rem;
+    border: 2px solid red;
     
      
 
@@ -37,16 +35,12 @@ export const Container = styled.div`
       }
    }
 
-   footer{
-      margin-top: 10rem;
-   }
-
 
   /* Desktop */
    @media screen and (min-width: 768px){
       main{
          width: 100%;
-         padding: 2.4rem 12.1rem 3.3rem;
+         padding: 14rem 12.1rem 3.3rem;
          margin-bottom: 7.9rem;
       }
    }
@@ -63,13 +57,13 @@ export const Loading = styled.div`
  
 
 
-  svg{
-    color: ${({ theme }) => theme.COLORS.LIGHT_700};
-    display: flex;
-    width: 3rem;
-    height: 3rem;
-    animation: rotate .5s infinite linear;
-  }
+   svg{
+      color: ${({ theme }) => theme.COLORS.LIGHT_700};
+      display: flex;
+      width: 3rem;
+      height: 3rem;
+      animation: rotate .5s infinite linear;
+   }
 
   p{
     color: ${({ theme }) => theme.COLORS.LIGHT_700};

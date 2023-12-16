@@ -77,69 +77,66 @@ export function Details(){
     return (
         <Container>
             <Header/>
-            <div className="content-container">
-                <main>
-                    <button onClick={handleBack}>
-                        <PiCaretLeftBold size={32}/>
-                        Voltar
-                    </button>
-                    {
-                      loading ? 
-                        <Loading>
-                            <ImSpinner8 />
-                            <p>Carregando prato...</p>
-                        </Loading>
-                    :(
-                        <DishDetails>
-                            <img src={getImageUrl(dish.image)} alt={`Imagem de ${dish.name}`} />
-                            <div className="dish_description">
-                                <h2>{dish.name}</h2>
-                                <p>{dish.description}</p>
-                                <Ingredients>
-                                    {dish.ingredients && dish.ingredients.map((ingredient, index) => (
-                                        <Ingredient title={ingredient.name} key={index}/>
-                                    ))}
-                                </Ingredients>
+            <main>
+                <button onClick={handleBack}>
+                    <PiCaretLeftBold size={32}/>
+                    Voltar
+                </button>
+                {
+                    loading ? 
+                    <Loading>
+                        <ImSpinner8 />
+                        <p>Carregando prato...</p>
+                    </Loading>
+                :(
+                    <DishDetails>
+                        <img src={getImageUrl(dish.image)} alt={`Imagem de ${dish.name}`} />
+                        <div className="dish_description">
+                            <h2>{dish.name}</h2>
+                            <p>{dish.description}</p>
+                            <Ingredients>
+                                {dish.ingredients && dish.ingredients.map((ingredient, index) => (
+                                    <Ingredient title={ingredient.name} key={index}/>
+                                ))}
+                            </Ingredients>
 
+                            
+                            <QuantityAndOrderSelector>
+                                {!admin && 
+                                    <div className="dishQuantitySelector">
+                                        <button onClick={handleDicrease}>
+                                            <FiMinus size={28}/>
+                                        </button>
+
+                                        <span>{dishQuantity}</span>
+
+                                        <button onClick={handleIncrease}>
+                                            <FiPlus size={28}/>
+                                        </button>
+                                    </div>
+                                }                     
                                 
-                                <QuantityAndOrderSelector>
-                                    {!admin && 
-                                        <div className="dishQuantitySelector">
-                                            <button onClick={handleDicrease}>
-                                                <FiMinus size={28}/>
-                                            </button>
-
-                                            <span>{dishQuantity}</span>
-
-                                            <button onClick={handleIncrease}>
-                                                <FiPlus size={28}/>
-                                            </button>
-                                        </div>
-                                    }                     
-                                    
-                                    <button className="button-order-or-edit-dish"
-                                        onClick={admin ? () => HandleEditDish(dish.id) : handleAddDish}
-                                    >
-                                        {admin? "Editar prato" : 
-                                            <div className="order-price">
-                                                <PiReceipt size={21}/>
-                                                <div> 
-                                                    <span>Incluir </span>
-                                                    <span>Pedir </span> 
-                                                    ∙
-                                                    <span> {formatCurrency(totalDishPrice, "BRL")}</span>
-                                                </div>
+                                <button className="button-order-or-edit-dish"
+                                    onClick={admin ? () => HandleEditDish(dish.id) : handleAddDish}
+                                >
+                                    {admin? "Editar prato" : 
+                                        <div className="order-price">
+                                            <PiReceipt size={21}/>
+                                            <div> 
+                                                <span>Incluir </span>
+                                                <span>Pedir </span> 
+                                                ∙
+                                                <span> {formatCurrency(totalDishPrice, "BRL")}</span>
                                             </div>
-                                        }
-                                    </button>
-                                </QuantityAndOrderSelector>
-                            </div>
-                        </DishDetails>
-                    )}                   
-                </main>
-                <Footer/> 
-            </div> 
-           
+                                        </div>
+                                    }
+                                </button>
+                            </QuantityAndOrderSelector>
+                        </div>
+                    </DishDetails>
+                )}                   
+            </main>
+            <Footer/> 
         </Container >
     )
 };
