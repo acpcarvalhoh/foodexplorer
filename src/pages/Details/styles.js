@@ -7,7 +7,6 @@ export const Container = styled.div`
    flex-direction: column;
    min-height: 100vh;
    
-   
    header{
       position: fixed;
       z-index: 2;
@@ -19,10 +18,8 @@ export const Container = styled.div`
     margin: auto;
     width: 428px;
     padding: 13rem 4rem 3.3rem;
-    border: 2px solid red;
     
      
-
       button{
          border: none;
          background: none;

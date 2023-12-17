@@ -41,72 +41,68 @@ export function Home() {
   return (
     <Container $search={search}>
       <Header/>
-      <div className="content-container">
-        <main>
-          {
-            !search && 
-            <article>
-              <img className="mobile-img" src={dishImg} alt="imagem de prato" />
-              <img className="desktop-only-img" src={dishImgDesktop} alt="imagem de prato" />
-              <div className='texts-banner'>
-                <h2>Sabores inigualáveis</h2>
-                <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
-              </div>
-            </article>
-          }
-
-          {
-            loading && 
-            <Loading>
-              <ImSpinner8 />
-              <p>Carregando pratos...</p>
-            </Loading>
-          }
-           
-          {meals.length > 0 && 
-            <Section title="Refeiçoes">
-              <Carousel>
-                {meals.map((dish, index) => ( 
-                  <Dish data={dish} key={index}/>
-                ))}
-             </Carousel>
-            </Section>
-          }
-          
-          {
-            desserts.length > 0 &&   
-            <Section title="Sobremesas">
-              <Carousel>
-                {desserts.map((dish, index) => ( 
-                  <Dish data={dish} key={index}/>
-                ))}   
-              </Carousel>
-            </Section>
-          }
-         
-          {
-            drinks.length > 0 &&
-            <Section title="Bebidas">
-              <Carousel>
-                {drinks.map((dish, index) => ( 
-                  <Dish data={dish} key={index}/>
-                ))}
-              </Carousel>
-            </Section>
-          }
-
-          {
-            search  && dishes.length <= 0 &&
-            <div className="not-found-content">
-              <p>Nenhum prato ou ingredediente</p>
-              <CiFaceFrown/>
+      <main>
+        {
+          !search && 
+          <article>
+            <img className="mobile-img" src={dishImg} alt="imagem de prato" />
+            <img className="desktop-only-img" src={dishImgDesktop} alt="imagem de prato" />
+            <div className='texts-banner'>
+              <h2>Sabores inigualáveis</h2>
+              <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
             </div>
-          }
-        </main>
+          </article>
+        }
 
-        <Footer/>
-      </div>
-     
+        {
+          loading && 
+          <Loading>
+            <ImSpinner8 />
+            <p>Carregando pratos...</p>
+          </Loading>
+        }
+          
+        {meals.length > 0 && 
+          <Section title="Refeiçoes">
+            <Carousel>
+              {meals.map((dish, index) => ( 
+                <Dish data={dish} key={index}/>
+              ))}
+            </Carousel>
+          </Section>
+        }
+        
+        {
+          desserts.length > 0 &&   
+          <Section title="Sobremesas">
+            <Carousel>
+              {desserts.map((dish, index) => ( 
+                <Dish data={dish} key={index}/>
+              ))}   
+            </Carousel>
+          </Section>
+        }
+        
+        {
+          drinks.length > 0 &&
+          <Section title="Bebidas">
+            <Carousel>
+              {drinks.map((dish, index) => ( 
+                <Dish data={dish} key={index}/>
+              ))}
+            </Carousel>
+          </Section>
+        }
+
+        {
+          search  && dishes.length <= 0 &&
+          <div className="not-found-content">
+            <p>Nenhum prato ou ingredediente</p>
+            <CiFaceFrown/>
+          </div>
+        }
+      </main>
+      <Footer/>     
      <ToastContainer/>
     </Container>
   )
