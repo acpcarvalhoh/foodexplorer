@@ -10,11 +10,11 @@ O **Food Explorer** é uma aplicação web construída com a blibioteca [React](
 ## 📋 Índice
 
 - 💻 [Tecnologias Utilizadas](#-tecnologias-utilizadas)
-- 📋 [Funcionalidades principais](#-funcionalidades-principais)
-- ⚙️ [Configuração](#-configuração)
-- 🤝 [Contribuições](#-contribuições)
-- 📄 [Licença](#-licença)
-- 👨‍💻 [Autor](#-autor)
+- 📋 [Funcionalidades principais](#funcionalidades-principais)
+- ⚙️ [Configuração](#configuração)
+- 🤝 [Contribuições](#contribuições)
+- 📄 [Licença](#licença)
+- 👨‍💻 [Autor](#autor)
 
 Cada um desses links deve estar vinculado à seção correspondente do seu documento, permitindo a navegação direta a partir do índice. Se precisar de mais alguma ajuda ou se algo não estiver claro, estou à disposição!
 
