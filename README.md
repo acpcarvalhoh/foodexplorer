@@ -4,17 +4,19 @@ Bem-vindo ao repositório do **Food Explorer**! Esta aplicação é um uma aplic
 
 ## Visão geral
 
-O **Food Explorer** é uma aplicação web construída com a blibioteca[React] usando linguagem[JavaScript]. Permite aos usuários explorar uma ampla variedade de pratos, visualizar detalhes, adicionar pratos aos favoritos, gerenciar histórico de pedidos, admin é a pessoa responsável pelo restaurante, logo, poderá criar, visualizar, editar e apagar um prato a qualquer momento. A aplicação utiliza [API de de restaurantes https://github.com/acpcarvalhoh/foodexplorer-api] para gerenciar  a aplicação.
+O **Food Explorer** é uma aplicação web construída com a blibioteca [React](https://react.dev) usando linguagem [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript). Permite aos usuários explorar uma ampla variedade de pratos, visualizar detalhes, adicionar pratos aos favoritos, gerenciar histórico de pedidos, admin é a pessoa responsável pelo restaurante, logo, poderá criar, visualizar, editar e apagar um prato a qualquer momento. A aplicação utiliza API de de restaurantes https://github.com/acpcarvalhoh/foodexplorer-api para gerenciar  a aplicação.
 
 
 ## 📋 Índice
 
-- 📋 [Configuração](#-configuração)
-- 🛠️ [Instalação](#️️-instalação)
 - 💻 [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- 📋 [Funcionalidades principais](#-funcionalidades-principais)
+- ⚙️ [Configuração](#-configuração)
 - 🤝 [Contribuições](#-contribuições)
 - 📄 [Licença](#-licença)
 - 👨‍💻 [Autor](#-autor)
+
+Cada um desses links deve estar vinculado à seção correspondente do seu documento, permitindo a navegação direta a partir do índice. Se precisar de mais alguma ajuda ou se algo não estiver claro, estou à disposição!
 
 
 ##  preview 💻
@@ -83,7 +85,7 @@ Siga as etapas abaixo para configurar o ambiente de desenvolvimento e executar o
 
    O servidor de desenvolvimento será iniciado e a aplicação estará acessível em [ http://localhost:5173/](http://localhost:5173/).
 
-## Contribuição
+## Contribuições
 
 Agradecemos o seu interesse em contribuir para o **Food Explorer**! Se você deseja ajudar a melhorar a aplicação, siga as etapas abaixo:
 
