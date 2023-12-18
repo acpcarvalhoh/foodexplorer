@@ -4,7 +4,7 @@ Bem-vindo ao repositório do **Food Explorer**! Esta aplicação é um uma aplic
 
 ## Visão geral
 
-O **Food Explorer** é uma aplicação web construída com a blibioteca [React](https://react.dev){:target="_blank"} usando linguagem [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript){:target="_blank"}. Permite aos usuários explorar uma ampla variedade de pratos, visualizar detalhes, adicionar pratos aos favoritos, gerenciar histórico de pedidos, admin é a pessoa responsável pelo restaurante, logo, poderá criar, visualizar, editar e apagar um prato a qualquer momento. A aplicação utiliza API de de restaurantes https://github.com/acpcarvalhoh/foodexplorer-api para gerenciar  a aplicação.
+O **Food Explorer** é uma aplicação web construída com a blibioteca [React](https://react.dev){:target="_blank"} usando linguagem [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript). Permite aos usuários explorar uma ampla variedade de pratos, visualizar detalhes, adicionar pratos aos favoritos, gerenciar histórico de pedidos, admin é a pessoa responsável pelo restaurante, logo, poderá criar, visualizar, editar e apagar um prato a qualquer momento. A aplicação utiliza API de de restaurantes https://github.com/acpcarvalhoh/foodexplorer-api para gerenciar  a aplicação.
 
 
 ## 📋 Índice
@@ -20,7 +20,7 @@ O **Food Explorer** é uma aplicação web construída com a blibioteca [React](
 
 ##  preview 💻
 
-<a href="https://foodexplorer-delivery.vercel.app" target="_blank">acesse a aplicação aqui</a>
+[acesse a aplicação aqui](https://foodexplorer-delivery.vercel.app){target="_blank"}
 
 ## Conta de demostração admin
 ```bash
