@@ -20,7 +20,7 @@ O **Food Explorer** é uma aplicação web construída com a blibioteca [React](
 
 ##  preview 💻
 
-[acesse a aplicação aqui](https://foodexplorer-delivery.vercel.app){target="_blank"}
+[acesse a aplicação aqui](https://foodexplorer-delivery.vercel.app) {target="_blank"}
 
 ## Conta de demostração admin
 ```bash
