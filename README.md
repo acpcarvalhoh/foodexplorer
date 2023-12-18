@@ -39,6 +39,7 @@ As principais tecnologias utilizadas no desenvolvimento desta aplicação são:
 - [**Styled Components**](https://styled-components.com)
 - [**Axios**](https://axios-http.com)
 - [**React Router**](https://reactrouter.com/en/main)
+- [**React-toastify**](https://fkhadra.github.io/react-toastify/introduction)
 
 ## Funcionalidades principais
 
@@ -119,7 +120,7 @@ Agradecemos o seu interesse em contribuir para o **Food Explorer**! Se você des
 
 ## Licença
 
-O RocketMovies é distribuído sob a licença [MIT]. Leia o arquivo [LICENSE] para obter mais informações.
+O **Food Explorer** é distribuído sob a licença [MIT]. Leia o arquivo [MIT License] para obter mais informações.
 
 
 ## Autor
