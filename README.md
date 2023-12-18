@@ -120,7 +120,7 @@ Agradecemos o seu interesse em contribuir para o **Food Explorer**! Se você des
 
 ## Licença
 
-O **Food Explorer** é distribuído sob a licença [MIT]. Leia o arquivo [MIT License] para obter mais informações.
+- Licença: O RocketMovies é distribuído sob a [licença MIT](./LICENSE). Leia o arquivo [LICENSE] para obter mais informações.
 
 
 ## Autor
