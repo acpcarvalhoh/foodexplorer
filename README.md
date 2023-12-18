@@ -1,4 +1,4 @@
-# 🍽️ FOOD EXPLORER.
+# 🍽️ FOOD EXPLORER
 
 Bem-vindo ao repositório do **Food Explorer**! Esta aplicação é um uma aplicação web que simula um menu interativo de um restaurante fictício. Aqui você encontrará todas as informações necessárias para configurar, executar e contribuir para este projeto.
 
