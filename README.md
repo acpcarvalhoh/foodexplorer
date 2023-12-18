@@ -124,6 +124,7 @@ O RocketMovies é distribuído sob a licença [MIT]. Leia o arquivo [LICENSE] pa
 
 ## Autor
 
+
 Este projeto foi desenvolvido por Adão Carvalho. Aqui estão algumas informações sobre o autor:
 
 - **Nome**: Adão Carvalho
