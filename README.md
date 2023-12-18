@@ -4,7 +4,7 @@ Bem-vindo ao repositório do **Food Explorer**! Esta aplicação é um uma aplic
 
 ## Visão geral
 
-O **Food Explorer** é uma aplicação web construída com a blibioteca [React](https://react.dev){:target="_blank"} usando linguagem [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript). Permite aos usuários explorar uma ampla variedade de pratos, visualizar detalhes, adicionar pratos aos favoritos, gerenciar histórico de pedidos, admin é a pessoa responsável pelo restaurante, logo, poderá criar, visualizar, editar e apagar um prato a qualquer momento. A aplicação utiliza API de de restaurantes https://github.com/acpcarvalhoh/foodexplorer-api para gerenciar  a aplicação.
+O **Food Explorer** é uma aplicação web construída com a blibioteca [React](https://react.dev) usando linguagem [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript). Permite aos usuários explorar uma ampla variedade de pratos, visualizar detalhes, adicionar pratos aos favoritos, gerenciar histórico de pedidos, admin é a pessoa responsável pelo restaurante, logo, poderá criar, visualizar, editar e apagar um prato a qualquer momento. A aplicação utiliza API de de restaurantes https://github.com/acpcarvalhoh/foodexplorer-api para gerenciar  a aplicação.
 
 
 ## 📋 Índice
@@ -21,7 +21,7 @@ O **Food Explorer** é uma aplicação web construída com a blibioteca [React](
 ##  preview 💻
 
 
-[Food Explorer Delivery](https://foodexplorer-delivery.vercel.app){:target="_blank"}
+Acesse a aplicação aqui! [https://foodexplorer-delivery.vercel.app](https://foodexplorer-delivery.vercel.app)
 
 
 ## Conta de demostração admin
@@ -34,13 +34,13 @@ senha: 123456
 
 As principais tecnologias utilizadas no desenvolvimento desta aplicação são:
 
-- [**React**](https://react.dev){:target="_blank"}
-- [**React Hook Form**](https://react-hook-form.com){:target="_blank"}
-- [**Joi**](https://joi.dev){:target="_blank"}
-- [**Styled Components**](https://styled-components.com){:target="_blank"}
-- [**Axios**](https://axios-http.com){:target="_blank"}
-- [**React Router**](https://reactrouter.com/en/main){:target="_blank"}
-- [**React-toastify**](https://fkhadra.github.io/react-toastify/introduction){:target="_blank"}
+- [**React**](https://react.dev)
+- [**React Hook Form**](https://react-hook-form.com)
+- [**Joi**](https://joi.dev)
+- [**Styled Components**](https://styled-components.com)
+- [**Axios**](https://axios-http.com)
+- [**React Router**](https://reactrouter.com/en/main)
+- [**React-toastify**](https://fkhadra.github.io/react-toastify/introduction)
 
 ## Funcionalidades principais
 
@@ -85,7 +85,7 @@ Siga as etapas abaixo para configurar o ambiente de desenvolvimento e executar o
    npm run dev
    ```
 
-   O servidor de desenvolvimento será iniciado e a aplicação estará acessível em [ http://localhost:5173/](http://localhost:5173/).
+   O servidor de desenvolvimento será iniciado e a aplicação estará acessível em http://localhost:5173/.
 
 ## Contribuições
 
