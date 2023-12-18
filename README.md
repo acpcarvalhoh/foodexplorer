@@ -4,7 +4,7 @@ Bem-vindo ao repositório do **Food Explorer**! Esta aplicação é um uma aplic
 
 ## Visão geral
 
-O **Food Explorer** é uma aplicação web construída com a blibioteca [React](https://react.dev) usando linguagem [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript). Permite aos usuários explorar uma ampla variedade de pratos, visualizar detalhes, adicionar pratos aos favoritos, gerenciar histórico de pedidos, admin é a pessoa responsável pelo restaurante, logo, poderá criar, visualizar, editar e apagar um prato a qualquer momento. A aplicação utiliza API de de restaurantes https://github.com/acpcarvalhoh/foodexplorer-api para gerenciar  a aplicação.
+O **Food Explorer** é uma aplicação web construída com a blibioteca [React](https://react.dev){:target="_blank"} usando linguagem [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript){:target="_blank"}. Permite aos usuários explorar uma ampla variedade de pratos, visualizar detalhes, adicionar pratos aos favoritos, gerenciar histórico de pedidos, admin é a pessoa responsável pelo restaurante, logo, poderá criar, visualizar, editar e apagar um prato a qualquer momento. A aplicação utiliza API de de restaurantes https://github.com/acpcarvalhoh/foodexplorer-api para gerenciar  a aplicação.
 
 
 ## 📋 Índice
@@ -16,12 +16,11 @@ O **Food Explorer** é uma aplicação web construída com a blibioteca [React](
 - 📄 [Licença](#licença)
 - 👨‍💻 [Autor](#autor)
 
-Cada um desses links deve estar vinculado à seção correspondente do seu documento, permitindo a navegação direta a partir do índice. Se precisar de mais alguma ajuda ou se algo não estiver claro, estou à disposição!
 
 
 ##  preview 💻
 
-[acesse a aplicação aqui](https://foodexplorer-delivery.vercel.app/)
+[acesse a aplicação aqui](https://foodexplorer-delivery.vercel.app){:target="_blank"}
 
 ## Conta de demostração admin
 ```bash
@@ -33,13 +32,13 @@ senha: 123456
 
 As principais tecnologias utilizadas no desenvolvimento desta aplicação são:
 
-- [**React**](https://react.dev)
-- [**React Hook Form**](https://react-hook-form.com)
-- [**Joi**](https://joi.dev)
-- [**Styled Components**](https://styled-components.com)
-- [**Axios**](https://axios-http.com)
-- [**React Router**](https://reactrouter.com/en/main)
-- [**React-toastify**](https://fkhadra.github.io/react-toastify/introduction)
+- [**React**](https://react.dev){:target="_blank"}
+- [**React Hook Form**](https://react-hook-form.com){:target="_blank"}
+- [**Joi**](https://joi.dev){:target="_blank"}
+- [**Styled Components**](https://styled-components.com){:target="_blank"}
+- [**Axios**](https://axios-http.com){:target="_blank"}
+- [**React Router**](https://reactrouter.com/en/main){:target="_blank"}
+- [**React-toastify**](https://fkhadra.github.io/react-toastify/introduction){:target="_blank"}
 
 ## Funcionalidades principais
 
@@ -120,7 +119,7 @@ Agradecemos o seu interesse em contribuir para o **Food Explorer**! Se você des
 
 ## Licença
 
-- Licença: O RocketMovies é distribuído sob a MIT. Leia o arquivo [licença MIT](./LICENSE) para obter mais informações.
+O **Food Explorer** é distribuído sob a MIT. Leia o arquivo [licença MIT](./LICENSE) para obter mais informações.
 
 
 ## Autor
