@@ -1,5 +1,6 @@
 import axios from "axios";
-import env from "react-dotenv";
+import dotenv from "dotenv";
+dotenv.config();
 const url = process.env.API_URL
 
 export const api = axios.create({
