@@ -1,5 +1,5 @@
 # 🍽️ FOOD EXPLORER
-![Estrutura do bando de dados](src/assets/preview-projeto.PNG)
+![Preview do projeto](src/assets/preview-projeto.PNG)
 
 Bem-vindo ao repositório do **Food Explorer**! Esta aplicação é um uma aplicação web que simula um menu interativo de um restaurante fictício. Aqui você encontrará todas as informações necessárias para configurar, executar e contribuir para este projeto.
 
@@ -12,6 +12,7 @@ O **Food Explorer** é uma aplicação web construída com a blibioteca [React](
 ## Índice
 
 - 💻 [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- 📁 [Estrutura do Projeto](#estrutura-do-projeto)
 - 📋 [Funcionalidades principais](#funcionalidades-principais)
 - ⚙️ [Configuração](#configuração)
 - 🤝 [Contribuições](#contribuições)
@@ -43,6 +44,21 @@ As principais tecnologias utilizadas no desenvolvimento desta aplicação são:
 - [**Axios**](https://axios-http.com)
 - [**React Router**](https://reactrouter.com/en/main)
 - [**React-toastify**](https://fkhadra.github.io/react-toastify/introduction)
+
+
+## Estrutura do Projeto
+
+A estrutura do projeto está organizada em componentes, hooks, páginas e serviços. Aqui estão os principais diretórios:
+
+- `src/components`: Componentes reutilizáveis.
+- `src/hooks`: Hooks customizados.
+- `src/pages`: Páginas do aplicativo.
+- `src/routes`:  Rotas do aplicativo.
+- `src/services`: Integração com a API.
+- `src/styles`: Estilos globais e componentes estilizados.
+- `src/utils`: Funções utilitárias.
+- `src/validators`: Esquemas de validação.
+
 
 ## Funcionalidades principais
 
@@ -76,7 +92,7 @@ Siga as etapas abaixo para configurar o ambiente de desenvolvimento e executar o
    Crie um arquivo `.env` na raiz do projeto e defina as seguintes variáveis de ambiente:
 
    ```
-   API_URL="SUA_API"
+   VITE_API_URL="SUA_API"
    ```
 
    Certifique-se de substituir `SUA_API` pela sua chave de API válida da API de restaurantes.
