@@ -1,5 +1,7 @@
 import axios from "axios";
+import dotenv from 'dotenv';
+dotenv.config();
 
 export const api = axios.create({
-    baseURL: "https://foodexplorer-api-gc4w.onrender.com"
+    baseURL: process.env.API_URL
 });

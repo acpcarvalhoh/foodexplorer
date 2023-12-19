@@ -76,10 +76,10 @@ Siga as etapas abaixo para configurar o ambiente de desenvolvimento e executar o
    Crie um arquivo `.env` na raiz do projeto e defina as seguintes variáveis de ambiente:
 
    ```
-   API_KEY=YOUR_API_KEY
+   API_URL="SUA_API"
    ```
 
-   Certifique-se de substituir `YOUR_API_KEY` pela sua chave de API válida da [API de Filmes].
+   Certifique-se de substituir `SUA_API` pela sua chave de API válida da API de restaurantes.
 
 4. **Inicie o servidor de desenvolvimento**
 
