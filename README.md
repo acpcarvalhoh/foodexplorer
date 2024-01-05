@@ -148,7 +148,7 @@ O **Food Explorer** é distribuído sob a MIT. Leia o arquivo [licença MIT](./L
 Este projeto foi desenvolvido por Adão Carvalho. Aqui estão algumas informações sobre o autor:
 
 - **Nome**: Adão Carvalho
-- **Descrição**: Sou um desenvolvedor de software apaixonado por tecnologia e programação. Tenho experiência no desenvolvimento de aplicações web e estou sempre buscando aprender novas tecnologias. Este projeto foi criado como parte do meu aprendizado e prática de desenvolvimento de APIs.
+- **Descrição**: Sou um desenvolvedor de software apaixonado por tecnologia e programação. Tenho experiência no desenvolvimento de aplicações web e estou sempre buscando aprender novas tecnologias. Este projeto foi criado como parte do meu aprendizado e prática de desenvolvimento de aplicações Full Stack.
 - **Contato**: Você pode entrar em contato comigo pelo e-mail carvalhohuzumak@gmail.com.
 - **Perfil**: Você pode encontrar mais projetos e trabalhos no meu perfil do GitHub: [acpcarvalhoh](https://github.com/acpcarvalhoh)
 
